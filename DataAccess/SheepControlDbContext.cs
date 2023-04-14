@@ -1,10 +1,6 @@
 ﻿using Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DataAccess
 {
@@ -13,7 +9,14 @@ namespace DataAccess
         public DbSet<User> Users { get; set; }
         public DbSet<Sheep> Sheeps { get; set; }
         public DbSet<Vaccine> Vaccines { get; set; }
+        public DbSet<VaccineSheep> VaccinesSheeps { get; set; }
 
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<PermissionRole> PermissionsRoles { get; set; }
+        public DbSet<RoleUser> RolesUsers { get; set; }
+        public DbSet<Controller> Controllers { get; set; }
+        public DbSet<Entities.Action> Actions { get; set; }
         public SheepControlDbContext(DbContextOptions<SheepControlDbContext> options) : base(options)
         {
         }
