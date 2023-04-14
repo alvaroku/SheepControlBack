@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(SheepControlDbContext))]
-    [Migration("20230414051958_001")]
+    [Migration("20230414052919_001")]
     partial class _001
     {
         /// <inheritdoc />
@@ -149,9 +149,6 @@ namespace DataAccess.Migrations
                     b.Property<int>("PermissionId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RolId")
-                        .HasColumnType("int");
-
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
@@ -212,9 +209,6 @@ namespace DataAccess.Migrations
 
                     b.Property<DateTime>("ModificationDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("RolId")
-                        .HasColumnType("int");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int");

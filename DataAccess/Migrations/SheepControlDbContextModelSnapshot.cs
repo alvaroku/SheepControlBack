@@ -146,9 +146,6 @@ namespace DataAccess.Migrations
                     b.Property<int>("PermissionId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RolId")
-                        .HasColumnType("int");
-
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
@@ -209,9 +206,6 @@ namespace DataAccess.Migrations
 
                     b.Property<DateTime>("ModificationDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("RolId")
-                        .HasColumnType("int");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
