@@ -8,7 +8,7 @@ namespace Entities
 {
     public class PermissionRole:ObjetoBase
     {
-        public int RolId { get; set; }
+        public int RoleId { get; set; }
         public Role Role { get; set; }
 
         public int PermissionId { get; set; }
