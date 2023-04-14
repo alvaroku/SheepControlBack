@@ -11,8 +11,7 @@ namespace Entities
         public DateTime BirthDate {  get; set; }
         public float Weight { get; set; }
         public string Description { get; set; }
-        public EnumSex Sex { get; set; }
+        public string Sex { get; set; }
         public string Photo { get; set; }
-        public IEnumerable<Vaccine> Vaccine { get; set; } = new List<Vaccine>();
     }
 }

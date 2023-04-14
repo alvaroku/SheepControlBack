@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public enum EnumSex
+    public class Action:ObjetoBase
     {
-
-        hembra,
-        macho
+        public string Name { get;set; }
     }
 }
