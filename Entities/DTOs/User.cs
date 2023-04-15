@@ -1,6 +1,6 @@
 ﻿using Entities.DTOs;
 
-namespace SheepControlApi.Entities.Dtos
+namespace Entities.DTOs
 {
     public class UserRequest : ObjetoBase
     {

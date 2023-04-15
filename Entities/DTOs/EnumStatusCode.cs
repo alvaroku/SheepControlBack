@@ -1,7 +1,6 @@
-﻿ 
+﻿
 
-namespace SheepControlApi.Dtos
-{
+namespace Entities.DTOs
     public enum EnumStatusCode
     {
         Ok = 200,

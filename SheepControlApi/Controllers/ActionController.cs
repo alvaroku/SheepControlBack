@@ -7,43 +7,40 @@ namespace SheepControlApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SheepController : ControllerBase
+    public class ActionController : ControllerBase
     {
-        ISheepBusiness SheepBusiness;
-
-        public SheepController(ISheepBusiness sheepBusiness)
+        IActionBusiness _ActionBusiness;
+        public ActionController(IActionBusiness actionBusiness)
         {
-            SheepBusiness = sheepBusiness;
+            _ActionBusiness = actionBusiness;
         }
-
-
-        // GET: api/<SheepController>
+        // GET: api/<ActionController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok();
         }
 
-        // GET api/<SheepController>/5
+        // GET api/<ActionController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<SheepController>
+        // POST api/<ActionController>
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT api/<SheepController>/5
+        // PUT api/<ActionController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<SheepController>/5
+        // DELETE api/<ActionController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

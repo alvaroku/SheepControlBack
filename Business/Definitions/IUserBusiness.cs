@@ -1,6 +1,5 @@
 ﻿using DataAccess.Implementations;
-using SheepControlApi.Dtos;
-using SheepControlApi.Entities.Dtos;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

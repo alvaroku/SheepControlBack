@@ -1,4 +1,4 @@
-﻿namespace SheepControlApi.Dtos
+﻿namespace Entities.DTOs
 {
     public class Response<T>
     {

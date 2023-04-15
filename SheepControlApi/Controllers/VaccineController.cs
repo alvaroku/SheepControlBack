@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Business.Definitions;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,6 +9,11 @@ namespace SheepControlApi.Controllers
     [ApiController]
     public class VaccineController : ControllerBase
     {
+        IVaccineBusiness _VaccineBusiness;
+        public VaccineController(IVaccineBusiness VaccineBusiness)
+        {
+            _VaccineBusiness = VaccineBusiness;
+        }
         // GET: api/<VaccineController>
         [HttpGet]
         public IEnumerable<string> Get()
