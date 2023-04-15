@@ -1,4 +1,7 @@
 ﻿using Business.Definitions;
+using DataAccess;
+using DataAccess.Implementations;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +12,20 @@ namespace Business.Implementations
 {
     public class RoleBusiness:IRoleBusiness
     {
+        RoleRepository _RoleRepository;
+        public RoleBusiness(SheepControlDbContext context) { 
+        
+            _RoleRepository = new RoleRepository(context);
+        }
+
+        public Response<RoleResponse> Create(RoleRequest roleRequest)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<RoleResponse> Read()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

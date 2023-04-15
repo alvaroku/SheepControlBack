@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,7 @@ namespace Business.Definitions
 {
     public interface IVaccineBusiness
     {
+        public Response<VaccineResponse> Create(VaccineRequest vaccineRequest);
+        public IEnumerable<VaccineResponse> Read();
     }
 }

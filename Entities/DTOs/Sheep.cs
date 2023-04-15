@@ -15,7 +15,7 @@ namespace Entities.DTOs
         public string Sex { get; set; }
         public string Photo { get; set; }
     }
-    public class SheepResquest : ObjetoBase
+    public class SheepRequest : ObjetoBase
     {
         public DateTime BirthDate { get; set; }
         public float Weight { get; set; }

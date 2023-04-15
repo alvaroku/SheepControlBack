@@ -9,8 +9,7 @@ using Microsoft.Extensions.Configuration;
 
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
-using SheepControlApi.Dtos;
-using SheepControlApi.Entities.Dtos;
+ 
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;

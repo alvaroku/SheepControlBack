@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Entities.DTOs;
 using SheepControlApi.Entities.Dtos;
 using System;
 using System.Collections.Generic;
