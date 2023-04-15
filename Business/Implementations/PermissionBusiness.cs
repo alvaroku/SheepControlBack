@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business.Implementations
 {
-    public class VaccineBusiness:IVaccineBusiness
+    public class PermissionBusiness:IPermissionBusiness
     {
     }
 }
