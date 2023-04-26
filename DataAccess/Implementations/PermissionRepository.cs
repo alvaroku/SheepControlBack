@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Implementations
 {
-    public class PermissionRepository : BaseRepository<PermissionRepository>
+    public class PermissionRepository : BaseRepository<Permission>
     {
         public PermissionRepository(SheepControlDbContext context) : base(context)
         {

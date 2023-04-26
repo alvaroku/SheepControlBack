@@ -16,9 +16,9 @@ namespace SheepControlApi.Controllers
         }
         // GET: api/<ControllerController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(_ControllerBusiness.Read());
         }
 
         // GET api/<ControllerController>/5

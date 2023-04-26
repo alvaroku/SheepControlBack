@@ -1,4 +1,5 @@
 ﻿using Business.Definitions;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -18,7 +19,7 @@ namespace SheepControlApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok();
+            return Ok(_ActionBusiness.Read());
         }
 
         // GET api/<ActionController>/5
@@ -30,8 +31,9 @@ namespace SheepControlApi.Controllers
 
         // POST api/<ActionController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] ActionRequest actionRequest)
         {
+            _ActionBusiness.Create(actionRequest);
         }
 
         // PUT api/<ActionController>/5

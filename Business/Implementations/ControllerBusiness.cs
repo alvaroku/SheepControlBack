@@ -1,6 +1,8 @@
-﻿using Business.Definitions;
+﻿using AutoMapper;
+using Business.Definitions;
 using DataAccess;
 using DataAccess.Implementations;
+using Entities;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
@@ -20,12 +22,24 @@ namespace Business.Implementations
 
         public Response<ControllerResponse> Create(ControllerRequest controllerRequest)
         {
-            throw new NotImplementedException();
+            Response<ControllerResponse> response = new Response<ControllerResponse>();
+
+
+            Controller newAction = Mapper.Map<Controller>(controllerRequest);
+
+            _ControllerRepository.Create(newAction);
+
+            response.Data = Mapper.Map<ControllerResponse>(newAction);
+            return response;
         }
 
         public IEnumerable<ControllerResponse> Read()
         {
-            throw new NotImplementedException();
+            var respuesta = _ControllerRepository.Read();
+
+            var mapeo = Mapper.Map<IEnumerable<ControllerResponse>>(respuesta);
+
+            return mapeo.ToList();
         }
     }
 }

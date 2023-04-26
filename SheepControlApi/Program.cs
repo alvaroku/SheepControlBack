@@ -11,7 +11,7 @@ using System;
 using System.Diagnostics.SymbolStore;
 using System.Security.Cryptography.Xml;
 using System.Text;
-
+using Microsoft.AspNetCore.Hosting;
 namespace SheepControlApi
 {
     public class Program
@@ -21,6 +21,7 @@ namespace SheepControlApi
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+ 
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -74,16 +75,23 @@ namespace SheepControlApi
                 );//bd
 
             builder.Services.AddScoped<IUserBusiness, UserBusiness>();//business
+            builder.Services.AddScoped<IRoleBusiness, RoleBusiness>();
+            builder.Services.AddScoped<IVaccineBusiness, VaccineBusiness>();
+            builder.Services.AddScoped<IActionBusiness, ActionBusiness>();
+            builder.Services.AddScoped<IControllerBusiness, ControllerBusiness>();
+            builder.Services.AddScoped<ISheepBusiness, SheepBusiness>();
+            builder.Services.AddScoped<IPermissionBusiness, PermissionBusiness>();
 
             AutoMapperConfiguration.Configure();
 
+            
             // Add Cors for api access
-            /*builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
                 builder.AllowAnyOrigin()
                        .AllowAnyMethod()
                        .AllowAnyHeader();
-            }));*/
+            }));
 
             var app = builder.Build();
 
@@ -100,6 +108,8 @@ namespace SheepControlApi
 
             app.UseAuthorization();
 
+            // Enable Cors for api acces
+            app.UseCors("MyPolicy");
 
             app.MapControllers();
 

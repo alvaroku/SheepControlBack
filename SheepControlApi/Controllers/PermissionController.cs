@@ -17,9 +17,9 @@ namespace SheepControlApi.Controllers
         }
         // GET: api/<PermissionController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(_PermissionBusiness.Read());
         }
 
         // GET api/<PermissionController>/5

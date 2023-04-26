@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Entities;
-using SheepControlApi.Entities.Dtos;
+using Entities.DTOs;
 
 namespace Business.Utils
 {
@@ -19,7 +19,8 @@ namespace Business.Utils
                 cfg.CreateMap<UserRequest, User>().ReverseMap();
 
                 cfg.CreateMap<User, LoginResponse>().ReverseMap();
-
+                
+                
 
             });
         }

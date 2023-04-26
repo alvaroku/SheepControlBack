@@ -17,9 +17,9 @@ namespace SheepControlApi.Controllers
 
         // GET: api/<RoleController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(_RoleBusiness.Read()) ;
         }
 
         // GET api/<RoleController>/5

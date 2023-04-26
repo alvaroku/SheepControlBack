@@ -1,4 +1,5 @@
-﻿using Business.Definitions;
+﻿using AutoMapper;
+using Business.Definitions;
 using DataAccess;
 using DataAccess.Implementations;
 using Entities.DTOs;
@@ -24,7 +25,11 @@ namespace Business.Implementations
 
         public IEnumerable<PermissionResponse> Read()
         {
-            throw new NotImplementedException();
+            var respuesta = _PermissionRepository.Read();
+
+            var mapeo = Mapper.Map<IEnumerable<PermissionResponse>>(respuesta);
+
+            return mapeo.ToList();
         }
     }
 }

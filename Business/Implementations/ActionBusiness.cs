@@ -1,6 +1,8 @@
-﻿using Business.Definitions;
+﻿using AutoMapper;
+using Business.Definitions;
 using DataAccess;
 using DataAccess.Implementations;
+using Entities;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
@@ -10,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Business.Implementations
 {
-   ´public class ActionBusiness:IActionBusiness
+   public class ActionBusiness:IActionBusiness
     {
         ActionRepository _ActionRepository;
         public ActionBusiness(SheepControlDbContext context) {
@@ -20,12 +22,24 @@ namespace Business.Implementations
 
         public Response<ActionResponse> Create(ActionRequest actionRequest)
         {
-            throw new NotImplementedException();
+            Response<ActionResponse> response = new Response<ActionResponse>();
+
+
+            Entities.Action newAction = Mapper.Map<Entities.Action>(actionRequest);
+
+            _ActionRepository.Create(newAction);
+
+            response.Data = Mapper.Map<ActionResponse>(newAction);
+            return response;
         }
 
         public IEnumerable<ActionResponse> Read()
         {
-            throw new NotImplementedException();
+            var respuesta = _ActionRepository.Read();
+
+            var mapeo = Mapper.Map<IEnumerable<ActionResponse>>(respuesta);
+
+            return mapeo.ToList();
         }
     }
 }
