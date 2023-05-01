@@ -81,6 +81,7 @@ namespace Business.Implementations
         public Response<bool> Delete(int id)
         {
             Response<bool> response = new Response<bool>();
+            response.Data = true;
             Vaccine sh = _VaccineRepository.GetById(id);
             _VaccineRepository.Delete(sh);
             return response;

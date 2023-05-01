@@ -16,11 +16,12 @@ namespace Business.Utils
             Mapper.Initialize(cfg =>
             {
                 //mappers principales
-                cfg.CreateMap<UserRequest, User>().ReverseMap();
+                //cfg.CreateMap<UserRequest, User>().ReverseMap();
 
-                cfg.CreateMap<User, LoginResponse>().ReverseMap();
-                
-                
+                //cfg.CreateMap<User, LoginResponse>().ReverseMap();
+                cfg.CreateMap<VaccineSheepRequest,VaccineSheep >().ReverseMap();
+
+
 
             });
         }

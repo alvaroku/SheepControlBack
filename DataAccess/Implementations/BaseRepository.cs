@@ -24,6 +24,11 @@ namespace DataAccess.Implementations
             _dbSet.Add(Data);
             _context.SaveChanges();
         }
+        public void CreateRange(IEnumerable<T> Data)
+        {
+            _dbSet.AddRange(Data);
+            _context.SaveChanges();
+        }
         public IEnumerable<T> Read()
         {
             return _dbSet.ToList();
@@ -36,6 +41,11 @@ namespace DataAccess.Implementations
         public void Delete(T Data)
         {
             _dbSet.Remove(Data);
+            _context.SaveChanges();
+        }
+        public void DeleteAll()
+        {
+            _dbSet.RemoveRange(_dbSet);
             _context.SaveChanges();
         }
         public T GetById(int id)
