@@ -4,6 +4,7 @@ using Business.Utils;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
+using SixLabors.ImageSharp.Formats.Jpeg;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -45,16 +46,8 @@ namespace SheepControlApi.Controllers
         [HttpPost]
         public IActionResult Post([FromForm] VaccineRequest vaccineRequest)
         {
-            var imageName = Guid.NewGuid().ToString() + Path.GetExtension(vaccineRequest.ImageFile.FileName);
-            var imagePath = Path.Combine(_HostEnvironment.WebRootPath, Constants.VACCINEIMAGEPATH, imageName);
-            vaccineRequest.Photo = imageName;
-            using (var stream = new FileStream(imagePath, FileMode.Create))
-            {
-                vaccineRequest.ImageFile.CopyTo(stream);
-
-            }
+            vaccineRequest.Photo = UploaderFile.UploadImage(_HostEnvironment.WebRootPath, Constants.VACCINEIMAGEPATH, vaccineRequest.ImageFile); ;
             var response = _VaccineBusiness.Create(vaccineRequest);
-
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 

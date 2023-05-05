@@ -5,9 +5,8 @@ using Business.Utils;
 using DataAccess.Migrations;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Hosting;
-using System;
-using static System.Net.Mime.MediaTypeNames;
+
+ 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -55,16 +54,8 @@ namespace SheepControlApi.Controllers
         public IActionResult Post([FromForm] SheepRequest sheepRequest)
 
         {
-            var imageName = Guid.NewGuid().ToString() + Path.GetExtension(sheepRequest.ImageFile.FileName);
-            var imagePath = Path.Combine(_HostEnvironment.WebRootPath, Constants.SHEEPIMAGEPATH, imageName);
-            sheepRequest.Photo = imageName;
-            using (var stream = new FileStream(imagePath, FileMode.Create))
-            {
-                sheepRequest.ImageFile.CopyTo(stream);
-                
-            }
+            sheepRequest.Photo = UploaderFile.UploadImage(_HostEnvironment.WebRootPath, Constants.SHEEPIMAGEPATH, sheepRequest.ImageFile);
             var response = SheepBusiness.Create(sheepRequest);
-
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
 
         }

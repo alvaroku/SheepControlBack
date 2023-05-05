@@ -13,6 +13,7 @@ namespace Business.Definitions
         public IEnumerable<VaccineSheepResponse> Read();
         public Response<IEnumerable<VaccineSheepResponse>> ApplyVaccineToAllSheeps(VaccineSheepRequest request);
         public IEnumerable<VaccineSheepResponse> ReadIncludes();
+        public IEnumerable<VaccineSheepResponse> ReadIncludesWithFilters(FilterVaccineSheepRequest request);
         public Response<VaccineSheepResponse> Update(int id, VaccineSheepRequest request);
         public Response<bool> Delete(int id);
         public Response<bool> DeleteAll();

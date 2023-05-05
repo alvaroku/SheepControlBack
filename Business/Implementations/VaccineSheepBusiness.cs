@@ -98,7 +98,23 @@ namespace Business.Implementations
             
             return mapeo.ToList();
         }
+        public IEnumerable<VaccineSheepResponse> ReadIncludesWithFilters(FilterVaccineSheepRequest request)
+        {
+            var dataFiltered = _VaccineSheepRepository.ReadIncludes();
+            dataFiltered = dataFiltered.Where(vs => vs.ApplicationDate >= request.StartDate && vs.ApplicationDate <= request.FinishDate);
+            if (request.SheepId > 0)
+            {
+                dataFiltered = dataFiltered.Where(vs => vs.SheepId == request.SheepId);
+            }
+            if (request.VaccineId > 0)
+            {
+                dataFiltered = dataFiltered.Where(vs => vs.VaccineId == request.VaccineId);
+            }
 
+            var mapeo = Mapper.Map<IEnumerable<VaccineSheepResponse>>(dataFiltered);
+
+            return mapeo.ToList();
+        }
         public Response<VaccineSheepResponse> Update(int id, VaccineSheepRequest request)
         {
             Response<VaccineSheepResponse> response = new Response<VaccineSheepResponse>();

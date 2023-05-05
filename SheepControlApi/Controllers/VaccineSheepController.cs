@@ -24,6 +24,11 @@ namespace SheepControlApi.Controllers
         {
            return Ok(_VaccineSheepBusiness.ReadIncludes());
         }
+        [HttpPost("GetVaccineSheepWithFilters")]
+        public IActionResult GetVaccineSheepWithFilters(FilterVaccineSheepRequest request)
+        {
+            return Ok(_VaccineSheepBusiness.ReadIncludesWithFilters(request));
+        }
         // GET api/<VaccineSheepController>/5
         [HttpGet("{id}")]
         public string Get(int id)
