@@ -7,6 +7,7 @@ using System.Security.Claims;
  
 using Microsoft.AspNetCore.Authorization;
 using Entities.DTOs;
+using Business.Utils;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,15 +18,25 @@ namespace SheepControlApi.Controllers
     public class UserController : ControllerBase
     {
         IUserBusiness _UserBusiness { get; set; }
-        public UserController(IUserBusiness userBusiness) {
+        //IPermissionBusiness _PermissionBusiness { get; set; }
+        IAuthenticationBusiness _AuthenticationBusiness { get; set; }
+        public UserController(IUserBusiness userBusiness, IAuthenticationBusiness authenticationBusiness, IPermissionBusiness permissionBusiness)
+        {
             _UserBusiness = userBusiness;
+            _AuthenticationBusiness = authenticationBusiness;
         }
         // GET: api/<UserController>
         [HttpGet]
         public IActionResult Get()
         {
-            //var u = new User { Name ="Alvaro",Active = true,LastName="Kú",CreationDate=DateTime.Now,Email="alvaro@gmail.com",Guid = Guid.NewGuid(),ModificationDate= DateTime.Now ,Password="222",PhoneNumber="9919"};
-            //_UserBusiness.Create(u);
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_READ);
+
+            if (!response.Success)
+            {
+                return StatusCode(response.StatusCode, response);
+            }
             return Ok(_UserBusiness.Read());
         }
 
@@ -55,22 +66,14 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var responseAuth = _UserBusiness.ValidarToken(identity);
+            var response = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_DELETE);
 
-            if (!responseAuth.Success)
+            if (!response.Success) 
             {
-                return StatusCode(responseAuth.StatusCode, responseAuth);
+                return StatusCode(response.StatusCode,response);
             }
-            UserResponse userAuth = responseAuth.Data;
-            userAuth.Rol = "Admin";
-            if (userAuth.Rol!="Admin") {
-                responseAuth.Success = false;
-                responseAuth.Data = null;
-                responseAuth.Message = "No tienes los permisos suficientes";
-                responseAuth.StatusCode = (int)EnumStatusCode.Forbidden;
-                return StatusCode(responseAuth.StatusCode,responseAuth);
-            }
-            return Ok(responseAuth.Message=$"Borrado -> id {id}");
+
+            return Ok(response.Message=$"Borrado -> id {id}");
 
         }
         [HttpPost("Login")]

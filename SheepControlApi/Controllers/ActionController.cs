@@ -1,4 +1,5 @@
 ﻿using Business.Definitions;
+using Business.Implementations;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,21 +32,27 @@ namespace SheepControlApi.Controllers
 
         // POST api/<ActionController>
         [HttpPost]
-        public void Post([FromBody] ActionRequest actionRequest)
+        public IActionResult Post(ActionRequest actionRequest)
         {
-            _ActionBusiness.Create(actionRequest);
+            var response = _ActionBusiness.Create(actionRequest);
+            return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
+            
         }
 
         // PUT api/<ActionController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, ActionRequest actionRequest)
         {
+            var response = _ActionBusiness.Update(id ,actionRequest);
+            return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
         // DELETE api/<ActionController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var response = _ActionBusiness.Delete(id);
+            return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
     }
 }

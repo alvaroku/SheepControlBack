@@ -12,5 +12,7 @@ namespace Business.Definitions
     {
         public Response<ControllerResponse> Create(ControllerRequest controllerRequest);
         public IEnumerable<ControllerResponse> Read();
+        public Response<ControllerResponse> Update(int id, ControllerRequest request);
+        public Response<bool> Delete(int id);
     }
 }

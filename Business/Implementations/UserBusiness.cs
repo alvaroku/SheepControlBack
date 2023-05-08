@@ -69,8 +69,7 @@ namespace Business.Implementations
 
         public Response<LoginResponse> Login(LoginRequest userRequest)
         {
-            userRequest.Email = "alvaro@gmail.com";
-            userRequest.Password = "222";
+          
 
             Response<LoginResponse> response = new Response<LoginResponse>();
 
@@ -121,7 +120,7 @@ namespace Business.Implementations
                 if (identity.Claims.Count() == 0)
                 {
                     response.Success = false;
-                    response.Message = "Verificar token";
+                    response.Message = "Verificar token enviado";
                     response.StatusCode = (int)EnumStatusCode.InternalServer;
                     return response;
                 }

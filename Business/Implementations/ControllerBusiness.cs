@@ -41,5 +41,28 @@ namespace Business.Implementations
 
             return mapeo.ToList();
         }
+        public Response<ControllerResponse> Update(int id, ControllerRequest request)
+        {
+            Response<ControllerResponse> response = new Response<ControllerResponse>();
+
+            Controller a = _ControllerRepository.GetById(id);
+
+            a.ModificationDate = DateTime.Now;
+            a.Name = request.Name;
+
+            _ControllerRepository.Update(a);
+
+            response.Data = Mapper.Map<ControllerResponse>(a);
+
+            return response;
+        }
+        public Response<bool> Delete(int id)
+        {
+            Response<bool> response = new Response<bool>();
+            response.Data = true;
+            Controller a = _ControllerRepository.GetById(id);
+            _ControllerRepository.Delete(a);
+            return response;
+        }
     }
 }

@@ -75,14 +75,13 @@ namespace SheepControlApi
                 );//bd
 
             builder.Services.AddScoped<IUserBusiness, UserBusiness>();//business
-            builder.Services.AddScoped<IRoleBusiness, RoleBusiness>();
             builder.Services.AddScoped<IVaccineBusiness, VaccineBusiness>();
             builder.Services.AddScoped<IActionBusiness, ActionBusiness>();
             builder.Services.AddScoped<IControllerBusiness, ControllerBusiness>();
             builder.Services.AddScoped<ISheepBusiness, SheepBusiness>();
             builder.Services.AddScoped<IPermissionBusiness, PermissionBusiness>();
             builder.Services.AddScoped<IVaccineSheepBusiness, VaccineSheepBusiness>();
-
+            builder.Services.AddScoped<IAuthenticationBusiness,AuthenticationBusiness>();
             AutoMapperConfiguration.Configure();
 
             

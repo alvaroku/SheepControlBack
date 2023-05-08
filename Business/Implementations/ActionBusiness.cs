@@ -27,6 +27,9 @@ namespace Business.Implementations
 
             Entities.Action newAction = Mapper.Map<Entities.Action>(actionRequest);
 
+            newAction.CreationDate = DateTime.Now;
+            newAction.ModificationDate = newAction.CreationDate;
+
             _ActionRepository.Create(newAction);
 
             response.Data = Mapper.Map<ActionResponse>(newAction);
@@ -40,6 +43,29 @@ namespace Business.Implementations
             var mapeo = Mapper.Map<IEnumerable<ActionResponse>>(respuesta);
 
             return mapeo.ToList();
+        }
+        public Response<ActionResponse> Update(int id, ActionRequest request)
+        {
+            Response<ActionResponse> response = new Response<ActionResponse>();
+
+            Entities.Action a = _ActionRepository.GetById(id);
+
+            a.ModificationDate = DateTime.Now;
+            a.Name = request.Name;
+            
+            _ActionRepository.Update(a);
+
+            response.Data = Mapper.Map<ActionResponse>(a);
+
+            return response;
+        }
+        public Response<bool> Delete(int id)
+        {
+            Response<bool> response = new Response<bool>();
+            response.Data = true;
+            Entities.Action a = _ActionRepository.GetById(id);
+            _ActionRepository.Delete(a);
+            return response;
         }
     }
 }
