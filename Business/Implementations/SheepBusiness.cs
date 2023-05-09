@@ -11,6 +11,9 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.AspNetCore.Hosting;
+using Azure.Core;
+using Business.Utils;
+
 namespace Business.Implementations
 {
     public class SheepBusiness:ISheepBusiness
@@ -59,11 +62,17 @@ namespace Business.Implementations
 
             return mapeo.ToList();
         }
-        public Response<SheepResponse> Update(int id,SheepRequest sheepRequest)
+        public Response<SheepResponse> Update(int id,SheepRequest sheepRequest, string fullPathImage)
         {
             Response<SheepResponse> response = new Response<SheepResponse>();
 
             Sheep sheep = _SheepRepository.GetById(id);
+
+            if (sheepRequest.ImageFile != null)
+            {
+                FileManager.DeleteFile(Path.Combine(fullPathImage, sheepRequest.Photo));
+                sheepRequest.Photo = FileManager.UploadImage(fullPathImage, sheepRequest.ImageFile); ;
+            }
 
             sheep.ModificationDate = DateTime.Now;
             sheep.BirthDate = sheepRequest.BirthDate;
@@ -81,10 +90,11 @@ namespace Business.Implementations
 
             return response;
         }
-        public Response<bool> Delete(int id)
+        public Response<bool> Delete(int id,string _fullPathImage)
         {
             Response<bool> response = new Response<bool>();
             Sheep sh = _SheepRepository.GetById(id);
+            FileManager.DeleteFile(Path.Combine(_fullPathImage,sh.Photo));
             _SheepRepository.Delete(sh);
             return response;
         }

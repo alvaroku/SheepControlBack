@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Definitions;
+using Business.Utils;
 using DataAccess;
 using DataAccess.Implementations;
 using Entities;
@@ -56,11 +57,17 @@ namespace Business.Implementations
 
             return mapeo.ToList();
         }
-        public Response<VaccineResponse> Update(int id, VaccineRequest request)
+        public Response<VaccineResponse> Update(int id, VaccineRequest request,string fullPathImage)
         {
             Response<VaccineResponse> response = new Response<VaccineResponse>();
 
             Vaccine vaccine = _VaccineRepository.GetById(id);
+
+            if (request.ImageFile != null)
+            {
+                FileManager.DeleteFile(Path.Combine(fullPathImage,request.Photo));
+                request.Photo = FileManager.UploadImage(fullPathImage, request.ImageFile); ;
+            }
 
             vaccine.ModificationDate = DateTime.Now;
             vaccine.Description = request.Description;
@@ -78,11 +85,12 @@ namespace Business.Implementations
 
             return response;
         }
-        public Response<bool> Delete(int id)
+        public Response<bool> Delete(int id,string _fullPathImage)
         {
             Response<bool> response = new Response<bool>();
             response.Data = true;
             Vaccine sh = _VaccineRepository.GetById(id);
+            FileManager.DeleteFile(Path.Combine(_fullPathImage, sh.Photo));
             _VaccineRepository.Delete(sh);
             return response;
         }

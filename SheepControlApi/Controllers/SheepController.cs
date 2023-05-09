@@ -18,11 +18,13 @@ namespace SheepControlApi.Controllers
     {
         ISheepBusiness SheepBusiness;
         IWebHostEnvironment _HostEnvironment;
+        string _fullPathImage = string.Empty;
 
         public SheepController(ISheepBusiness sheepBusiness, IWebHostEnvironment hostEnvironment)
         {
             SheepBusiness = sheepBusiness;
             _HostEnvironment = hostEnvironment;
+            _fullPathImage = Path.Combine(_HostEnvironment.WebRootPath, Constants.VACCINEIMAGEPATH);
         }
 
 
@@ -54,7 +56,7 @@ namespace SheepControlApi.Controllers
         public IActionResult Post([FromForm] SheepRequest sheepRequest)
 
         {
-            sheepRequest.Photo = UploaderFile.UploadImage(_HostEnvironment.WebRootPath, Constants.SHEEPIMAGEPATH, sheepRequest.ImageFile);
+            sheepRequest.Photo = FileManager.UploadImage(_fullPathImage, sheepRequest.ImageFile);
             var response = SheepBusiness.Create(sheepRequest);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
 
@@ -64,23 +66,7 @@ namespace SheepControlApi.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromForm] SheepRequest sheepRequest)
         {
-            if(sheepRequest.ImageFile != null)
-            {
-                string _path = Path.Combine(_HostEnvironment.WebRootPath, Constants.SHEEPIMAGEPATH, sheepRequest.Photo);
-                if (System.IO.File.Exists(_path))
-                {
-                    System.IO.File.Delete(_path);
-                }
-                var imageName = Guid.NewGuid().ToString() + Path.GetExtension(sheepRequest.ImageFile.FileName);
-                var imagePath = Path.Combine(_HostEnvironment.WebRootPath, Constants.SHEEPIMAGEPATH, imageName);
-                sheepRequest.Photo = imageName;
-                using (var stream = new FileStream(imagePath, FileMode.Create))
-                {
-                    sheepRequest.ImageFile.CopyTo(stream);
-                    
-                }
-            }
-            var response = SheepBusiness.Update(id,sheepRequest);
+            var response = SheepBusiness.Update(id,sheepRequest,_fullPathImage);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
@@ -88,13 +74,7 @@ namespace SheepControlApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            SheepResponse s = SheepBusiness.GetById(id).Data;
-            string _path = Path.Combine(_HostEnvironment.WebRootPath, Constants.SHEEPIMAGEPATH, s.Photo);
-            if (System.IO.File.Exists(_path))
-            {
-                System.IO.File.Delete(_path);
-            }
-            var response = SheepBusiness.Delete(id);
+            var response = SheepBusiness.Delete(id,_fullPathImage);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
     }

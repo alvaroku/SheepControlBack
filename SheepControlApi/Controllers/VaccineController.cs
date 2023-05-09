@@ -16,10 +16,12 @@ namespace SheepControlApi.Controllers
     {
         IVaccineBusiness _VaccineBusiness;
         IWebHostEnvironment _HostEnvironment;
+        string _fullPathImage = string.Empty;
         public VaccineController(IVaccineBusiness VaccineBusiness, IWebHostEnvironment hostEnvironment)
         {
             _VaccineBusiness = VaccineBusiness;
             _HostEnvironment = hostEnvironment;
+            _fullPathImage = Path.Combine(_HostEnvironment.WebRootPath, Constants.VACCINEIMAGEPATH);
         }
         // GET: api/<VaccineController>
         [HttpGet]
@@ -46,7 +48,7 @@ namespace SheepControlApi.Controllers
         [HttpPost]
         public IActionResult Post([FromForm] VaccineRequest vaccineRequest)
         {
-            vaccineRequest.Photo = UploaderFile.UploadImage(_HostEnvironment.WebRootPath, Constants.VACCINEIMAGEPATH, vaccineRequest.ImageFile); ;
+            vaccineRequest.Photo = FileManager.UploadImage(_fullPathImage, vaccineRequest.ImageFile); ;
             var response = _VaccineBusiness.Create(vaccineRequest);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
@@ -55,23 +57,7 @@ namespace SheepControlApi.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromForm] VaccineRequest request)
         {
-            if (request.ImageFile != null)
-            {
-                string _path = Path.Combine(_HostEnvironment.WebRootPath, Constants.VACCINEIMAGEPATH,request.Photo);
-                if (System.IO.File.Exists(_path))
-                {
-                    System.IO.File.Delete(_path);
-                }
-                var imageName = Guid.NewGuid().ToString() + Path.GetExtension(request.ImageFile.FileName);
-                var imagePath = Path.Combine(_HostEnvironment.WebRootPath, Constants.VACCINEIMAGEPATH, imageName);
-                request.Photo = imageName;
-                using (var stream = new FileStream(imagePath, FileMode.Create))
-                {
-                    request.ImageFile.CopyTo(stream);
-
-                }
-            }
-            var response = _VaccineBusiness.Update(id, request);
+            var response = _VaccineBusiness.Update(id, request,_fullPathImage);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
@@ -79,13 +65,7 @@ namespace SheepControlApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            VaccineResponse s = _VaccineBusiness.GetById(id).Data;
-            string _path = Path.Combine(_HostEnvironment.WebRootPath, Constants.VACCINEIMAGEPATH, s.Photo);
-            if (System.IO.File.Exists(_path))
-            {
-                System.IO.File.Delete(_path);
-            }
-            var response = _VaccineBusiness.Delete(id);
+            var response = _VaccineBusiness.Delete(id,_fullPathImage);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
     }
