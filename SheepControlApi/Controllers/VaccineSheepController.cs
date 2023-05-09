@@ -1,7 +1,9 @@
-﻿using Business.Definitions;
+﻿using Azure;
+using Business.Definitions;
 using Business.Implementations;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -73,6 +75,13 @@ namespace SheepControlApi.Controllers
         {
             var response = _VaccineSheepBusiness.DeleteAll();
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
+        }
+        [HttpGet("Report")]
+        public IActionResult GetReport()
+        {
+            var response = _VaccineSheepBusiness.GenerateReport();
+            return response.Success ? File(response.Data.Excel, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "datos.xlsx") : StatusCode(response.StatusCode, response);
+         
         }
     }
 }

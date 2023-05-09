@@ -4,8 +4,10 @@ using DataAccess;
 using DataAccess.Implementations;
 using Entities;
 using Entities.DTOs;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -144,6 +146,28 @@ namespace Business.Implementations
             response.Message = $"Se eliminaron {_VaccineSheepRepository._dbSet.Count()} registros";
             response.Data = true;
             _VaccineSheepRepository.DeleteAll();
+            return response;
+        }
+        public Response<ReportResponse> GenerateReport()
+        {
+            Response<ReportResponse> response = new Response<ReportResponse>();
+            var stream = new MemoryStream();
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+            var miLista = new List<UserResponse> { new UserResponse { Name = "alvaro", LastName = "Ku", Email = "alvaro@gmail.com" } };
+
+            using (var package = new ExcelPackage(stream))
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Datos");
+                worksheet.Cells["A1"].Value = "Hola";
+                // Escribir datos en la hoja de cálculo
+                var range = worksheet.Cells["A1:C1"];
+                range.LoadFromArrays(miLista.Select(obj => new object[] { obj.Name, obj.LastName, obj.Email }).ToArray());
+                package.Save();
+            }
+            stream.Position = 0;
+            ReportResponse r = new ReportResponse { Excel = stream };
+            response.Data = r;
             return response;
         }
     }

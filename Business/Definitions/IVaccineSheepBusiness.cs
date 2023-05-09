@@ -18,5 +18,6 @@ namespace Business.Definitions
         public Response<bool> Delete(int id);
         public Response<bool> DeleteAll();
         public Response<VaccineSheepResponse> GetById(int id);
+        public Response<ReportResponse> GenerateReport();
     }
 }
