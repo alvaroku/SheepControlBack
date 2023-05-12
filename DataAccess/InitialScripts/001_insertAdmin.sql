@@ -12,11 +12,11 @@ INSERT INTO [dbo].[Users]
            ,[Active]
            ,[BirthDate])
      VALUES
-           ('admin'
-           ,'admin'
+           ('sa'
+           ,'sa'
            ,'9919596720'
-           ,'admin@gmail.com'
-           ,'admin'
+           ,'sa@gmail.com'
+           ,'sa'
            ,CONVERT(date,'01-01-00')
            ,CONVERT(date,'01-01-00')
            ,1
