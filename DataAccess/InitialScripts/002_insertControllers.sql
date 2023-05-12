@@ -51,7 +51,29 @@ INSERT INTO [dbo].[Controllers]
            ,[ModificationDate]
            ,[Active])
      VALUES
-		   ('PermissionUser'
+		   ('Role'
+           ,CONVERT(date,'01-01-00')
+           ,CONVERT(date,'01-01-00')
+           ,1)
+
+INSERT INTO [dbo].[Controllers]
+           ([Name]
+           ,[CreationDate]
+           ,[ModificationDate]
+           ,[Active])
+     VALUES
+		   ('PermissionRole'
+           ,CONVERT(date,'01-01-00')
+           ,CONVERT(date,'01-01-00')
+           ,1)
+
+INSERT INTO [dbo].[Controllers]
+           ([Name]
+           ,[CreationDate]
+           ,[ModificationDate]
+           ,[Active])
+     VALUES
+		   ('RoleUser'
            ,CONVERT(date,'01-01-00')
            ,CONVERT(date,'01-01-00')
            ,1)

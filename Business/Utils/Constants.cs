@@ -14,7 +14,7 @@ namespace Business.Utils
         public static string CONTROLLER_ACTION = "Action";
         public static string CONTROLLER_CONTROLLER = "Controller";
         public static string CONTROLLER_PERMISSION = "Permission";
-        public static string CONTROLLER_USER = "User"
+        public static string CONTROLLER_USER = "User";
         public static string CONTROLLER_ROLE = "Role";
         public static string CONTROLLER_PERMISSIONROLE = "PermissionRole";
         public static string CONTROLLER_ROLEUSER = "RoleUser";
