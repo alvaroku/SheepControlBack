@@ -22,8 +22,8 @@ namespace Business.Utils
                 cfg.CreateMap<User, LoginResponse>().ReverseMap();
                 cfg.CreateMap<VaccineSheepRequest,VaccineSheep >().ReverseMap();
                 cfg.CreateMap<Permission, PermissionRequest>().ReverseMap();
-
-
+                cfg.CreateMap<PermissionRole,PermissionRoleRequest>().ReverseMap();
+                cfg.CreateMap<RoleUser, RoleUserRequest>().ReverseMap();
             });
         }
     }

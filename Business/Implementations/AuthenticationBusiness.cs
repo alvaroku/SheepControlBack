@@ -10,17 +10,84 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccess;
-
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.Extensions.Configuration;
 namespace Business.Implementations
 {
     public class AuthenticationBusiness : IAuthenticationBusiness
     {
         UserRepository _UserRepository;
-        PermissionUserRepository _PermissionUserRepository;
-        public AuthenticationBusiness(SheepControlDbContext dbContext)
+        PermissionRoleRepository _PermissionRolRepository;
+        RoleUserRepository _RoleUserRepository;
+        IConfiguration _configuration;
+        public AuthenticationBusiness(IConfiguration configuration, SheepControlDbContext dbContext)
         {
             _UserRepository = new UserRepository(dbContext);
-            _PermissionUserRepository = new PermissionUserRepository(dbContext);
+            _PermissionRolRepository = new PermissionRoleRepository(dbContext);
+            _RoleUserRepository = new RoleUserRepository(dbContext);
+            _configuration = configuration;
+        }
+        public Response<LoginResponse> Auth(LoginRequest userRequest)
+        {
+
+
+            Response<LoginResponse> response = new Response<LoginResponse>();
+
+            User u = _UserRepository.Login(userRequest);
+
+            if (u == null)
+            {
+                response.Message = "Usuario no encontrado";
+                response.Success = false;
+                response.StatusCode = (int)EnumStatusCode.InternalServer;
+                return response;
+            }
+            var jwt = _configuration.GetSection("Jwt").Get<Jwt>();
+
+
+            response.Data = Mapper.Map<LoginResponse>(u);
+
+            var clamis = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Sub,jwt.Subject),
+                new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Iat,DateTime.UtcNow.ToString()),
+                new Claim("Id",u.Id.ToString()),
+                new Claim("Email",u.Email),
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Key));
+
+            var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                jwt.Issuer,
+                jwt.Audience,
+                clamis,
+                expires: DateTime.Now.AddMinutes(60),
+                signingCredentials: signIn
+                );
+
+            response.Data.Token = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return response;//minuto 44 ->https://www.youtube.com/watch?v=PR5XM-SNcm8
+        }
+        public Response<EmailReponse> GetEmailFromToken(EmailRequest request)
+        {
+            Response<EmailReponse> response = new Response<EmailReponse>();
+
+            try
+            {
+                var handler = new JwtSecurityTokenHandler();
+                var tokenS = handler.ReadToken(request.Token) as JwtSecurityToken;
+                var email = tokenS.Claims.First(claim => claim.Type == "Email").Value;
+                response.Data = new EmailReponse { Email = email };
+            }
+            catch (Exception ex) { }
+
+
+            return response;
         }
         public UserResponse ValidarToken(ClaimsIdentity identity)
         {
@@ -61,17 +128,23 @@ namespace Business.Implementations
                 return response;
             }
 
-            IEnumerable<PermissionUser> permissions = _PermissionUserRepository.GetPermissionByUserIncludes(userResponse.Id);
-            if(permissions.Count() == 0)
+            IEnumerable<RoleUser> roles = _RoleUserRepository.GetIncludesListById(userResponse.Id);
+            
+            if(roles.Count() == 0)
             {
                 response.Success = false;
-                response.Message = "Sin permisos asignados";
+                response.Message = "Sin roles asignados";
                 response.StatusCode = (int)EnumStatusCode.InternalServer;
                 return response;
             }
+            bool hasPermission = false;
+            foreach(RoleUser roleUser in roles)
+            {
+                var permisos = _PermissionRolRepository.ReadIncludesListByRoleId(roleUser.RoleId);
+                hasPermission = permisos.Where(pr => pr.Permission.Controller.Name.Equals(control) && pr.Permission.Action.Name.Equals(action)).Any();
+                if(hasPermission) { break; }
+            }
 
-            bool hasPermission = permissions.Where(p => p.Permission.Controller.Name.Equals(control) && p.Permission.Action.Name.Equals(action)).Any();
-         
             if(!hasPermission)
             {
                 response.Success = false;

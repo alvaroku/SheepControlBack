@@ -11,7 +11,9 @@ namespace DataAccess
         public DbSet<Vaccine> Vaccines { get; set; }
         public DbSet<VaccineSheep> VaccinesSheeps { get; set; }
         public DbSet<Permission> Permissions { get; set; }
-        public DbSet<PermissionUser> PermissionsUsers { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<PermissionRole> PermissionsRoles { get; set; }
+        public DbSet<RoleUser> RolesUsers { get; set; }
         public DbSet<Controller> Controllers { get; set; }
         public DbSet<Entities.Action> Actions { get; set; }
         public SheepControlDbContext(DbContextOptions<SheepControlDbContext> options) : base(options)

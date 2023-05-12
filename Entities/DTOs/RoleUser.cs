@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace Entities.DTOs
 {
-    public class PermissionUserRequest:ObjetoBase
+    public class RoleUserRequest : ObjetoBase
     {
+        public int RoleId { get; set; }
         public int UserId { get; set; }
-        public int PermissionId { get; set; }
     }
-    public class PermissionUserResponse:ObjetoBase
+    public class RoleUserResponse : ObjetoBase
     {
+        public int RoleId { get; set; }
+        public Role Role { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
-
-        public int PermissionId { get; set; }
-        public Permission Permission { get; set; }
     }
 }

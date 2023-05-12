@@ -13,7 +13,7 @@ namespace Business.Definitions
     {
         public Response<UserResponse> Create(UserRequest userRequest);
         public IEnumerable<UserResponse> Read();
-        public Response<LoginResponse> Login(LoginRequest userRequest);
-        public Response<UserResponse> ValidarToken(ClaimsIdentity identity);
+        public Response<UserResponse> Update(int id, UserRequest request);
+        public Response<bool> Delete(int id);
     }
 }

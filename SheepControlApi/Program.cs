@@ -80,8 +80,12 @@ namespace SheepControlApi
             builder.Services.AddScoped<IControllerBusiness, ControllerBusiness>();
             builder.Services.AddScoped<ISheepBusiness, SheepBusiness>();
             builder.Services.AddScoped<IPermissionBusiness, PermissionBusiness>();
+            builder.Services.AddScoped<IPermissionRoleBusiness, PermissionRoleBusiness>();
+            builder.Services.AddScoped<IRoleBusiness,RoleBusiness>();
+            builder.Services.AddScoped<IRoleUserBusiness, RoleUserBusiness>();
             builder.Services.AddScoped<IVaccineSheepBusiness, VaccineSheepBusiness>();
             builder.Services.AddScoped<IAuthenticationBusiness,AuthenticationBusiness>();
+
             AutoMapperConfiguration.Configure();
 
             
