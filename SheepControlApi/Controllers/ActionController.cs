@@ -1,6 +1,8 @@
 ﻿using Business.Definitions;
+using Business.Utils;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,14 +13,24 @@ namespace SheepControlApi.Controllers
     public class ActionController : ControllerBase
     {
         IActionBusiness _ActionBusiness;
-        public ActionController(IActionBusiness actionBusiness)
+        IAuthenticationBusiness _AuthenticationBusiness { get; set; }
+        public ActionController(IActionBusiness actionBusiness, IAuthenticationBusiness authenticationBusiness)
         {
             _ActionBusiness = actionBusiness;
+            _AuthenticationBusiness = authenticationBusiness;
         }
         // GET: api/<ActionController>
         [HttpGet]
         public IActionResult Get()
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_ACTION, Constants.ACTION_READ);
+
+            if (!response.Success)
+            {
+                return StatusCode(response.StatusCode, response);
+            }
             return Ok(_ActionBusiness.Read());
         }
 
@@ -33,6 +45,14 @@ namespace SheepControlApi.Controllers
         [HttpPost]
         public IActionResult Post(ActionRequest actionRequest)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var responseAuth = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_ACTION, Constants.ACTION_CREATE);
+
+            if (!responseAuth.Success)
+            {
+                return StatusCode(responseAuth.StatusCode, responseAuth);
+            }
             var response = _ActionBusiness.Create(actionRequest);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
             
@@ -42,16 +62,32 @@ namespace SheepControlApi.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, ActionRequest actionRequest)
         {
-            var response = _ActionBusiness.Update(id ,actionRequest);
-            return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_ACTION, Constants.ACTION_UPDATE);
+
+            if (!response.Success)
+            {
+                return StatusCode(response.StatusCode, response);
+            }
+            var response2 = _ActionBusiness.Update(id ,actionRequest);
+            return response2.Success ? Ok(response2) : StatusCode(response2.StatusCode, response2);
         }
 
         // DELETE api/<ActionController>/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var response = _ActionBusiness.Delete(id);
-            return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_ACTION, Constants.ACTION_DELETE);
+
+            if (!response.Success)
+            {
+                return StatusCode(response.StatusCode, response);
+            }
+            var response2 = _ActionBusiness.Delete(id);
+            return response2.Success ? Ok(response2) : StatusCode(response2.StatusCode, response2);
         }
     }
 }

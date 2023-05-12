@@ -20,9 +20,8 @@ namespace SheepControlApi.Controllers
     public class UserController : ControllerBase
     {
         IUserBusiness _UserBusiness { get; set; }
-        //IPermissionBusiness _PermissionBusiness { get; set; }
         IAuthenticationBusiness _AuthenticationBusiness { get; set; }
-        public UserController(IUserBusiness userBusiness, IAuthenticationBusiness authenticationBusiness, IPermissionBusiness permissionBusiness)
+        public UserController(IUserBusiness userBusiness, IAuthenticationBusiness authenticationBusiness)
         {
             _UserBusiness = userBusiness;
             _AuthenticationBusiness = authenticationBusiness;
@@ -37,7 +36,7 @@ namespace SheepControlApi.Controllers
 
             if (!response.Success)
             {
-              //return StatusCode(response.StatusCode, response);
+              return StatusCode(response.StatusCode, response);
             }
             return Ok(_UserBusiness.Read());
         }

@@ -1,6 +1,8 @@
 ﻿using Business.Definitions;
+using Business.Utils;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,14 +13,24 @@ namespace SheepControlApi.Controllers
     public class PermissionRoleController : ControllerBase
     {
         IPermissionRoleBusiness _PermissionRoleBusiness;
-        public PermissionRoleController(IPermissionRoleBusiness permissionRoleBusiness)
+        IAuthenticationBusiness _AuthenticationBusiness { get; set; }
+        public PermissionRoleController(IPermissionRoleBusiness permissionRoleBusiness, IAuthenticationBusiness authenticationBusiness)
         {
             _PermissionRoleBusiness = permissionRoleBusiness;
+            _AuthenticationBusiness = authenticationBusiness;
         }
         // GET: api/<PermissionController>
         [HttpGet]
         public IActionResult Get()
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSIONROLE, Constants.ACTION_READ);
+
+            if (!response1.Success)
+            {
+                return StatusCode(response1.StatusCode, response1);
+            }
             return Ok(_PermissionRoleBusiness.Read());
         }
 
@@ -33,6 +45,14 @@ namespace SheepControlApi.Controllers
         [HttpPost]
         public IActionResult Post(PermissionRoleRequest permissionRequest)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSIONROLE, Constants.ACTION_CREATE);
+
+            if (!response1.Success)
+            {
+                return StatusCode(response1.StatusCode, response1);
+            }
             var response = _PermissionRoleBusiness.Create(permissionRequest);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
@@ -41,6 +61,14 @@ namespace SheepControlApi.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, PermissionRoleRequest actionRequest)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSIONROLE, Constants.ACTION_UPDATE);
+
+            if (!response1.Success)
+            {
+                return StatusCode(response1.StatusCode, response1);
+            }
             var response = _PermissionRoleBusiness.Update(id, actionRequest);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
@@ -49,6 +77,14 @@ namespace SheepControlApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSIONROLE, Constants.ACTION_DELETE);
+
+            if (!response1.Success)
+            {
+                return StatusCode(response1.StatusCode, response1);
+            }
             var response = _PermissionRoleBusiness.Delete(id);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }

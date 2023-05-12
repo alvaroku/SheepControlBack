@@ -1,9 +1,11 @@
 ﻿using Azure;
 using Business.Definitions;
 using Business.Implementations;
+using Business.Utils;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
+using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,16 +17,26 @@ namespace SheepControlApi.Controllers
     {
         IVaccineSheepBusiness _VaccineSheepBusiness;
         IWebHostEnvironment _HostEnvironment;
-        public VaccineSheepController(IVaccineSheepBusiness vaccineSheepBusiness, IWebHostEnvironment hostEnvironment)
+        IAuthenticationBusiness _AuthenticationBusiness { get; set; }
+        public VaccineSheepController(IVaccineSheepBusiness vaccineSheepBusiness, IWebHostEnvironment hostEnvironment, IAuthenticationBusiness authenticationBusiness)
         {
             _VaccineSheepBusiness = vaccineSheepBusiness;
             _HostEnvironment = hostEnvironment;
+            _AuthenticationBusiness = authenticationBusiness;
         }
         // GET: api/<VaccineSheepController>
         [HttpGet]
         public IActionResult Get()
         {
-           return Ok(_VaccineSheepBusiness.ReadIncludes());
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINESHEEP, Constants.ACTION_READ);
+
+            if (!response1.Success)
+            {
+                return StatusCode(response1.StatusCode, response1);
+            }
+            return Ok(_VaccineSheepBusiness.ReadIncludes());
         }
         [HttpPost("GetVaccineSheepWithFilters")]
         public IActionResult GetVaccineSheepWithFilters(FilterVaccineSheepRequest request)
@@ -42,6 +54,14 @@ namespace SheepControlApi.Controllers
         [HttpPost]
         public IActionResult Post(VaccineSheepRequest request)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINESHEEP, Constants.ACTION_CREATE);
+
+            if (!response1.Success)
+            {
+                return StatusCode(response1.StatusCode, response1);
+            }
             var response = _VaccineSheepBusiness.Create(request);
 
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
@@ -58,6 +78,14 @@ namespace SheepControlApi.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, VaccineSheepRequest request)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINESHEEP, Constants.ACTION_UPDATE);
+
+            if (!response1.Success)
+            {
+                return StatusCode(response1.StatusCode, response1);
+            }
             var response = _VaccineSheepBusiness.Update(id, request);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
@@ -66,6 +94,14 @@ namespace SheepControlApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINESHEEP, Constants.ACTION_DELETE);
+
+            if (!response1.Success)
+            {
+                return StatusCode(response1.StatusCode, response1);
+            }
             var response = _VaccineSheepBusiness.Delete(id);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
