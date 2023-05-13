@@ -5,7 +5,6 @@ using DataAccess;
 using DataAccess.Implementations;
 using Entities;
 using Entities.DTOs;
-using Microsoft.Extensions.Configuration;
 
 namespace Business.Implementations
 {

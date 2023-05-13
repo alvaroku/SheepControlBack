@@ -3,16 +3,13 @@ using Business.Definitions;
 using DataAccess.Implementations;
 using Entities.DTOs;
 using Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using DataAccess;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
+
 namespace Business.Implementations
 {
     public class AuthenticationBusiness : IAuthenticationBusiness

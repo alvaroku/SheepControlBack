@@ -1,15 +1,8 @@
 ﻿using Business.Definitions;
-using Business.Implementations;
-using Entities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using System.Security.Claims;
- 
-using Microsoft.AspNetCore.Authorization;
 using Entities.DTOs;
 using Business.Utils;
-using Azure.Core;
-using System.IdentityModel.Tokens.Jwt;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

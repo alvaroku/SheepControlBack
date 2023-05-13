@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Entities;
 using Entities.DTOs;
 
@@ -16,7 +11,6 @@ namespace Business.Utils
             Mapper.Initialize(cfg =>
             {
                 //mappers principales
-                //cfg.CreateMap<UserRequest, User>().ReverseMap();
 
                 cfg.CreateMap<User, UserResponse>().ReverseMap();
                 cfg.CreateMap<User, LoginResponse>().ReverseMap();

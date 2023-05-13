@@ -1,14 +1,8 @@
-﻿using Azure;
-using Business.Definitions;
-using Business.Implementations;
+﻿using Business.Definitions;
 using Business.Utils;
-using DataAccess.Migrations;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-
-
-
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,7 +21,7 @@ namespace SheepControlApi.Controllers
         {
             SheepBusiness = sheepBusiness;
             _HostEnvironment = hostEnvironment;
-            _fullPathImage = Path.Combine(_HostEnvironment.WebRootPath, Constants.VACCINEIMAGEPATH);
+            _fullPathImage = Path.Combine(_HostEnvironment.WebRootPath, Constants.SHEEPIMAGEPATH);
             _AuthenticationBusiness = authenticationBusiness;
         }
 
@@ -58,10 +52,8 @@ namespace SheepControlApi.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-
             var response = SheepBusiness.GetById(id);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
-   
         }
 
         // POST api/<SheepController>
@@ -77,10 +69,10 @@ namespace SheepControlApi.Controllers
             {
                 return StatusCode(response1.StatusCode, response1);
             }
+            
             sheepRequest.Photo = FileManager.UploadImage(_fullPathImage, sheepRequest.ImageFile);
             var response = SheepBusiness.Create(sheepRequest);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
-
         }
 
         // PUT api/<SheepController>/5
@@ -110,7 +102,7 @@ namespace SheepControlApi.Controllers
             if (!response1.Success)
             {
                 return StatusCode(response1.StatusCode, response1);
-            }
+            } 
             var response = SheepBusiness.Delete(id,_fullPathImage);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }

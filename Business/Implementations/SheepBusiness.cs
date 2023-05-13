@@ -4,14 +4,6 @@ using DataAccess;
 using DataAccess.Implementations;
 using Entities;
 using Entities.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
-using Microsoft.AspNetCore.Hosting;
-using Azure.Core;
 using Business.Utils;
 
 namespace Business.Implementations

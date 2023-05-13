@@ -1,10 +1,7 @@
 ﻿using Business.Definitions;
-using Business.Implementations;
 using Business.Utils;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Hosting;
-using SixLabors.ImageSharp.Formats.Jpeg;
 using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

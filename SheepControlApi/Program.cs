@@ -111,7 +111,7 @@ namespace SheepControlApi
             app.UseAuthentication();//bearer
 
             app.UseAuthorization();
-
+      
             // Enable Cors for api acces
             app.UseCors("MyPolicy");
 
