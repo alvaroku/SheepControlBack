@@ -10,12 +10,11 @@ namespace Business.Implementations
 {
     public class SheepBusiness:ISheepBusiness
     {
-        SheepRepository _SheepRepository;
+        SheepRepository _Repository;
 
-        public SheepBusiness(SheepControlDbContext context) { 
-        
-            _SheepRepository = new SheepRepository(context);
- 
+        public SheepBusiness(SheepControlDbContext context) 
+        { 
+            _Repository = new SheepRepository(context);
         }
 
         public Response<SheepResponse> Create(SheepRequest sheepRequest)
@@ -32,7 +31,7 @@ namespace Business.Implementations
 
                 
 
-                _SheepRepository.Create(newSheep);
+                _Repository.Create(newSheep);
 
                 response.Data = Mapper.Map<SheepResponse>(newSheep);
             }
@@ -48,7 +47,7 @@ namespace Business.Implementations
 
         public IEnumerable<SheepResponse> Read()
         {
-            var respuesta = _SheepRepository.Read();
+            var respuesta = _Repository.Read();
 
             var mapeo = Mapper.Map<IEnumerable<SheepResponse>>(respuesta);
 
@@ -58,7 +57,7 @@ namespace Business.Implementations
         {
             Response<SheepResponse> response = new Response<SheepResponse>();
 
-            Sheep sheep = _SheepRepository.GetById(id);
+            Sheep sheep = _Repository.GetById(id);
 
             if (sheepRequest.ImageFile != null)
             {
@@ -76,7 +75,7 @@ namespace Business.Implementations
                 sheep.Photo = sheepRequest.Photo;
             }
 
-            _SheepRepository.Update(sheep);
+            _Repository.Update(sheep);
 
             response.Data = Mapper.Map<SheepResponse>(sheep);
 
@@ -85,16 +84,26 @@ namespace Business.Implementations
         public Response<bool> Delete(int id,string _fullPathImage)
         {
             Response<bool> response = new Response<bool>();
-            Sheep sh = _SheepRepository.GetById(id);
+            Sheep sh = _Repository.GetById(id);
             FileManager.DeleteFile(Path.Combine(_fullPathImage,sh.Photo));
-            _SheepRepository.Delete(sh);
+            _Repository.Delete(sh);
             return response;
         }
         public Response<SheepResponse> GetById(int id)
         {
             Response<SheepResponse> response = new Response<SheepResponse>();
-            Sheep she = _SheepRepository.GetById(id);
+            Sheep she = _Repository.GetById(id);
             response.Data = Mapper.Map<SheepResponse>(she);
+            return response;
+        }
+        public Response<bool> ToggleActive(int id)
+        {
+            Response<bool> response = new Response<bool>();
+
+            var data = _Repository.GetById(id);
+            data.Active = !data.Active;
+            _Repository.Update(data);
+            response.Data = data.Active;
             return response;
         }
     }

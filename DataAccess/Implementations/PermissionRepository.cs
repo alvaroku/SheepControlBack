@@ -24,6 +24,5 @@ namespace DataAccess.Implementations
         {
             return _dbSet.Include(p => p.Controller).Include(p => p.Action).Where(p=>p.Id == id).First();
         }
-
     }
 }

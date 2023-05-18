@@ -9,9 +9,9 @@ namespace Business.Implementations
 {
     public class PermissionBusiness : IPermissionBusiness
     {
-        PermissionRepository _PermissionRepository;
+        PermissionRepository _Repository;
         public PermissionBusiness(SheepControlDbContext context) {
-            _PermissionRepository = new PermissionRepository(context);
+            _Repository = new PermissionRepository(context);
         }
 
         public Response<PermissionResponse> Create(PermissionRequest permissionRequest)
@@ -24,16 +24,16 @@ namespace Business.Implementations
             newP.CreationDate = DateTime.Now;
             newP.ModificationDate = newP.CreationDate;
             newP.Clave = "test";
-            _PermissionRepository.Create(newP);
+            _Repository.Create(newP);
 
-            newP = _PermissionRepository.GetIncludesById(newP.Id);
+            newP = _Repository.GetIncludesById(newP.Id);
             response.Data = Mapper.Map<PermissionResponse>(newP);
             return response;
         }
 
         public IEnumerable<PermissionResponse> Read()
         {
-            var respuesta = _PermissionRepository.ReadIncludes();
+            var respuesta = _Repository.ReadIncludes();
 
             var mapeo = Mapper.Map<IEnumerable<PermissionResponse>>(respuesta);
 
@@ -43,7 +43,7 @@ namespace Business.Implementations
         {
             Response<PermissionResponse> response = new Response<PermissionResponse>();
 
-            Permission vaccine = _PermissionRepository.GetById(id);
+            Permission vaccine = _Repository.GetById(id);
 
             vaccine.ModificationDate = DateTime.Now;
             vaccine.Clave = "clave-nueva";
@@ -51,9 +51,9 @@ namespace Business.Implementations
             vaccine.ControllerId = request.ControllerId;
             vaccine.ActionId = request.ActionId;
 
-            _PermissionRepository.Update(vaccine);
+            _Repository.Update(vaccine);
 
-            vaccine = _PermissionRepository.GetIncludesById(vaccine.Id);
+            vaccine = _Repository.GetIncludesById(vaccine.Id);
             response.Data = Mapper.Map<PermissionResponse>(vaccine);
 
             return response;
@@ -62,8 +62,18 @@ namespace Business.Implementations
         {
             Response<bool> response = new Response<bool>();
             response.Data = true;
-            Permission sh = _PermissionRepository.GetById(id);
-            _PermissionRepository.Delete(sh);
+            Permission sh = _Repository.GetById(id);
+            _Repository.Delete(sh);
+            return response;
+        }
+        public Response<bool> ToggleActive(int id)
+        {
+            Response<bool> response = new Response<bool>();
+
+            var data = _Repository.GetById(id);
+            data.Active = !data.Active;
+            _Repository.Update(data);
+            response.Data = data.Active;
             return response;
         }
     }

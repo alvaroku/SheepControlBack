@@ -9,9 +9,9 @@ namespace Business.Implementations
 {
     public class RoleUserBusiness : IRoleUserBusiness
     {
-        RoleUserRepository _RoleUserRepository;
+        RoleUserRepository _Repository;
         public RoleUserBusiness(SheepControlDbContext context) {
-            _RoleUserRepository = new RoleUserRepository(context);
+            _Repository = new RoleUserRepository(context);
         }
 
         public Response<RoleUserResponse> Create(RoleUserRequest permissionRequest)
@@ -24,16 +24,16 @@ namespace Business.Implementations
             newP.CreationDate = DateTime.Now;
             newP.ModificationDate = newP.CreationDate;
             newP.Active = true;
-            _RoleUserRepository.Create(newP);
+            _Repository.Create(newP);
 
-            newP = _RoleUserRepository.GetIncludesById(newP.Id);
+            newP = _Repository.GetIncludesById(newP.Id);
             response.Data = Mapper.Map<RoleUserResponse>(newP);
             return response;
         }
 
         public IEnumerable<RoleUserResponse> Read()
         {
-            var respuesta = _RoleUserRepository.ReadIncludes();
+            var respuesta = _Repository.ReadIncludes();
 
             var mapeo = Mapper.Map<IEnumerable<RoleUserResponse>>(respuesta);
 
@@ -43,15 +43,15 @@ namespace Business.Implementations
         {
             Response<RoleUserResponse> response = new Response<RoleUserResponse>();
 
-            RoleUser vaccine = _RoleUserRepository.GetById(id);
+            RoleUser vaccine = _Repository.GetById(id);
 
             vaccine.ModificationDate = DateTime.Now;
             vaccine.RoleId = request.RoleId;
             vaccine.UserId = request.UserId;
 
-            _RoleUserRepository.Update(vaccine);
+            _Repository.Update(vaccine);
 
-            vaccine = _RoleUserRepository.GetIncludesById(vaccine.Id);
+            vaccine = _Repository.GetIncludesById(vaccine.Id);
             response.Data = Mapper.Map<RoleUserResponse>(vaccine);
 
             return response;
@@ -60,8 +60,18 @@ namespace Business.Implementations
         {
             Response<bool> response = new Response<bool>();
             response.Data = true;
-            RoleUser sh = _RoleUserRepository.GetById(id);
-            _RoleUserRepository.Delete(sh);
+            RoleUser sh = _Repository.GetById(id);
+            _Repository.Delete(sh);
+            return response;
+        }
+        public Response<bool> ToggleActive(int id)
+        {
+            Response<bool> response = new Response<bool>();
+
+            var data = _Repository.GetById(id);
+            data.Active = !data.Active;
+            _Repository.Update(data);
+            response.Data = data.Active;
             return response;
         }
     }

@@ -4,36 +4,44 @@ using DataAccess;
 using DataAccess.Implementations;
 using Entities;
 using Entities.DTOs;
+using System.Security.Cryptography;
 
 namespace Business.Implementations
 {
     public class PermissionRoleBusiness : IPermissionRoleBusiness
     {
-        PermissionRoleRepository _PermissionRoleRepository;
+        PermissionRoleRepository _Repository;
         public PermissionRoleBusiness(SheepControlDbContext context) {
-            _PermissionRoleRepository = new PermissionRoleRepository(context);
+            _Repository = new PermissionRoleRepository(context);
         }
 
-        public Response<PermissionRoleResponse> Create(PermissionRoleRequest permissionRequest)
+        public Response<IEnumerable<PermissionRoleResponse>> Create(PermissionRoleCreateRequest permissionRequest)
         {
-            Response<PermissionRoleResponse> response = new Response<PermissionRoleResponse>();
+            Response<IEnumerable<PermissionRoleResponse>> response = new Response<IEnumerable<PermissionRoleResponse>>();
 
+            IEnumerable<PermissionRole> permisionRoles = from idsPer in permissionRequest.PermissionIds
+                                                select new PermissionRole
+                                                {
+                                                    PermissionId = idsPer,
+                                                    Active = true,
+                                                    RoleId = permissionRequest.RoleId,
+                                                    ModificationDate = DateTime.Now,
+                                                    CreationDate = DateTime.Now,
+                                                };
+            //Borrar todos los permisos del Rol
 
-            PermissionRole newP = Mapper.Map<PermissionRole>(permissionRequest);
+            _Repository.DeleteAllPermissionsByRolId(permissionRequest.RoleId);
 
-            newP.CreationDate = DateTime.Now;
-            newP.ModificationDate = newP.CreationDate;
-            newP.Active = true;
-            _PermissionRoleRepository.Create(newP);
+            _Repository.CreateRange(permisionRoles);
 
-            newP = _PermissionRoleRepository.GetIncludesById(newP.Id);
-            response.Data = Mapper.Map<PermissionRoleResponse>(newP);
+            var newP = _Repository.ReadIncludesByRolId(permissionRequest.RoleId);
+            response.Data = Mapper.Map<IEnumerable<PermissionRoleResponse>>(newP);
             return response;
         }
 
         public IEnumerable<PermissionRoleResponse> Read()
         {
-            var respuesta = _PermissionRoleRepository.ReadIncludes();
+            var respuesta = _Repository.ReadIncludes();
 
             var mapeo = Mapper.Map<IEnumerable<PermissionRoleResponse>>(respuesta);
 
@@ -43,15 +51,15 @@ namespace Business.Implementations
         {
             Response<PermissionRoleResponse> response = new Response<PermissionRoleResponse>();
 
-            PermissionRole vaccine = _PermissionRoleRepository.GetById(id);
+            PermissionRole vaccine = _Repository.GetById(id);
 
             vaccine.ModificationDate = DateTime.Now;
             vaccine.RoleId = request.RoleId;
             vaccine.PermissionId = request.PermissionId;
 
-            _PermissionRoleRepository.Update(vaccine);
+            _Repository.Update(vaccine);
 
-            vaccine = _PermissionRoleRepository.GetIncludesById(vaccine.Id);
+            vaccine = _Repository.GetIncludesById(vaccine.Id);
             response.Data = Mapper.Map<PermissionRoleResponse>(vaccine);
 
             return response;
@@ -60,8 +68,18 @@ namespace Business.Implementations
         {
             Response<bool> response = new Response<bool>();
             response.Data = true;
-            PermissionRole sh = _PermissionRoleRepository.GetById(id);
-            _PermissionRoleRepository.Delete(sh);
+            PermissionRole sh = _Repository.GetById(id);
+            _Repository.Delete(sh);
+            return response;
+        }
+        public Response<bool> ToggleActive(int id)
+        {
+            Response<bool> response = new Response<bool>();
+
+            var data = _Repository.GetById(id);
+            data.Active = !data.Active;
+            _Repository.Update(data);
+            response.Data = data.Active;
             return response;
         }
     }

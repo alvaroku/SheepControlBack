@@ -10,10 +10,10 @@ namespace Business.Implementations
 {
     public class VaccineBusiness:IVaccineBusiness
     {
-        VaccineRepository _VaccineRepository;
+        VaccineRepository _Repository;
         public VaccineBusiness(SheepControlDbContext context)
         {
-            _VaccineRepository = new VaccineRepository(context);
+            _Repository = new VaccineRepository(context);
         }
 
         public Response<VaccineResponse> Create(VaccineRequest request)
@@ -30,7 +30,7 @@ namespace Business.Implementations
 
 
 
-                _VaccineRepository.Create(newData);
+                _Repository.Create(newData);
 
                 response.Data = Mapper.Map<VaccineResponse>(newData);
             }
@@ -46,7 +46,7 @@ namespace Business.Implementations
 
         public IEnumerable<VaccineResponse> Read()
         {
-            var respuesta = _VaccineRepository.Read();
+            var respuesta = _Repository.Read();
 
             var mapeo = Mapper.Map<IEnumerable<VaccineResponse>>(respuesta);
 
@@ -56,7 +56,7 @@ namespace Business.Implementations
         {
             Response<VaccineResponse> response = new Response<VaccineResponse>();
 
-            Vaccine vaccine = _VaccineRepository.GetById(id);
+            Vaccine vaccine = _Repository.GetById(id);
 
             if (request.ImageFile != null)
             {
@@ -65,7 +65,7 @@ namespace Business.Implementations
             }
 
             vaccine.ModificationDate = DateTime.Now;
-            vaccine.Description = request.Description;
+            vaccine.Observations = request.Observations;
             vaccine.Name = request.Name;
             vaccine.IndicatedDose = request.IndicatedDose;
 
@@ -74,7 +74,7 @@ namespace Business.Implementations
                 vaccine.Photo = request.Photo;
             }
 
-            _VaccineRepository.Update(vaccine);
+            _Repository.Update(vaccine);
 
             response.Data = Mapper.Map<VaccineResponse>(vaccine);
 
@@ -84,16 +84,26 @@ namespace Business.Implementations
         {
             Response<bool> response = new Response<bool>();
             response.Data = true;
-            Vaccine sh = _VaccineRepository.GetById(id);
+            Vaccine sh = _Repository.GetById(id);
             FileManager.DeleteFile(Path.Combine(_fullPathImage, sh.Photo));
-            _VaccineRepository.Delete(sh);
+            _Repository.Delete(sh);
             return response;
         }
         public Response<VaccineResponse> GetById(int id)
         {
             Response<VaccineResponse> response = new Response<VaccineResponse>();
-            Vaccine she = _VaccineRepository.GetById(id);
+            Vaccine she = _Repository.GetById(id);
             response.Data = Mapper.Map <VaccineResponse>(she);
+            return response;
+        }
+        public Response<bool> ToggleActive(int id)
+        {
+            Response<bool> response = new Response<bool>();
+
+            var data = _Repository.GetById(id);
+            data.Active = !data.Active;
+            _Repository.Update(data);
+            response.Data = data.Active;
             return response;
         }
     }

@@ -1,7 +1,6 @@
 ﻿using Business.Definitions;
 using Business.Implementations;
 using Business.Utils;
-using DataAccess.Migrations;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -14,11 +13,11 @@ namespace SheepControlApi.Controllers
     [ApiController]
     public class PermissionController : ControllerBase
     {
-        IPermissionBusiness _PermissionBusiness;
+        IPermissionBusiness _Business;
         IAuthenticationBusiness _AuthenticationBusiness { get; set; }
         public PermissionController(IPermissionBusiness permissionBusiness, IAuthenticationBusiness authenticationBusiness)
         {
-            _PermissionBusiness = permissionBusiness;
+            _Business = permissionBusiness;
             _AuthenticationBusiness = authenticationBusiness;
         }
         // GET: api/<PermissionController>
@@ -33,7 +32,7 @@ namespace SheepControlApi.Controllers
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            return Ok(_PermissionBusiness.Read());
+            return Ok(_Business.Read());
         }
 
         // GET api/<PermissionController>/5
@@ -55,7 +54,7 @@ namespace SheepControlApi.Controllers
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            var response = _PermissionBusiness.Create(permissionRequest);
+            var response = _Business.Create(permissionRequest);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
@@ -71,7 +70,7 @@ namespace SheepControlApi.Controllers
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            var response = _PermissionBusiness.Update(id, actionRequest);
+            var response = _Business.Update(id, actionRequest);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
@@ -87,8 +86,14 @@ namespace SheepControlApi.Controllers
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            var response = _PermissionBusiness.Delete(id);
+            var response = _Business.Delete(id);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
+        }
+        [HttpGet("ToggleActive/{id}")]
+        public IActionResult ToggleActive(int id)
+        {
+            var response2 = _Business.ToggleActive(id);
+            return response2.Success ? Ok(response2) : StatusCode(response2.StatusCode, response2);
         }
     }
 }

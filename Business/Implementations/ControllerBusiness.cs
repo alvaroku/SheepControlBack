@@ -9,10 +9,10 @@ namespace Business.Implementations
 {
     public class ControllerBusiness:IControllerBusiness
     {
-        ControllerRepository _ControllerRepository;
+        ControllerRepository _Repository;
         public ControllerBusiness(SheepControlDbContext context)
         {
-            _ControllerRepository = new ControllerRepository(context);
+            _Repository = new ControllerRepository(context);
         }
 
         public Response<ControllerResponse> Create(ControllerRequest controllerRequest)
@@ -22,7 +22,7 @@ namespace Business.Implementations
 
             Controller newAction = Mapper.Map<Controller>(controllerRequest);
 
-            _ControllerRepository.Create(newAction);
+            _Repository.Create(newAction);
 
             response.Data = Mapper.Map<ControllerResponse>(newAction);
             return response;
@@ -30,7 +30,7 @@ namespace Business.Implementations
 
         public IEnumerable<ControllerResponse> Read()
         {
-            var respuesta = _ControllerRepository.Read();
+            var respuesta = _Repository.Read();
 
             var mapeo = Mapper.Map<IEnumerable<ControllerResponse>>(respuesta);
 
@@ -40,12 +40,12 @@ namespace Business.Implementations
         {
             Response<ControllerResponse> response = new Response<ControllerResponse>();
 
-            Controller a = _ControllerRepository.GetById(id);
+            Controller a = _Repository.GetById(id);
 
             a.ModificationDate = DateTime.Now;
             a.Name = request.Name;
 
-            _ControllerRepository.Update(a);
+            _Repository.Update(a);
 
             response.Data = Mapper.Map<ControllerResponse>(a);
 
@@ -55,8 +55,19 @@ namespace Business.Implementations
         {
             Response<bool> response = new Response<bool>();
             response.Data = true;
-            Controller a = _ControllerRepository.GetById(id);
-            _ControllerRepository.Delete(a);
+            Controller a = _Repository.GetById(id);
+            _Repository.Delete(a);
+            return response;
+        }
+        public Response<bool> ToggleActive(int id)
+        {
+            Response<bool> response = new Response<bool>();
+
+            var data = _Repository.GetById(id);
+            data.Active = !data.Active;
+            _Repository.Update(data);
+
+            response.Data = data.Active;
             return response;
         }
     }

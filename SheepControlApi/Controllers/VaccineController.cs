@@ -12,13 +12,13 @@ namespace SheepControlApi.Controllers
     [ApiController]
     public class VaccineController : ControllerBase
     {
-        IVaccineBusiness _VaccineBusiness;
+        IVaccineBusiness _Business;
         IWebHostEnvironment _HostEnvironment;
         IAuthenticationBusiness _AuthenticationBusiness { get; set; }
         string _fullPathImage = string.Empty;
         public VaccineController(IVaccineBusiness VaccineBusiness, IWebHostEnvironment hostEnvironment, IAuthenticationBusiness authenticationBusiness)
         {
-            _VaccineBusiness = VaccineBusiness;
+            _Business = VaccineBusiness;
             _HostEnvironment = hostEnvironment;
             _fullPathImage = Path.Combine(_HostEnvironment.WebRootPath, Constants.VACCINEIMAGEPATH);
             _AuthenticationBusiness = authenticationBusiness;
@@ -35,7 +35,7 @@ namespace SheepControlApi.Controllers
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            return Ok(_VaccineBusiness.Read());
+            return Ok(_Business.Read());
         }
         [HttpGet("GetImage/{imageName}")]
         public IActionResult GetImage(string imageName)
@@ -65,7 +65,7 @@ namespace SheepControlApi.Controllers
                 return StatusCode(response1.StatusCode, response1);
             }
             vaccineRequest.Photo = FileManager.UploadImage(_fullPathImage, vaccineRequest.ImageFile); ;
-            var response = _VaccineBusiness.Create(vaccineRequest);
+            var response = _Business.Create(vaccineRequest);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
@@ -81,7 +81,7 @@ namespace SheepControlApi.Controllers
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            var response = _VaccineBusiness.Update(id, request,_fullPathImage);
+            var response = _Business.Update(id, request,_fullPathImage);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
@@ -97,8 +97,14 @@ namespace SheepControlApi.Controllers
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            var response = _VaccineBusiness.Delete(id,_fullPathImage);
+            var response = _Business.Delete(id,_fullPathImage);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
+        }
+        [HttpGet("ToggleActive/{id}")]
+        public IActionResult ToggleActive(int id)
+        {
+            var response2 = _Business.ToggleActive(id);
+            return response2.Success ? Ok(response2) : StatusCode(response2.StatusCode, response2);
         }
     }
 }

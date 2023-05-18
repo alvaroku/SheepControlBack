@@ -21,6 +21,5 @@ namespace DataAccess.Implementations
         {
             return _dbSet.Include(vs => vs.Vaccine).Include(vs => vs.Sheep).Where(x => x.Id == id ).FirstOrDefault();
         }
-        
     }
 }

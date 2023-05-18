@@ -12,11 +12,11 @@ namespace SheepControlApi.Controllers
     [ApiController]
     public class PermissionRoleController : ControllerBase
     {
-        IPermissionRoleBusiness _PermissionRoleBusiness;
+        IPermissionRoleBusiness _Business;
         IAuthenticationBusiness _AuthenticationBusiness { get; set; }
         public PermissionRoleController(IPermissionRoleBusiness permissionRoleBusiness, IAuthenticationBusiness authenticationBusiness)
         {
-            _PermissionRoleBusiness = permissionRoleBusiness;
+            _Business = permissionRoleBusiness;
             _AuthenticationBusiness = authenticationBusiness;
         }
         // GET: api/<PermissionController>
@@ -31,7 +31,7 @@ namespace SheepControlApi.Controllers
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            return Ok(_PermissionRoleBusiness.Read());
+            return Ok(_Business.Read());
         }
 
         // GET api/<PermissionController>/5
@@ -43,7 +43,7 @@ namespace SheepControlApi.Controllers
 
         // POST api/<PermissionController>
         [HttpPost]
-        public IActionResult Post(PermissionRoleRequest permissionRequest)
+        public IActionResult Post(PermissionRoleCreateRequest permissionRequest)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
@@ -53,7 +53,7 @@ namespace SheepControlApi.Controllers
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            var response = _PermissionRoleBusiness.Create(permissionRequest);
+            var response = _Business.Create(permissionRequest);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
@@ -69,7 +69,7 @@ namespace SheepControlApi.Controllers
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            var response = _PermissionRoleBusiness.Update(id, actionRequest);
+            var response = _Business.Update(id, actionRequest);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
@@ -85,8 +85,14 @@ namespace SheepControlApi.Controllers
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            var response = _PermissionRoleBusiness.Delete(id);
+            var response = _Business.Delete(id);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
+        }
+        [HttpGet("ToggleActive/{id}")]
+        public IActionResult ToggleActive(int id)
+        {
+            var response2 = _Business.ToggleActive(id);
+            return response2.Success ? Ok(response2) : StatusCode(response2.StatusCode, response2);
         }
     }
 }

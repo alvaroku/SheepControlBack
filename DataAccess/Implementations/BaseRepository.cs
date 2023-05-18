@@ -33,6 +33,10 @@ namespace DataAccess.Implementations
         {
             return _dbSet.ToList();
         }
+        public T GetById(int id)
+        {
+            return _dbSet.Find(id);
+        }
         public void Update(T Data)
         {
             _dbSet.Update(Data);
@@ -42,15 +46,23 @@ namespace DataAccess.Implementations
         {
             _dbSet.Remove(Data);
             _context.SaveChanges();
+            try
+            {
+                string table = _dbSet.EntityType.Name.Split(".")[1];
+                string sp = $"ResetId{table}";
+                string command = "EXEC " + sp;
+                _dbSet.FromSqlRaw(command).ToList();
+            }
+            catch (Exception e)
+            {
+
+            }
+
         }
         public void DeleteAll()
         {
             _dbSet.RemoveRange(_dbSet);
             _context.SaveChanges();
-        }
-        public T GetById(int id)
-        {
-            return _dbSet.Find(id);
         }
     }
 }

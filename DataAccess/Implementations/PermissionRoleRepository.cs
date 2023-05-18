@@ -21,9 +21,30 @@ namespace DataAccess.Implementations
         {
             return _dbSet.Include(pu => pu.Permission).Include(pu => pu.Permission.Controller).Include(pu => pu.Permission.Action).Include(pu => pu.Role).ToList();
         }
+        public IEnumerable<PermissionRole> ReadIncludesByRolId(int id)
+        {
+            return _dbSet.Where(e=>e.RoleId == id).Include(pu => pu.Permission).Include(pu => pu.Permission.Controller).Include(pu => pu.Permission.Action).Include(pu => pu.Role).ToList();
+        }
         public IEnumerable<PermissionRole> ReadIncludesListByRoleId(int id)
         {
             return _dbSet.Where(r=>r.RoleId == id).Include(pu => pu.Permission).Include(pu => pu.Permission.Controller).Include(pu => pu.Permission.Action).Include(pu => pu.Role).ToList();
+        }
+        public void DeleteAllPermissionsByRolId(int id)
+        {
+            var allPR = _dbSet.Where(r => r.RoleId == id);
+            _dbSet.RemoveRange(allPR);
+            _context.SaveChanges();
+            try
+            {
+                string table = _dbSet.EntityType.Name.Split(".")[1];
+                string sp = $"ResetId{table}";
+                string command = "EXEC " + sp;
+                _dbSet.FromSqlRaw(command).ToList();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
     }
 }

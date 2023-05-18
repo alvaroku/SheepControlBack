@@ -10,10 +10,10 @@ namespace Business.Implementations
 {
     public class UserBusiness : IUserBusiness
     {
-        UserRepository _UserRepository { get; set; }
+        UserRepository _Repository { get; set; }
         public UserBusiness(SheepControlDbContext context) {
 
-            _UserRepository = new UserRepository(context);
+            _Repository = new UserRepository(context);
 
         }
         public Response<UserResponse> Create(UserRequest userRequest)
@@ -25,7 +25,7 @@ namespace Business.Implementations
                 User newUser = Mapper.Map<User>(userRequest);
                 newUser.CreationDate = DateTime.Now;
                 newUser.ModificationDate = newUser.CreationDate;
-                _UserRepository.Create(newUser);
+                _Repository.Create(newUser);
 
                 response.Data = Mapper.Map<UserResponse>(newUser);
             }
@@ -41,7 +41,7 @@ namespace Business.Implementations
         }
         public IEnumerable<UserResponse> Read() {
             
-            var respuesta = _UserRepository.Read();
+            var respuesta = _Repository.Read();
 
             var mapeo = Mapper.Map<IEnumerable<UserResponse>>(respuesta);
 
@@ -51,7 +51,7 @@ namespace Business.Implementations
         {
             Response<UserResponse> response = new Response<UserResponse>();
 
-            User u = _UserRepository.GetById(id);
+            User u = _Repository.GetById(id);
 
             u.ModificationDate = DateTime.Now;
             u.Name = request.Name;
@@ -61,7 +61,7 @@ namespace Business.Implementations
             u.Password = request.Password;
             u.Email = request.Email;
 
-            _UserRepository.Update(u);
+            _Repository.Update(u);
 
             response.Data = Mapper.Map<UserResponse>(u);
 
@@ -71,8 +71,18 @@ namespace Business.Implementations
         {
              
             Response<bool> response = new Response<bool>();
-            User u = _UserRepository.GetById(id);
-            _UserRepository.Delete(u);
+            User u = _Repository.GetById(id);
+            _Repository.Delete(u);
+            return response;
+        }
+        public Response<bool> ToggleActive(int id)
+        {
+            Response<bool> response = new Response<bool>();
+
+            var data = _Repository.GetById(id);
+            data.Active = !data.Active;
+            _Repository.Update(data);
+            response.Data = data.Active;
             return response;
         }
     }

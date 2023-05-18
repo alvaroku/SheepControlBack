@@ -13,11 +13,11 @@ namespace SheepControlApi.Controllers
     [ApiController]
     public class ControllerController : ControllerBase
     {
-        IControllerBusiness _ControllerBusiness;
+        IControllerBusiness _Business;
         IAuthenticationBusiness _AuthenticationBusiness { get; set; }
         public ControllerController(IControllerBusiness controllerBusiness, IAuthenticationBusiness authenticationBusiness)
         {
-            _ControllerBusiness = controllerBusiness;
+            _Business = controllerBusiness;
             _AuthenticationBusiness = authenticationBusiness;
         }
         // GET: api/<ControllerController>
@@ -32,7 +32,7 @@ namespace SheepControlApi.Controllers
             {
                 return StatusCode(response.StatusCode, response);
             }
-            return Ok(_ControllerBusiness.Read());
+            return Ok(_Business.Read());
         }
 
         // GET api/<ControllerController>/5
@@ -54,7 +54,7 @@ namespace SheepControlApi.Controllers
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            var response = _ControllerBusiness.Create(controllerRequest);
+            var response = _Business.Create(controllerRequest);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
@@ -70,7 +70,7 @@ namespace SheepControlApi.Controllers
             {
                 return StatusCode(response2.StatusCode, response2);
             }
-            var response = _ControllerBusiness.Update(id, actionRequest);
+            var response = _Business.Update(id, actionRequest);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
@@ -86,8 +86,14 @@ namespace SheepControlApi.Controllers
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            var response = _ControllerBusiness.Delete(id);
+            var response = _Business.Delete(id);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
+        }
+        [HttpGet("ToggleActive/{id}")]
+        public IActionResult ToggleActive(int id)
+        {
+            var response2 = _Business.ToggleActive(id);
+            return response2.Success ? Ok(response2) : StatusCode(response2.StatusCode, response2);
         }
     }
 }

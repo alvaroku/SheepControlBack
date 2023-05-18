@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace DataAccess.Migrations
 {
     /// <inheritdoc />
@@ -18,7 +20,6 @@ namespace DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false)
@@ -35,7 +36,6 @@ namespace DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false)
@@ -52,7 +52,6 @@ namespace DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false)
@@ -73,7 +72,6 @@ namespace DataAccess.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Sex = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Photo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false)
@@ -91,10 +89,10 @@ namespace DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false)
@@ -112,9 +110,8 @@ namespace DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DoseApplied = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IndicatedDose = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Photo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false)
@@ -134,7 +131,6 @@ namespace DataAccess.Migrations
                     Clave = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ControllerId = table.Column<int>(type: "int", nullable: false),
                     ActionId = table.Column<int>(type: "int", nullable: false),
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false)
@@ -164,7 +160,6 @@ namespace DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false)
@@ -196,7 +191,6 @@ namespace DataAccess.Migrations
                     SheepId = table.Column<int>(type: "int", nullable: false),
                     ApplicationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DoseApplied = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false)
@@ -224,9 +218,8 @@ namespace DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<int>(type: "int", nullable: false),
                     PermissionId = table.Column<int>(type: "int", nullable: false),
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false)
@@ -247,6 +240,54 @@ namespace DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Actions",
+                columns: new[] { "Id", "Active", "CreationDate", "ModificationDate", "Name" },
+                values: new object[,]
+                {
+                    { 1, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4480), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4482), "Create" },
+                    { 2, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4490), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4490), "Read" },
+                    { 3, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4492), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4493), "Update" },
+                    { 4, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4494), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4494), "Delete" },
+                    { 5, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4496), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4497), "ToggleActive" },
+                    { 6, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4500), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4500), "GetById" },
+                    { 7, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4501), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4502), "DeleteAll" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Controllers",
+                columns: new[] { "Id", "Active", "CreationDate", "ModificationDate", "Name" },
+                values: new object[,]
+                {
+                    { 1, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4213), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4228), "Action" },
+                    { 2, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4237), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4237), "Controller" },
+                    { 3, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4239), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4239), "Permission" },
+                    { 4, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4240), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4241), "User" },
+                    { 5, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4242), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4242), "PermissionRole" },
+                    { 6, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4248), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4249), "Role" },
+                    { 7, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4250), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4250), "RoleUser" },
+                    { 8, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4251), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4252), "Sheep" },
+                    { 9, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4253), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4253), "Vaccine" },
+                    { 10, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4256), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4256), "VaccineSheep" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Roles",
+                columns: new[] { "Id", "Active", "CreationDate", "ModificationDate", "Name" },
+                values: new object[,]
+                {
+                    { 1, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4546), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4547), "SuperAdmin" },
+                    { 2, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4552), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4552), "Admin" },
+                    { 3, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4554), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4554), "User" },
+                    { 4, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4555), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4556), "Invited" },
+                    { 5, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4557), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4558), "Custom" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Active", "BirthDate", "CreationDate", "Email", "LastName", "ModificationDate", "Name", "Password", "PhoneNumber" },
+                values: new object[] { 1, true, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4765), "sa@gmail.com", "sa", new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4766), "sa", "sa", "9919596720" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Permissions_ActionId",

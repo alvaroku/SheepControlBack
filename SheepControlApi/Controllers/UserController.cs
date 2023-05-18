@@ -12,11 +12,11 @@ namespace SheepControlApi.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        IUserBusiness _UserBusiness { get; set; }
+        IUserBusiness _Business { get; set; }
         IAuthenticationBusiness _AuthenticationBusiness { get; set; }
         public UserController(IUserBusiness userBusiness, IAuthenticationBusiness authenticationBusiness)
         {
-            _UserBusiness = userBusiness;
+            _Business = userBusiness;
             _AuthenticationBusiness = authenticationBusiness;
         }
         // GET: api/<UserController>
@@ -31,7 +31,7 @@ namespace SheepControlApi.Controllers
             {
               return StatusCode(response.StatusCode, response);
             }
-            return Ok(_UserBusiness.Read());
+            return Ok(_Business.Read());
         }
 
         // GET api/<UserController>/5
@@ -53,7 +53,7 @@ namespace SheepControlApi.Controllers
             {
                 return StatusCode(responseAuth.StatusCode, responseAuth);
             }
-            var response = _UserBusiness.Create(userRequest);
+            var response = _Business.Create(userRequest);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
@@ -69,7 +69,7 @@ namespace SheepControlApi.Controllers
             {
                 return StatusCode(responseAuth.StatusCode, responseAuth);
             }
-            var response = _UserBusiness.Update(id,request);
+            var response = _Business.Update(id,request);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
@@ -87,7 +87,7 @@ namespace SheepControlApi.Controllers
                 return StatusCode(response.StatusCode,response);
             }
 
-            response = _UserBusiness.Delete(id);
+            response = _Business.Delete(id);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
 
         }
@@ -102,6 +102,12 @@ namespace SheepControlApi.Controllers
         {
             var response = _AuthenticationBusiness.GetEmailFromToken(request);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
+        }
+        [HttpGet("ToggleActive/{id}")]
+        public IActionResult ToggleActive(int id)
+        {
+            var response2 = _Business.ToggleActive(id);
+            return response2.Success ? Ok(response2) : StatusCode(response2.StatusCode, response2);
         }
     }
 }

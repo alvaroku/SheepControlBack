@@ -46,6 +46,64 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Actions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6735),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6736),
+                            Name = "Create"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6739),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6740),
+                            Name = "Read"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6740),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6741),
+                            Name = "Update"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6741),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6742),
+                            Name = "Delete"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6742),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6742),
+                            Name = "ToggleActive"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6744),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6745),
+                            Name = "GetById"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6745),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6746),
+                            Name = "DeleteAll"
+                        });
                 });
 
             modelBuilder.Entity("Entities.Controller", b =>
@@ -72,6 +130,88 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Controllers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6598),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6609),
+                            Name = "Action"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6615),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6615),
+                            Name = "Controller"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6616),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6616),
+                            Name = "Permission"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6617),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6617),
+                            Name = "User"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6618),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6618),
+                            Name = "PermissionRole"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6622),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6622),
+                            Name = "Role"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6623),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6623),
+                            Name = "RoleUser"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6624),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6624),
+                            Name = "Sheep"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6625),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6625),
+                            Name = "Vaccine"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6626),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6627),
+                            Name = "VaccineSheep"
+                        });
                 });
 
             modelBuilder.Entity("Entities.Permission", b =>
@@ -170,6 +310,48 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6775),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6775),
+                            Name = "SuperAdmin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6778),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6779),
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6780),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6780),
+                            Name = "User"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6780),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6781),
+                            Name = "Invited"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6781),
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6782),
+                            Name = "Custom"
+                        });
                 });
 
             modelBuilder.Entity("Entities.RoleUser", b =>
@@ -287,6 +469,21 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Active = true,
+                            BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6866),
+                            Email = "sa@gmail.com",
+                            LastName = "sa",
+                            ModificationDate = new DateTime(2023, 5, 18, 10, 58, 4, 874, DateTimeKind.Local).AddTicks(6867),
+                            Name = "sa",
+                            Password = "sa",
+                            PhoneNumber = "9919596720"
+                        });
                 });
 
             modelBuilder.Entity("Entities.Vaccine", b =>
@@ -303,10 +500,6 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("IndicatedDose")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -315,6 +508,10 @@ namespace DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Observations")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

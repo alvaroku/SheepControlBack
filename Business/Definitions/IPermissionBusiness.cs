@@ -8,5 +8,6 @@ namespace Business.Definitions
         public IEnumerable<PermissionResponse> Read();
         public Response<PermissionResponse> Update(int id, PermissionRequest request);
         public Response<bool> Delete(int id);
+        public Response<bool> ToggleActive(int id);
     }
 }
