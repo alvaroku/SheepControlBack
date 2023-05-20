@@ -14,6 +14,7 @@ namespace DataAccess
         public DbSet<RoleUser> RolesUsers { get; set; }
         public DbSet<Controller> Controllers { get; set; }
         public DbSet<Entities.Action> Actions { get; set; }
+        public DbSet<SaleSheep> SaleSheeps { get; set; }
         public SheepControlDbContext(DbContextOptions<SheepControlDbContext> options) : base(options)
         {
         }
@@ -31,10 +32,11 @@ namespace DataAccess
             string CONTROLLER_SHEEP = "Sheep";
             string CONTROLLER_VACCINE = "Vaccine";
             string CONTROLLER_VACCINESHEEP = "VaccineSheep";
-            #endregion
+            string CONTROLLER_SALESHEEP = "SaleSheep";
+        #endregion
 
-            #region DefaultActions
-            string ACTION_CREATE = "Create";
+        #region DefaultActions
+        string ACTION_CREATE = "Create";
             string ACTION_READ = "Read";
             string ACTION_UPDATE = "Update";
             string ACTION_DELETE = "Delete";
@@ -54,7 +56,7 @@ namespace DataAccess
             string ROLE_CUSTOM = "Custom";
             #endregion
 
-            string[] _Controllers = new string[] { CONTROLLER_ACTION, CONTROLLER_CONTROLLER, CONTROLLER_PERMISSION, CONTROLLER_USER, CONTROLLER_PERMISSIONROLE, CONTROLLER_ROLE, CONTROLLER_ROLEUSER, CONTROLLER_SHEEP, CONTROLLER_VACCINE, CONTROLLER_VACCINESHEEP };
+            string[] _Controllers = new string[] { CONTROLLER_ACTION, CONTROLLER_CONTROLLER, CONTROLLER_PERMISSION, CONTROLLER_USER, CONTROLLER_PERMISSIONROLE, CONTROLLER_ROLE, CONTROLLER_ROLEUSER, CONTROLLER_SHEEP, CONTROLLER_VACCINE, CONTROLLER_VACCINESHEEP,CONTROLLER_SALESHEEP };
             string[] _Actions = new string[] { ACTION_CREATE, ACTION_READ, ACTION_UPDATE, ACTION_DELETE, ACTION_TOGGLEACTIVE, ACTION_GETBYID, ACTION_DELETEALL };
             string[] _Roles = new string[] { ROLE_SUPERADMIN, ROLE_ADMIN, ROLE_USER, ROLE_INVITED, ROLE_CUSTOM };
             base.OnModelCreating(modelBuilder);

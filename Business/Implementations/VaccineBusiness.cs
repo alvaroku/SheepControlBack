@@ -74,6 +74,11 @@ namespace Business.Implementations
                 vaccine.Photo = request.Photo;
             }
 
+            vaccine.NetContent = request.NetContent;
+            vaccine.Unities = request.Unities;
+            vaccine.UnitPrice = request.UnitPrice;
+            vaccine.AcquisitionCost = request.AcquisitionCost;
+
             _Repository.Update(vaccine);
 
             response.Data = Mapper.Map<VaccineResponse>(vaccine);

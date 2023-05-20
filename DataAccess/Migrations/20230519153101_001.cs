@@ -46,6 +46,25 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "IncomeExpenses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateOperation = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Amount = table.Column<float>(type: "real", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Active = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IncomeExpenses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Roles",
                 columns: table => new
                 {
@@ -72,6 +91,10 @@ namespace DataAccess.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Sex = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Photo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sold = table.Column<bool>(type: "bit", nullable: false),
+                    IsAcquisition = table.Column<bool>(type: "bit", nullable: false),
+                    KiloPrice = table.Column<float>(type: "real", nullable: false),
+                    AcquisitionCost = table.Column<float>(type: "real", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false)
@@ -109,9 +132,12 @@ namespace DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Observations = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IndicatedDose = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Photo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NetContent = table.Column<float>(type: "real", nullable: false),
+                    Unities = table.Column<int>(type: "int", nullable: false),
+                    UnitPrice = table.Column<float>(type: "real", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false)
@@ -246,13 +272,13 @@ namespace DataAccess.Migrations
                 columns: new[] { "Id", "Active", "CreationDate", "ModificationDate", "Name" },
                 values: new object[,]
                 {
-                    { 1, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4480), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4482), "Create" },
-                    { 2, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4490), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4490), "Read" },
-                    { 3, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4492), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4493), "Update" },
-                    { 4, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4494), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4494), "Delete" },
-                    { 5, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4496), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4497), "ToggleActive" },
-                    { 6, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4500), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4500), "GetById" },
-                    { 7, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4501), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4502), "DeleteAll" }
+                    { 1, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8095), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8096), "Create" },
+                    { 2, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8098), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8098), "Read" },
+                    { 3, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8099), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8099), "Update" },
+                    { 4, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8100), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8100), "Delete" },
+                    { 5, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8101), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8101), "ToggleActive" },
+                    { 6, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8103), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8103), "GetById" },
+                    { 7, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8104), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8104), "DeleteAll" }
                 });
 
             migrationBuilder.InsertData(
@@ -260,16 +286,16 @@ namespace DataAccess.Migrations
                 columns: new[] { "Id", "Active", "CreationDate", "ModificationDate", "Name" },
                 values: new object[,]
                 {
-                    { 1, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4213), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4228), "Action" },
-                    { 2, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4237), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4237), "Controller" },
-                    { 3, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4239), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4239), "Permission" },
-                    { 4, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4240), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4241), "User" },
-                    { 5, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4242), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4242), "PermissionRole" },
-                    { 6, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4248), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4249), "Role" },
-                    { 7, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4250), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4250), "RoleUser" },
-                    { 8, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4251), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4252), "Sheep" },
-                    { 9, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4253), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4253), "Vaccine" },
-                    { 10, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4256), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4256), "VaccineSheep" }
+                    { 1, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7888), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7900), "Action" },
+                    { 2, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7909), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7909), "Controller" },
+                    { 3, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7910), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7910), "Permission" },
+                    { 4, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7911), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7911), "User" },
+                    { 5, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7912), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7912), "PermissionRole" },
+                    { 6, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7914), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7915), "Role" },
+                    { 7, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7915), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7916), "RoleUser" },
+                    { 8, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7916), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7917), "Sheep" },
+                    { 9, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7917), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7917), "Vaccine" },
+                    { 10, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7919), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7919), "VaccineSheep" }
                 });
 
             migrationBuilder.InsertData(
@@ -277,17 +303,17 @@ namespace DataAccess.Migrations
                 columns: new[] { "Id", "Active", "CreationDate", "ModificationDate", "Name" },
                 values: new object[,]
                 {
-                    { 1, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4546), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4547), "SuperAdmin" },
-                    { 2, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4552), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4552), "Admin" },
-                    { 3, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4554), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4554), "User" },
-                    { 4, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4555), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4556), "Invited" },
-                    { 5, true, new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4557), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4558), "Custom" }
+                    { 1, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8134), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8135), "SuperAdmin" },
+                    { 2, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8137), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8138), "Admin" },
+                    { 3, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8138), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8139), "User" },
+                    { 4, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8139), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8140), "Invited" },
+                    { 5, true, new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8140), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8141), "Custom" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Active", "BirthDate", "CreationDate", "Email", "LastName", "ModificationDate", "Name", "Password", "PhoneNumber" },
-                values: new object[] { 1, true, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4765), "sa@gmail.com", "sa", new DateTime(2023, 5, 17, 11, 52, 42, 937, DateTimeKind.Local).AddTicks(4766), "sa", "sa", "9919596720" });
+                values: new object[] { 1, true, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8174), "sa@gmail.com", "sa", new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8175), "sa", "sa", "9919596720" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Permissions_ActionId",
@@ -333,6 +359,9 @@ namespace DataAccess.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "IncomeExpenses");
+
             migrationBuilder.DropTable(
                 name: "PermissionsRoles");
 

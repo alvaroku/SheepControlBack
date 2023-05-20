@@ -70,6 +70,9 @@ namespace Business.Implementations
             sheep.Weight = sheepRequest.Weight;
             sheep.Description = sheepRequest.Description;
             sheep.Sex = sheepRequest.Sex;
+            sheep.AcquisitionCost = sheepRequest.AcquisitionCost;
+            sheep.KiloPrice = sheepRequest.KiloPrice;
+            sheep.IsAcquisition= sheepRequest.IsAcquisition;
             if(sheepRequest.ImageFile != null)
             {
                 sheep.Photo = sheepRequest.Photo;

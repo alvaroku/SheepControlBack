@@ -4,6 +4,7 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(SheepControlDbContext))]
-    partial class SheepControlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230519153101_001")]
+    partial class _001
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,56 +55,56 @@ namespace DataAccess.Migrations
                         {
                             Id = 1,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(262),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(264),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8095),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8096),
                             Name = "Create"
                         },
                         new
                         {
                             Id = 2,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(270),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(271),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8098),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8098),
                             Name = "Read"
                         },
                         new
                         {
                             Id = 3,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(273),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(274),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8099),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8099),
                             Name = "Update"
                         },
                         new
                         {
                             Id = 4,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(275),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(276),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8100),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8100),
                             Name = "Delete"
                         },
                         new
                         {
                             Id = 5,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(277),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(278),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8101),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8101),
                             Name = "ToggleActive"
                         },
                         new
                         {
                             Id = 6,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(282),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(283),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8103),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8103),
                             Name = "GetById"
                         },
                         new
                         {
                             Id = 7,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(284),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(285),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8104),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8104),
                             Name = "DeleteAll"
                         });
                 });
@@ -136,90 +139,118 @@ namespace DataAccess.Migrations
                         {
                             Id = 1,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 850, DateTimeKind.Local).AddTicks(9986),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(5),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7888),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7900),
                             Name = "Action"
                         },
                         new
                         {
                             Id = 2,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(18),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(19),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7909),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7909),
                             Name = "Controller"
                         },
                         new
                         {
                             Id = 3,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(20),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(21),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7910),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7910),
                             Name = "Permission"
                         },
                         new
                         {
                             Id = 4,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(23),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(24),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7911),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7911),
                             Name = "User"
                         },
                         new
                         {
                             Id = 5,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(25),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(26),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7912),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7912),
                             Name = "PermissionRole"
                         },
                         new
                         {
                             Id = 6,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(32),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(33),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7914),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7915),
                             Name = "Role"
                         },
                         new
                         {
                             Id = 7,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(34),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(35),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7915),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7916),
                             Name = "RoleUser"
                         },
                         new
                         {
                             Id = 8,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(37),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(38),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7916),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7917),
                             Name = "Sheep"
                         },
                         new
                         {
                             Id = 9,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(39),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(40),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7917),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7917),
                             Name = "Vaccine"
                         },
                         new
                         {
                             Id = 10,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(44),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(44),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7919),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(7919),
                             Name = "VaccineSheep"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(46),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(46),
-                            Name = "SaleSheep"
                         });
+                });
+
+            modelBuilder.Entity("Entities.IncomeExpenses", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<float>("Amount")
+                        .HasColumnType("real");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateOperation")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModificationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IncomeExpenses");
                 });
 
             modelBuilder.Entity("Entities.Permission", b =>
@@ -324,40 +355,40 @@ namespace DataAccess.Migrations
                         {
                             Id = 1,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(360),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(361),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8134),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8135),
                             Name = "SuperAdmin"
                         },
                         new
                         {
                             Id = 2,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(367),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(368),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8137),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8138),
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 3,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(369),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(370),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8138),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8139),
                             Name = "User"
                         },
                         new
                         {
                             Id = 4,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(372),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(373),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8139),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8140),
                             Name = "Invited"
                         },
                         new
                         {
                             Id = 5,
                             Active = true,
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(374),
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(375),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8140),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8141),
                             Name = "Custom"
                         });
                 });
@@ -392,42 +423,6 @@ namespace DataAccess.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("RolesUsers");
-                });
-
-            modelBuilder.Entity("Entities.SaleSheep", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<float>("KiloPrice")
-                        .HasColumnType("real");
-
-                    b.Property<DateTime>("ModificationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<float>("SaleProfit")
-                        .HasColumnType("real");
-
-                    b.Property<int>("SheepId")
-                        .HasColumnType("int");
-
-                    b.Property<float>("TotalCharged")
-                        .HasColumnType("real");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SheepId");
-
-                    b.ToTable("SaleSheeps");
                 });
 
             modelBuilder.Entity("Entities.Sheep", b =>
@@ -532,10 +527,10 @@ namespace DataAccess.Migrations
                             Id = 1,
                             Active = true,
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(461),
+                            CreationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8174),
                             Email = "sa@gmail.com",
                             LastName = "sa",
-                            ModificationDate = new DateTime(2023, 5, 19, 18, 22, 42, 851, DateTimeKind.Local).AddTicks(463),
+                            ModificationDate = new DateTime(2023, 5, 19, 9, 31, 1, 110, DateTimeKind.Local).AddTicks(8175),
                             Name = "sa",
                             Password = "sa",
                             PhoneNumber = "9919596720"
@@ -549,9 +544,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<float>("AcquisitionCost")
-                        .HasColumnType("real");
 
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
@@ -686,17 +678,6 @@ namespace DataAccess.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Entities.SaleSheep", b =>
-                {
-                    b.HasOne("Entities.Sheep", "Sheep")
-                        .WithMany()
-                        .HasForeignKey("SheepId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Sheep");
                 });
 
             modelBuilder.Entity("Entities.VaccineSheep", b =>

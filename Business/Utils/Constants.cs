@@ -22,6 +22,7 @@ namespace Business.Utils
         public static string CONTROLLER_SHEEP = "Sheep";
         public static string CONTROLLER_VACCINE = "Vaccine";
         public static string CONTROLLER_VACCINESHEEP = "VaccineSheep";
+        public static string CONTROLLER_SALESHEEP = "SaleSheep";
         #endregion
 
         #region DefaultActions
@@ -45,7 +46,7 @@ namespace Business.Utils
         public static string ROLE_CUSTOM = "Custom";
         #endregion
 
-        public static string[] Controllers = new string[] { CONTROLLER_ACTION, CONTROLLER_CONTROLLER, CONTROLLER_PERMISSION, CONTROLLER_USER, CONTROLLER_PERMISSIONROLE,CONTROLLER_ROLE,CONTROLLER_ROLEUSER, CONTROLLER_SHEEP, CONTROLLER_VACCINE, CONTROLLER_VACCINESHEEP };
+        public static string[] Controllers = new string[] { CONTROLLER_ACTION, CONTROLLER_CONTROLLER, CONTROLLER_PERMISSION, CONTROLLER_USER, CONTROLLER_PERMISSIONROLE,CONTROLLER_ROLE,CONTROLLER_ROLEUSER, CONTROLLER_SHEEP, CONTROLLER_VACCINE, CONTROLLER_VACCINESHEEP,CONTROLLER_SALESHEEP };
         public static string[] Actions = new string[] {ACTION_CREATE, ACTION_READ, ACTION_UPDATE, ACTION_DELETE,ACTION_TOGGLEACTIVE,ACTION_GETBYID,ACTION_DELETEALL};
         public static string[] Roles = new string[] {ROLE_SUPERADMIN, ROLE_ADMIN, ROLE_USER, ROLE_INVITED,ROLE_CUSTOM};
 
