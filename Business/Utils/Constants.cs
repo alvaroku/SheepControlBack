@@ -23,6 +23,8 @@ namespace Business.Utils
         public static string CONTROLLER_VACCINE = "Vaccine";
         public static string CONTROLLER_VACCINESHEEP = "VaccineSheep";
         public static string CONTROLLER_SALESHEEP = "SaleSheep";
+        public static string CONTROLLER_SHEEPHISTORICWEIGHT = "SheepHistoricWeight";
+       
         #endregion
 
         #region DefaultActions
@@ -30,6 +32,8 @@ namespace Business.Utils
         public static string ACTION_READ = "Read";
         public static string ACTION_UPDATE = "Update";
         public static string ACTION_DELETE = "Delete";
+        public static string ACTION_READWITHFILTERS = "GetWithFilters";
+        public static string ACTION_GETSHEEPWITHFINALWEIGHT = "GetSheepWithFinalWeight";
         #endregion
 
         #region AditionalActions
@@ -46,8 +50,8 @@ namespace Business.Utils
         public static string ROLE_CUSTOM = "Custom";
         #endregion
 
-        public static string[] Controllers = new string[] { CONTROLLER_ACTION, CONTROLLER_CONTROLLER, CONTROLLER_PERMISSION, CONTROLLER_USER, CONTROLLER_PERMISSIONROLE,CONTROLLER_ROLE,CONTROLLER_ROLEUSER, CONTROLLER_SHEEP, CONTROLLER_VACCINE, CONTROLLER_VACCINESHEEP,CONTROLLER_SALESHEEP };
-        public static string[] Actions = new string[] {ACTION_CREATE, ACTION_READ, ACTION_UPDATE, ACTION_DELETE,ACTION_TOGGLEACTIVE,ACTION_GETBYID,ACTION_DELETEALL};
+        public static string[] Controllers = new string[] { CONTROLLER_ACTION, CONTROLLER_CONTROLLER, CONTROLLER_PERMISSION, CONTROLLER_USER, CONTROLLER_PERMISSIONROLE,CONTROLLER_ROLE,CONTROLLER_ROLEUSER, CONTROLLER_SHEEP, CONTROLLER_VACCINE, CONTROLLER_VACCINESHEEP,CONTROLLER_SALESHEEP,CONTROLLER_SHEEPHISTORICWEIGHT };
+        public static string[] Actions = new string[] {ACTION_CREATE, ACTION_READ, ACTION_UPDATE, ACTION_DELETE,ACTION_TOGGLEACTIVE,ACTION_GETBYID,ACTION_DELETEALL,ACTION_READWITHFILTERS, ACTION_GETSHEEPWITHFINALWEIGHT };
         public static string[] Roles = new string[] {ROLE_SUPERADMIN, ROLE_ADMIN, ROLE_USER, ROLE_INVITED,ROLE_CUSTOM};
 
         public static string USER_SUPERADMIN_NAME = "sa";

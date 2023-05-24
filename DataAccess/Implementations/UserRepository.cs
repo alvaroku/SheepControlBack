@@ -1,11 +1,5 @@
 ﻿using Entities;
 using Entities.DTOs;
- 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess.Implementations
 {
@@ -15,6 +9,7 @@ namespace DataAccess.Implementations
         {
             
         }
+        //pasar la logica a Business
         public User Login(LoginRequest loginRequest)
         {
             User result = _dbSet.Where(x => (x.Active && x.Email == loginRequest.Email && x.Password == loginRequest.Password)).FirstOrDefault();

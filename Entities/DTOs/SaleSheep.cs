@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Entities.DTOs
+﻿namespace Entities.DTOs
 {
     public class SaleSheepResponse : ObjetoBase
     {
@@ -14,6 +8,15 @@ namespace Entities.DTOs
 
         public float TotalCharged { get; set; }
         public float SaleProfit { get; set; }
+        public DateTime SaleDate { get; set; }
+    }
+    public class SaleMultipleSheepRequest
+    {
+        public int[] SheepIds { get; set; }
+        public float KiloPrice { get; set; }
+        public float TotalCharged { get; set; }
+        public float SaleProfit { get; set; }
+        public DateTime SaleDate { get; set; }
     }
     public class SaleSheepRequest
     {
@@ -21,5 +24,11 @@ namespace Entities.DTOs
         public float KiloPrice { get; set; }
         public float TotalCharged { get; set; }
         public float SaleProfit { get; set; }
+        public DateTime SaleDate { get; set; }
+    }
+    public class FilterSaleSheepRequest
+    {
+        public DateTime StartDate { get; set; }
+        public DateTime FinishDate { get; set; }
     }
 }

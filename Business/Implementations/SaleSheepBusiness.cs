@@ -50,14 +50,71 @@ namespace Business.Implementations
             response.Data = Mapper.Map<SaleSheepResponse>(newSaleSheep);
             return response;
         }
-
-        public IEnumerable<SaleSheepResponse> Read()
+        public Response<IEnumerable<SaleSheepResponse>> CreateMultiple(SaleMultipleSheepRequest SaleSheepRequest)
         {
+            Response<IEnumerable<SaleSheepResponse>> response = new Response<IEnumerable<SaleSheepResponse>>();
+
+            List<Sheep> sheepsToSale = new List<Sheep>();
+            List<SaleSheep> dataToInsert = new List<SaleSheep>();
+
+            foreach (int sheepId in SaleSheepRequest.SheepIds)
+            {
+                Sheep s = _SheepRepository.GetById(sheepId);
+                s.Sold = true;
+                sheepsToSale.Add(s);
+
+                float precioCobrado = s.Weight * SaleSheepRequest.KiloPrice;
+                float ganancia = 0;
+                if (s.IsAcquisition)
+                {
+                    ganancia = precioCobrado - s.AcquisitionCost;
+                }
+                else
+                {
+                    ganancia = precioCobrado;
+                }
+
+                dataToInsert.Add(
+                        new SaleSheep
+                        {
+                            Active = true,
+                            CreationDate = DateTime.Now,
+                            ModificationDate = DateTime.Now,
+                            TotalCharged = precioCobrado,
+                            SaleProfit = ganancia,
+                            KiloPrice = SaleSheepRequest.KiloPrice,
+                            SheepId = s.Id,
+                            SaleDate = SaleSheepRequest.SaleDate
+                        }
+                    );
+            }
+            _SheepRepository.UpdateRange(sheepsToSale);
+            _Repository.CreateRange(dataToInsert);
+            response.Message = $"Se vendieron {dataToInsert.Count} carneros a ${SaleSheepRequest.KiloPrice} el kg,total kg = {sheepsToSale.Sum(x => x.Weight)}, total a cobrar = ${dataToInsert.Sum(x=>x.TotalCharged)}";
+            response.Data = Mapper.Map<IEnumerable<SaleSheepResponse>>(dataToInsert);
+            return response;
+        }
+
+        public Response<IEnumerable<SaleSheepResponse>> Read()
+        {
+            Response<IEnumerable<SaleSheepResponse>> response = new Response<IEnumerable<SaleSheepResponse>>();
+
             var respuesta = _Repository.ReadIncludes();
 
             var mapeo = Mapper.Map<IEnumerable<SaleSheepResponse>>(respuesta);
 
-            return mapeo.ToList();
+            response.Data = mapeo;
+            return response;
+        }
+        public Response<IEnumerable<SaleSheepResponse>> ReadWithFilters(FilterSaleSheepRequest request)
+        {
+            Response<IEnumerable<SaleSheepResponse>> response = new Response<IEnumerable<SaleSheepResponse>>();
+            var dataFiltered = _Repository.ReadIncludes();
+            dataFiltered = dataFiltered.Where(vs => vs.SaleDate >= request.StartDate && vs.SaleDate <= request.FinishDate);
+            var mapeo = Mapper.Map<IEnumerable<SaleSheepResponse>>(dataFiltered);
+
+            response.Data = mapeo.ToList();
+            return response;
         }
         public Response<SaleSheepResponse> Update(int id, SaleSheepRequest request)
         {
@@ -77,6 +134,7 @@ namespace Business.Implementations
             newSaleSheep.ModificationDate = DateTime.Now;
             newSaleSheep.SheepId = request.SheepId;
             newSaleSheep.KiloPrice = request.KiloPrice;
+            newSaleSheep.SaleDate = request.SaleDate;
             //recalcular TotalCharged SaleProfit 
 
             newSaleSheep.TotalCharged = s.Weight * request.KiloPrice;

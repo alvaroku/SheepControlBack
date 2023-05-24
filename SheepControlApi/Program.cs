@@ -1,4 +1,3 @@
-
 using Business.Definitions;
 using Business.Implementations;
 using Business.Utils;
@@ -7,11 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Diagnostics.SymbolStore;
-using System.Security.Cryptography.Xml;
 using System.Text;
-using Microsoft.AspNetCore.Hosting;
 namespace SheepControlApi
 {
     public class Program
@@ -86,6 +81,7 @@ namespace SheepControlApi
             builder.Services.AddScoped<IVaccineSheepBusiness, VaccineSheepBusiness>();
             builder.Services.AddScoped<IAuthenticationBusiness,AuthenticationBusiness>();
             builder.Services.AddScoped<ISaleSheepBusiness, SaleSheepBusiness>();
+            builder.Services.AddScoped<ISheepHistoricWeightBusiness, SheepHistoricWeightBusiness>();
             AutoMapperConfiguration.Configure();
 
             

@@ -40,6 +40,19 @@ namespace SheepControlApi.Controllers
             }
             return Ok(_Business.Read());
         }
+        [HttpGet("GetSheepsWithFinalWeight")]
+        public IActionResult GetSheepsWithFinalWeight()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_SHEEP, Constants.ACTION_GETSHEEPWITHFINALWEIGHT);
+
+            if (!response1.Success)
+            {
+                return StatusCode(response1.StatusCode, response1);
+            }
+            return Ok(_Business.GetSheepsWithFinalWeight());
+        }
         [HttpGet("GetImage/{imageName}")]
         public IActionResult GetImage(string imageName)
         {

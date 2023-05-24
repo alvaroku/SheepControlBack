@@ -1,6 +1,4 @@
-﻿using Entities.DTOs;
-
-namespace Entities.DTOs
+﻿namespace Entities.DTOs
 {
     public class UserRequest : ObjetoBase
     {

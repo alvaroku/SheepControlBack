@@ -1,6 +1,4 @@
-﻿
-
-namespace Entities.DTOs { 
+﻿namespace Entities.DTOs { 
     public enum EnumStatusCode
     {
         Ok = 200,

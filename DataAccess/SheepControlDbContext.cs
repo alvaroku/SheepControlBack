@@ -15,6 +15,7 @@ namespace DataAccess
         public DbSet<Controller> Controllers { get; set; }
         public DbSet<Entities.Action> Actions { get; set; }
         public DbSet<SaleSheep> SaleSheeps { get; set; }
+        public DbSet<SheepHistoricWeight> SheepHistoricWeights { get; set; }
         public SheepControlDbContext(DbContextOptions<SheepControlDbContext> options) : base(options)
         {
         }
@@ -33,19 +34,22 @@ namespace DataAccess
             string CONTROLLER_VACCINE = "Vaccine";
             string CONTROLLER_VACCINESHEEP = "VaccineSheep";
             string CONTROLLER_SALESHEEP = "SaleSheep";
-        #endregion
+            string CONTROLLER_SHEEPHISTORICWEIGHT = "SheepHistoricWeight";
+            #endregion
 
-        #region DefaultActions
-        string ACTION_CREATE = "Create";
+            #region DefaultActions
+            string ACTION_CREATE = "Create";
             string ACTION_READ = "Read";
             string ACTION_UPDATE = "Update";
             string ACTION_DELETE = "Delete";
+            string ACTION_READWITHFILTERS = "GetWithFilters";
             #endregion
 
             #region AditionalActions
             string ACTION_TOGGLEACTIVE = "ToggleActive";
             string ACTION_GETBYID = "GetById";
             string ACTION_DELETEALL = "DeleteAll";
+            string ACTION_GETSHEEPWITHFINALWEIGHT = "GetSheepWithFinalWeight";
             #endregion
 
             #region Roles
@@ -56,8 +60,8 @@ namespace DataAccess
             string ROLE_CUSTOM = "Custom";
             #endregion
 
-            string[] _Controllers = new string[] { CONTROLLER_ACTION, CONTROLLER_CONTROLLER, CONTROLLER_PERMISSION, CONTROLLER_USER, CONTROLLER_PERMISSIONROLE, CONTROLLER_ROLE, CONTROLLER_ROLEUSER, CONTROLLER_SHEEP, CONTROLLER_VACCINE, CONTROLLER_VACCINESHEEP,CONTROLLER_SALESHEEP };
-            string[] _Actions = new string[] { ACTION_CREATE, ACTION_READ, ACTION_UPDATE, ACTION_DELETE, ACTION_TOGGLEACTIVE, ACTION_GETBYID, ACTION_DELETEALL };
+            string[] _Controllers = new string[] { CONTROLLER_ACTION, CONTROLLER_CONTROLLER, CONTROLLER_PERMISSION, CONTROLLER_USER, CONTROLLER_PERMISSIONROLE, CONTROLLER_ROLE, CONTROLLER_ROLEUSER, CONTROLLER_SHEEP, CONTROLLER_VACCINE, CONTROLLER_VACCINESHEEP,CONTROLLER_SALESHEEP, CONTROLLER_SHEEPHISTORICWEIGHT };
+            string[] _Actions = new string[] { ACTION_CREATE, ACTION_READ, ACTION_UPDATE, ACTION_DELETE, ACTION_TOGGLEACTIVE, ACTION_GETBYID, ACTION_DELETEALL, ACTION_READWITHFILTERS, ACTION_GETSHEEPWITHFINALWEIGHT };
             string[] _Roles = new string[] { ROLE_SUPERADMIN, ROLE_ADMIN, ROLE_USER, ROLE_INVITED, ROLE_CUSTOM };
             base.OnModelCreating(modelBuilder);
             int cont = 0;

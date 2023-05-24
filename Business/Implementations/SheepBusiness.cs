@@ -5,16 +5,18 @@ using DataAccess.Implementations;
 using Entities;
 using Entities.DTOs;
 using Business.Utils;
+using Azure.Core;
 
 namespace Business.Implementations
 {
     public class SheepBusiness:ISheepBusiness
     {
         SheepRepository _Repository;
-
+        SheepHistoricWeightRepository _HistoricWeightRepository;
         public SheepBusiness(SheepControlDbContext context) 
         { 
             _Repository = new SheepRepository(context);
+            _HistoricWeightRepository = new SheepHistoricWeightRepository(context);
         }
 
         public Response<SheepResponse> Create(SheepRequest sheepRequest)
@@ -48,6 +50,22 @@ namespace Business.Implementations
         public IEnumerable<SheepResponse> Read()
         {
             var respuesta = _Repository.Read();
+
+            var mapeo = Mapper.Map<IEnumerable<SheepResponse>>(respuesta);
+
+            return mapeo.ToList();
+        }
+        public IEnumerable<SheepResponse> GetSheepsWithFinalWeight()
+        {
+            List<Sheep> respuesta = _Repository.Read().ToList();
+
+            for(int i=0;i<respuesta.Count();i++)
+            {
+                if(_HistoricWeightRepository.Read().Where(x => x.SheepId == respuesta[i].Id).Count() > 0)
+                {
+                     respuesta[i].Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == respuesta[i].Id).OrderByDescending(x => x.Id).First().NewWeight;
+                }
+            }
 
             var mapeo = Mapper.Map<IEnumerable<SheepResponse>>(respuesta);
 

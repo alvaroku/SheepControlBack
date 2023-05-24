@@ -1,10 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Implementations
 {
@@ -40,6 +34,11 @@ namespace DataAccess.Implementations
         public void Update(T Data)
         {
             _dbSet.Update(Data);
+            _context.SaveChanges();
+        }
+        public void UpdateRange(IEnumerable<T> data)
+        {
+            _dbSet.UpdateRange(data);
             _context.SaveChanges();
         }
         public void Delete(T Data)
