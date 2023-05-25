@@ -14,10 +14,12 @@ namespace Business.Implementations
     {
         SaleSheepRepository _Repository;
         SheepRepository _SheepRepository;
+        SheepHistoricWeightRepository _HistoricWeightRepository;
         public SaleSheepBusiness(SheepControlDbContext context) {
         
             _Repository = new SaleSheepRepository(context);
             _SheepRepository = new SheepRepository(context);
+            _HistoricWeightRepository = new SheepHistoricWeightRepository(context);
         }
 
         public Response<SaleSheepResponse> Create(SaleSheepRequest SaleSheepRequest)
@@ -47,6 +49,11 @@ namespace Business.Implementations
             _SheepRepository.Update(s);
             _Repository.Create(newSaleSheep);
 
+            if (_HistoricWeightRepository.Read().Where(x => x.SheepId == newSaleSheep.SheepId).Count() > 0)
+            {
+                newSaleSheep.Sheep.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == newSaleSheep.SheepId).OrderByDescending(x => x.Id).First().NewWeight;
+            }
+
             response.Data = Mapper.Map<SaleSheepResponse>(newSaleSheep);
             return response;
         }
@@ -62,6 +69,18 @@ namespace Business.Implementations
                 Sheep s = _SheepRepository.GetById(sheepId);
                 s.Sold = true;
                 sheepsToSale.Add(s);
+            }
+            _SheepRepository.UpdateRange(sheepsToSale);
+
+            foreach (int sheepId in SaleSheepRequest.SheepIds)
+            {
+                Sheep s = _SheepRepository.GetById(sheepId);
+
+                if (_HistoricWeightRepository.Read().Where(x => x.SheepId == s.Id).Count() > 0)
+                {
+                    s.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == s.Id).OrderByDescending(x => x.Id).First().NewWeight;
+                }
+
 
                 float precioCobrado = s.Weight * SaleSheepRequest.KiloPrice;
                 float ganancia = 0;
@@ -88,8 +107,17 @@ namespace Business.Implementations
                         }
                     );
             }
-            _SheepRepository.UpdateRange(sheepsToSale);
+            
             _Repository.CreateRange(dataToInsert);
+
+            for (int i = 0; i < dataToInsert.Count(); i++)
+            {
+                if (_HistoricWeightRepository.Read().Where(x => x.SheepId == dataToInsert[i].SheepId).Count() > 0)
+                {
+                    dataToInsert[i].Sheep.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == dataToInsert[i].SheepId).OrderByDescending(x => x.Id).First().NewWeight;
+                }
+            }
+
             response.Message = $"Se vendieron {dataToInsert.Count} carneros a ${SaleSheepRequest.KiloPrice} el kg,total kg = {sheepsToSale.Sum(x => x.Weight)}, total a cobrar = ${dataToInsert.Sum(x=>x.TotalCharged)}";
             response.Data = Mapper.Map<IEnumerable<SaleSheepResponse>>(dataToInsert);
             return response;
@@ -99,7 +127,15 @@ namespace Business.Implementations
         {
             Response<IEnumerable<SaleSheepResponse>> response = new Response<IEnumerable<SaleSheepResponse>>();
 
-            var respuesta = _Repository.ReadIncludes();
+            var respuesta = _Repository.ReadIncludes().ToList();
+
+            for (int i = 0; i < respuesta.Count(); i++)
+            {
+                if (_HistoricWeightRepository.Read().Where(x => x.SheepId == respuesta[i].SheepId).Count() > 0)
+                {
+                    respuesta[i].Sheep.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == respuesta[i].SheepId).OrderByDescending(x => x.Id).First().NewWeight;
+                }
+            }
 
             var mapeo = Mapper.Map<IEnumerable<SaleSheepResponse>>(respuesta);
 

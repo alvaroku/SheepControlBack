@@ -13,11 +13,13 @@ namespace Business.Implementations
         VaccineSheepRepository _Repository;
         SheepRepository _SheepRepository;
         VaccineRepository _VaccineRepository;
+        SheepHistoricWeightRepository _HistoricWeightRepository;
         public VaccineSheepBusiness(SheepControlDbContext context)
         {
             _Repository = new VaccineSheepRepository(context);
             _SheepRepository = new SheepRepository(context);
             _VaccineRepository = new VaccineRepository(context);
+            _HistoricWeightRepository = new SheepHistoricWeightRepository(context);
         }
         public Response<VaccineSheepResponse> Create(VaccineSheepRequest request)
         {
@@ -35,6 +37,11 @@ namespace Business.Implementations
                 newData.Active = true;
                 newData.DoseApplied = Utils.Utils.CalculateDoseRecomended(v.IndicatedDose,s.Weight);
                 _Repository.Create(newData);
+
+                if (_HistoricWeightRepository.Read().Where(x => x.SheepId == newData.SheepId).Count() > 0)
+                {
+                    newData.Sheep.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == newData.SheepId).OrderByDescending(x => x.Id).First().NewWeight;
+                }
 
                 response.Data = Mapper.Map<VaccineSheepResponse>(newData);
             }
@@ -56,7 +63,14 @@ namespace Business.Implementations
 
             foreach (int sheepId in request.SheepIds)
             {
+                float WeighingDayWeight = 0;
                 Sheep sheep = _SheepRepository.GetById(sheepId);
+                WeighingDayWeight = sheep.Weight;
+                if (_HistoricWeightRepository.Read().Where(x => x.SheepId == sheepId).Count() > 0)
+                {
+                    sheep.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId ==sheep.Id).OrderByDescending(x => x.Id).First().NewWeight;
+                    WeighingDayWeight = _HistoricWeightRepository.Read().Where(x => x.SheepId == sheep.Id).OrderByDescending(x => x.Id).First().NewWeight;
+                }
                 VaccineSheep newData = new VaccineSheep
                 {
                     SheepId = sheepId,
@@ -65,12 +79,21 @@ namespace Business.Implementations
                     CreationDate = DateTime.Now,
                     ModificationDate = DateTime.Now,
                     DoseApplied = Utils.Utils.CalculateDoseRecomended(vaccineToApply.IndicatedDose, sheep.Weight),
-                    Active = true
+                    Active = true,
+                    WeightVaccinationDay = WeighingDayWeight
                 };
                 dataToInsert.Add(newData);
             }
             _Repository.CreateRange(dataToInsert);
-           
+
+            for (int i = 0; i < dataToInsert.Count(); i++)
+            {
+                if (_HistoricWeightRepository.Read().Where(x => x.SheepId == dataToInsert[i].SheepId).Count() > 0)
+                {
+                    dataToInsert[i].Sheep.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == dataToInsert[i].SheepId).OrderByDescending(x => x.Id).First().NewWeight;
+                }
+            }
+
             response.Data =  Mapper.Map<IEnumerable<VaccineSheepResponse>>(dataToInsert);
             response.Message = $"Se agregó la vacuna {vaccineToApply.Name} a {dataToInsert.Count} carneros.";
             return response;
@@ -83,7 +106,9 @@ namespace Business.Implementations
 
         public IEnumerable<VaccineSheepResponse> Read()
         {
-            var respuesta = _Repository.Read();
+            var respuesta = _Repository.Read().ToList();
+
+            
 
             var mapeo = Mapper.Map<IEnumerable<VaccineSheepResponse>>(respuesta);
 
@@ -91,7 +116,15 @@ namespace Business.Implementations
         }
         public IEnumerable<VaccineSheepResponse> ReadIncludes()
         {
-            var respuesta = _Repository.ReadIncludes();
+            var respuesta = _Repository.ReadIncludes().ToList();
+
+            for (int i = 0; i < respuesta.Count(); i++)
+            {
+                if (_HistoricWeightRepository.Read().Where(x => x.SheepId == respuesta[i].SheepId).Count() > 0)
+                {
+                    respuesta[i].Sheep.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == respuesta[i].SheepId).OrderByDescending(x => x.Id).First().NewWeight;
+                }
+            }
 
             var mapeo = Mapper.Map<IEnumerable<VaccineSheepResponse>>(respuesta);
             
