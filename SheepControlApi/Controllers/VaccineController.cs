@@ -71,7 +71,7 @@ namespace SheepControlApi.Controllers
 
         // PUT api/<VaccineController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromForm] VaccineRequest request)
+        public IActionResult Put(int id, [FromForm] VaccineUpdateRequest request)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
@@ -103,6 +103,14 @@ namespace SheepControlApi.Controllers
         [HttpGet("ToggleActive/{id}")]
         public IActionResult ToggleActive(int id)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_TOGGLEACTIVE);
+
+            if (!response1.Success)
+            {
+                return StatusCode(response1.StatusCode, response1);
+            }
             var response2 = _Business.ToggleActive(id);
             return response2.Success ? Ok(response2) : StatusCode(response2.StatusCode, response2);
         }

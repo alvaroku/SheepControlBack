@@ -71,6 +71,7 @@ namespace SheepControlApi
 
             builder.Services.AddScoped<IUserBusiness, UserBusiness>();//business
             builder.Services.AddScoped<IVaccineBusiness, VaccineBusiness>();
+            builder.Services.AddScoped<IVaccineStockBusiness, VaccineStockBusiness>();
             builder.Services.AddScoped<IActionBusiness, ActionBusiness>();
             builder.Services.AddScoped<IControllerBusiness, ControllerBusiness>();
             builder.Services.AddScoped<ISheepBusiness, SheepBusiness>();

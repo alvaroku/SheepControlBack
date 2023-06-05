@@ -19,6 +19,7 @@ namespace Business.Utils
                 cfg.CreateMap<PermissionRole,PermissionRoleRequest>().ReverseMap();
                 cfg.CreateMap<RoleUser, RoleUserRequest>().ReverseMap();
                 cfg.CreateMap<SheepHistoricWeightRequest, SheepHistoricWeight>().ReverseMap();
+                cfg.CreateMap<VaccineStockRequest, VaccineStock>().ReverseMap();
             });
         }
     }

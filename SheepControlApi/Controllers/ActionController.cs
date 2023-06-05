@@ -93,6 +93,14 @@ namespace SheepControlApi.Controllers
         [HttpGet("ToggleActive/{id}")]
         public IActionResult ToggleActive(int id)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_ACTION, Constants.ACTION_TOGGLEACTIVE);
+
+            if (!response.Success)
+            {
+                return StatusCode(response.StatusCode, response);
+            }
             var response2 = _Business.ToggleActive(id);
             return response2.Success ? Ok(response2) : StatusCode(response2.StatusCode, response2);
         }

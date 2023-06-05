@@ -128,7 +128,7 @@ namespace Business.Implementations
 
             var mapeo = Mapper.Map<IEnumerable<VaccineSheepResponse>>(respuesta);
             
-            return mapeo.ToList();
+            return mapeo.ToList().OrderBy(x => x.Id).OrderBy(x => x.SheepId); ;
         }
         public IEnumerable<VaccineSheepResponse> ReadIncludesWithFilters(FilterVaccineSheepRequest request)
         {

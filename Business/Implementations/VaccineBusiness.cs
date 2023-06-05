@@ -11,9 +11,11 @@ namespace Business.Implementations
     public class VaccineBusiness:IVaccineBusiness
     {
         VaccineRepository _Repository;
+        VaccineStockRepository _VaccineStockRepository;
         public VaccineBusiness(SheepControlDbContext context)
         {
             _Repository = new VaccineRepository(context);
+            _VaccineStockRepository = new VaccineStockRepository(context);
         }
 
         public Response<VaccineResponse> Create(VaccineRequest request)
@@ -31,6 +33,13 @@ namespace Business.Implementations
 
 
                 _Repository.Create(newData);
+
+                VaccineStock newD = Mapper.Map<VaccineStock>(request.VaccineStock);
+                newD.VaccineId = newData.Id;
+                newD.CreationDate = newData.CreationDate;
+                newD.ModificationDate = newData.CreationDate;
+                newD.Active = true;
+                _VaccineStockRepository.Create(newD);
 
                 response.Data = Mapper.Map<VaccineResponse>(newData);
             }
@@ -52,7 +61,7 @@ namespace Business.Implementations
 
             return mapeo.ToList();
         }
-        public Response<VaccineResponse> Update(int id, VaccineRequest request,string fullPathImage)
+        public Response<VaccineResponse> Update(int id, VaccineUpdateRequest request,string fullPathImage)
         {
             Response<VaccineResponse> response = new Response<VaccineResponse>();
 
@@ -74,10 +83,7 @@ namespace Business.Implementations
                 vaccine.Photo = request.Photo;
             }
 
-            vaccine.NetContent = request.NetContent;
-            vaccine.Unities = request.Unities;
-            vaccine.UnitPrice = request.UnitPrice;
-            vaccine.AcquisitionCost = request.AcquisitionCost;
+            
 
             _Repository.Update(vaccine);
 

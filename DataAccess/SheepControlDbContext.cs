@@ -7,6 +7,7 @@ namespace DataAccess
         public DbSet<User> Users { get; set; }
         public DbSet<Sheep> Sheeps { get; set; }
         public DbSet<Vaccine> Vaccines { get; set; }
+        public DbSet<VaccineStock> VaccinesStock { get; set; }   
         public DbSet<VaccineSheep> VaccinesSheeps { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<Role> Roles { get; set; }
@@ -32,7 +33,8 @@ namespace DataAccess
             string CONTROLLER_ROLEUSER = "RoleUser";
             string CONTROLLER_SHEEP = "Sheep";
             string CONTROLLER_VACCINE = "Vaccine";
-            string CONTROLLER_VACCINESHEEP = "VaccineSheep";
+            string CONTROLLER_VACCINESTOCK = "VaccineStock";
+        string CONTROLLER_VACCINESHEEP = "VaccineSheep";
             string CONTROLLER_SALESHEEP = "SaleSheep";
             string CONTROLLER_SHEEPHISTORICWEIGHT = "SheepHistoricWeight";
             #endregion
@@ -60,7 +62,7 @@ namespace DataAccess
             string ROLE_CUSTOM = "Custom";
             #endregion
 
-            string[] _Controllers = new string[] { CONTROLLER_ACTION, CONTROLLER_CONTROLLER, CONTROLLER_PERMISSION, CONTROLLER_USER, CONTROLLER_PERMISSIONROLE, CONTROLLER_ROLE, CONTROLLER_ROLEUSER, CONTROLLER_SHEEP, CONTROLLER_VACCINE, CONTROLLER_VACCINESHEEP,CONTROLLER_SALESHEEP, CONTROLLER_SHEEPHISTORICWEIGHT };
+            string[] _Controllers = new string[] { CONTROLLER_ACTION, CONTROLLER_CONTROLLER, CONTROLLER_PERMISSION, CONTROLLER_USER, CONTROLLER_PERMISSIONROLE, CONTROLLER_ROLE, CONTROLLER_ROLEUSER, CONTROLLER_SHEEP, CONTROLLER_VACCINE, CONTROLLER_VACCINESTOCK, CONTROLLER_VACCINESHEEP,CONTROLLER_SALESHEEP, CONTROLLER_SHEEPHISTORICWEIGHT };
             string[] _Actions = new string[] { ACTION_CREATE, ACTION_READ, ACTION_UPDATE, ACTION_DELETE, ACTION_TOGGLEACTIVE, ACTION_GETBYID, ACTION_DELETEALL, ACTION_READWITHFILTERS, ACTION_GETSHEEPWITHFINALWEIGHT };
             string[] _Roles = new string[] { ROLE_SUPERADMIN, ROLE_ADMIN, ROLE_USER, ROLE_INVITED, ROLE_CUSTOM };
             base.OnModelCreating(modelBuilder);

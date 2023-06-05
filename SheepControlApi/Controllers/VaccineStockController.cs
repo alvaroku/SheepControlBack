@@ -1,4 +1,5 @@
 ﻿using Business.Definitions;
+using Business.Implementations;
 using Business.Utils;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
@@ -10,13 +11,13 @@ namespace SheepControlApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PermissionRoleController : ControllerBase
+    public class VaccineStockController : ControllerBase
     {
-        IPermissionRoleBusiness _Business;
+        IVaccineStockBusiness _Business;
         IAuthenticationBusiness _AuthenticationBusiness { get; set; }
-        public PermissionRoleController(IPermissionRoleBusiness permissionRoleBusiness, IAuthenticationBusiness authenticationBusiness)
+        public VaccineStockController(IVaccineStockBusiness permissionBusiness, IAuthenticationBusiness authenticationBusiness)
         {
-            _Business = permissionRoleBusiness;
+            _Business = permissionBusiness;
             _AuthenticationBusiness = authenticationBusiness;
         }
         // GET: api/<PermissionController>
@@ -25,7 +26,7 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSIONROLE, Constants.ACTION_READ);
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINESTOCK, Constants.ACTION_READ);
 
             if (!response1.Success)
             {
@@ -43,11 +44,11 @@ namespace SheepControlApi.Controllers
 
         // POST api/<PermissionController>
         [HttpPost]
-        public IActionResult Post(PermissionRoleCreateRequest permissionRequest)
+        public IActionResult Post(VaccineStockRequest permissionRequest)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSIONROLE, Constants.ACTION_CREATE);
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINESTOCK, Constants.ACTION_CREATE);
 
             if (!response1.Success)
             {
@@ -59,11 +60,11 @@ namespace SheepControlApi.Controllers
 
         // PUT api/<PermissionController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, PermissionRoleRequest actionRequest)
+        public IActionResult Put(int id, VaccineStockRequest actionRequest)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSIONROLE, Constants.ACTION_UPDATE);
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINESTOCK, Constants.ACTION_DELETE);
 
             if (!response1.Success)
             {
@@ -79,7 +80,7 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSIONROLE, Constants.ACTION_DELETE);
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINESTOCK, Constants.ACTION_DELETE);
 
             if (!response1.Success)
             {
@@ -93,7 +94,7 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSIONROLE, Constants.ACTION_TOGGLEACTIVE);
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINESTOCK, Constants.ACTION_TOGGLEACTIVE);
 
             if (!response1.Success)
             {
