@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Definitions;
+using Business.Utils;
 using DataAccess;
 using DataAccess.Implementations;
 using Entities;
@@ -53,7 +54,7 @@ namespace Business.Implementations
             {
                 newSaleSheep.Sheep.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == newSaleSheep.SheepId).OrderByDescending(x => x.Id).First().NewWeight;
             }
-
+            response.Message = Constants.CreateSuccesMessage;
             response.Data = Mapper.Map<SaleSheepResponse>(newSaleSheep);
             return response;
         }
@@ -118,7 +119,7 @@ namespace Business.Implementations
                 }
             }
 
-            response.Message = $"Se vendieron {dataToInsert.Count} carneros a ${SaleSheepRequest.KiloPrice} el kg,total kg = {sheepsToSale.Sum(x => x.Weight)}, total a cobrar = ${dataToInsert.Sum(x=>x.TotalCharged)}";
+            response.Message = $"Se vendieron {dataToInsert.Count} carneros a ${SaleSheepRequest.KiloPrice} el kg, total kg = {sheepsToSale.Sum(x => x.Weight)}, total a cobrar = ${dataToInsert.Sum(x=>x.TotalCharged)}";
             response.Data = Mapper.Map<IEnumerable<SaleSheepResponse>>(dataToInsert);
             return response;
         }
@@ -201,6 +202,7 @@ namespace Business.Implementations
             _SheepRepository.Update(s);
 
             _Repository.Delete(a);
+            response.Message = Constants.DeleteSuccesMessage;
             return response;
         }
         public Response<bool> ToggleActive(int id)
@@ -212,7 +214,7 @@ namespace Business.Implementations
             _Repository.Update(data);
 
             response.Data = data.Active;
-
+            response.Message = data.Active ? Constants.ActiveSuccesMessage : Constants.InactiveSuccesMessage;
             return response;
         }
     }

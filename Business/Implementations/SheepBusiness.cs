@@ -36,6 +36,7 @@ namespace Business.Implementations
                 _Repository.Create(newSheep);
 
                 response.Data = Mapper.Map<SheepResponse>(newSheep);
+                response.Message = Constants.CreateSuccesMessage;
             }
             catch (Exception ex)
             {
@@ -99,7 +100,7 @@ namespace Business.Implementations
             _Repository.Update(sheep);
 
             response.Data = Mapper.Map<SheepResponse>(sheep);
-
+            response.Message = Constants.UpdateSuccesMessage;
             return response;
         }
         public Response<bool> Delete(int id,string _fullPathImage)
@@ -108,6 +109,7 @@ namespace Business.Implementations
             Sheep sh = _Repository.GetById(id);
             FileManager.DeleteFile(Path.Combine(_fullPathImage,sh.Photo));
             _Repository.Delete(sh);
+            response.Message = Constants.DeleteSuccesMessage;
             return response;
         }
         public Response<SheepResponse> GetById(int id)
@@ -125,6 +127,7 @@ namespace Business.Implementations
             data.Active = !data.Active;
             _Repository.Update(data);
             response.Data = data.Active;
+            response.Message = data.Active ? Constants.ActiveSuccesMessage : Constants.InactiveSuccesMessage;
             return response;
         }
     }

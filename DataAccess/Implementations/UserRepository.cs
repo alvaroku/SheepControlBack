@@ -15,5 +15,9 @@ namespace DataAccess.Implementations
             User result = _dbSet.Where(x => (x.Active && x.Email == loginRequest.Email && x.Password == loginRequest.Password)).FirstOrDefault();
             return result;
         }
+        public User GetByEmail(string email)
+        {
+            return _dbSet.Where(z => z.Email == email).FirstOrDefault();
+        }
     }
 }

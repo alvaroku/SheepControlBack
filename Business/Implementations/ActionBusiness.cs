@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Definitions;
+using Business.Utils;
 using DataAccess;
 using DataAccess.Implementations;
 using Entities.DTOs;
@@ -29,6 +30,7 @@ namespace Business.Implementations
 
             _Repository.Create(newAction);
 
+            response.Message = Constants.CreateSuccesMessage;
             response.Data = Mapper.Map<ActionResponse>(newAction);
             return response;
         }
@@ -51,7 +53,7 @@ namespace Business.Implementations
             a.Name = request.Name;
             
             _Repository.Update(a);
-
+            response.Message = Constants.UpdateSuccesMessage;
             response.Data = Mapper.Map<ActionResponse>(a);
 
             return response;
@@ -62,6 +64,7 @@ namespace Business.Implementations
             response.Data = true;
             Entities.Action a = _Repository.GetById(id);
             _Repository.Delete(a);
+            response.Message = Constants.DeleteSuccesMessage;
             return response;
         }
         public Response<bool> ToggleActive(int id)
@@ -72,6 +75,7 @@ namespace Business.Implementations
             data.Active = !data.Active;
             _Repository.Update(data);
 
+            response.Message = data.Active? Constants.ActiveSuccesMessage:Constants.InactiveSuccesMessage;
             response.Data = data.Active;
 
             return response;

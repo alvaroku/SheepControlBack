@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Definitions;
+using Business.Utils;
 using DataAccess;
 using DataAccess.Implementations;
 using Entities;
@@ -42,7 +43,7 @@ namespace Business.Implementations
                 {
                     newData.Sheep.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == newData.SheepId).OrderByDescending(x => x.Id).First().NewWeight;
                 }
-
+                response.Message = Constants.CreateSuccesMessage;
                 response.Data = Mapper.Map<VaccineSheepResponse>(newData);
             }
             catch (Exception ex)
@@ -158,7 +159,7 @@ namespace Business.Implementations
             vaccineSheep.DoseApplied = request.DoseApplied;
 
             _Repository.Update(vaccineSheep);
-
+            response.Message = Constants.UpdateSuccesMessage;
             response.Data = Mapper.Map<VaccineSheepResponse>(vaccineSheep);
 
             return response;
@@ -168,6 +169,7 @@ namespace Business.Implementations
             Response<bool> response = new Response<bool>();
             VaccineSheep sh = _Repository.GetById(id);
             _Repository.Delete(sh);
+            response.Message = Constants.DeleteSuccesMessage;
             return response;
         }
         public Response<bool> DeleteAll()
@@ -186,6 +188,7 @@ namespace Business.Implementations
             data.Active = !data.Active;
             _Repository.Update(data);
             response.Data = data.Active;
+            response.Message = data.Active ? Constants.ActiveSuccesMessage : Constants.InactiveSuccesMessage;
             return response;
         }
         public Response<ReportResponse> GenerateReport()

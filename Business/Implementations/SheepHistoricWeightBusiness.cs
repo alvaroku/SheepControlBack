@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Definitions;
+using Business.Utils;
 using DataAccess;
 using DataAccess.Implementations;
 using Entities;
@@ -45,7 +46,7 @@ namespace Business.Implementations
 
 
             _Repository.Create(sheepHistoricWeight);
-
+            response.Message = Constants.CreateSuccesMessage;
             response.Data = Mapper.Map<SheepHistoricWeightResponse>(sheepHistoricWeight);
             return response;
         }
@@ -87,6 +88,7 @@ namespace Business.Implementations
             _Repository.Update(sheepHistoricWeight);
 
             response.Data = Mapper.Map<SheepHistoricWeightResponse>(sheepHistoricWeight);
+            response.Message = Constants.UpdateSuccesMessage;
             return response;
         }
         public Response<bool> Delete(int id)
@@ -95,6 +97,7 @@ namespace Business.Implementations
             response.Data = true;
             SheepHistoricWeight sh = _Repository.GetById(id);
             _Repository.Delete(sh);
+            response.Message = Constants.DeleteSuccesMessage;
             return response;
         }
         public Response<bool> ToggleActive(int id)
@@ -105,6 +108,7 @@ namespace Business.Implementations
             data.Active = !data.Active;
             _Repository.Update(data);
             response.Data = data.Active;
+            response.Message = data.Active ? Constants.ActiveSuccesMessage : Constants.InactiveSuccesMessage;
             return response;
         }
     }

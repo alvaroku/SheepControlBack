@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\imgs\vaccine\" />
     <Folder Include="wwwroot\imgs\sheep\" />
+    <Folder Include="wwwroot\imgs\vaccine\" />
   </ItemGroup>
 
 </Project>

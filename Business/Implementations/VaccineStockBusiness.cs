@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Definitions;
+using Business.Utils;
 using DataAccess;
 using DataAccess.Implementations;
 using Entities;
@@ -24,7 +25,7 @@ namespace Business.Implementations
             newAction.ModificationDate = DateTime.Now;
             newAction.CreationDate = DateTime.Now;
             _Repository.Create(newAction);
-
+            response.Message = Constants.CreateSuccesMessage;
             response.Data = Mapper.Map<VaccineStockResponse>(_Repository.GetByIdIncludes(newAction.Id));
             return response;
         }
@@ -55,7 +56,7 @@ namespace Business.Implementations
            
 
             _Repository.Update(a);
-
+            response.Message = Constants.UpdateSuccesMessage;
             response.Data = Mapper.Map<VaccineStockResponse>(_Repository.GetByIdIncludes(a.Id));
 
             return response;
@@ -66,6 +67,7 @@ namespace Business.Implementations
             response.Data = true;
             VaccineStock a = _Repository.GetById(id);
             _Repository.Delete(a);
+            response.Message = Constants.DeleteSuccesMessage;
             return response;
         }
         public Response<bool> ToggleActive(int id)
@@ -75,7 +77,7 @@ namespace Business.Implementations
             var data = _Repository.GetById(id);
             data.Active = !data.Active;
             _Repository.Update(data);
-
+            response.Message = data.Active ? Constants.ActiveSuccesMessage : Constants.InactiveSuccesMessage;
             response.Data = data.Active;
             return response;
         }

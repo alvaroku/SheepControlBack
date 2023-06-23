@@ -117,5 +117,12 @@ namespace SheepControlApi.Controllers
             var response2 = _Business.ToggleActive(id);
             return response2.Success ? Ok(response2) : StatusCode(response2.StatusCode, response2);
         }
+        [HttpPost("RecoveryPassword")]
+        public IActionResult Login(string email)
+        {
+            
+            var response = _Business.RecoveryPassword(email);
+            return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
+        }
     }
 }

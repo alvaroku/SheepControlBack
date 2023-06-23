@@ -11,6 +11,13 @@ namespace Business.Utils
         public static string SHEEPIMAGEPATH = "imgs/sheep/";
         public static string VACCINEIMAGEPATH = "imgs/vaccine/";
 
+        public static string CreateSuccesMessage = "Datos registrados correctamente.";
+        public static string UpdateSuccesMessage = "Datos actualizados correctamente.";
+        public static string DeleteSuccesMessage = "Registro elimminado.";
+        public static string ActiveSuccesMessage = "Registro activado.";
+        public static string InactiveSuccesMessage = "Registro inactivado.";
+
+
         #region Controllers
         public static string CONTROLLER_ACTION = "Action";
         public static string CONTROLLER_CONTROLLER = "Controller";

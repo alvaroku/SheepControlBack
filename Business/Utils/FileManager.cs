@@ -1,6 +1,9 @@
 ﻿using Entities.DTOs;
 using Microsoft.AspNetCore.Http;
 using SixLabors.ImageSharp.Formats.Jpeg;
+using System.Net.Mail;
+using System.Net;
+using OfficeOpenXml.Drawing;
 
 namespace Business.Utils
 {
@@ -42,6 +45,26 @@ namespace Business.Utils
             {
                 File.Delete(_path);
             }
+        }
+    }
+    public static class EmailSender
+    {
+        public static void SendEmail(string emailTo, string message,string subject)
+        {
+            // Configuración del cliente SMTP para Gmail
+            var smtpClient = new SmtpClient("smtp.gmail.com", 587)
+            {
+                UseDefaultCredentials = false,
+                EnableSsl = true,
+                Credentials = new NetworkCredential("soporte.usuarios123@gmail.com", "meycxkabipiqokgf")
+            };
+
+            // Crear el mensaje de correo electrónico
+            var mailMessage = new MailMessage("soporte.usuarios123@gmail.com", emailTo,subject , message);
+            mailMessage.IsBodyHtml = true;
+
+            // Enviar el correo electrónico
+            smtpClient.Send(mailMessage);
         }
     }
 }
