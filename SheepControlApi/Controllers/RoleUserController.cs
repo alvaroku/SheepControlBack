@@ -43,7 +43,7 @@ namespace SheepControlApi.Controllers
 
         // POST api/<PermissionController>
         [HttpPost]
-        public IActionResult Post(RoleUserRequest permissionRequest)
+        public IActionResult Post(RoleUserRequestCreateRequest permissionRequest)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 

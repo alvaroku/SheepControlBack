@@ -83,6 +83,7 @@ namespace SheepControlApi
             builder.Services.AddScoped<IAuthenticationBusiness,AuthenticationBusiness>();
             builder.Services.AddScoped<ISaleSheepBusiness, SaleSheepBusiness>();
             builder.Services.AddScoped<ISheepHistoricWeightBusiness, SheepHistoricWeightBusiness>();
+            builder.Services.AddScoped<IGraphicBusiness, GraphicBusiness>();
             AutoMapperConfiguration.Configure();
 
             
