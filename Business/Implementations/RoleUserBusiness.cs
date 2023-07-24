@@ -14,21 +14,30 @@ namespace Business.Implementations
             _Repository = new RoleUserRepository(context);
         }
 
-        public Response<RoleUserResponse> Create(RoleUserRequest permissionRequest)
+        public Response<IEnumerable<RoleUserResponse>> Create(RoleUserRequestCreateRequest permissionRequest)
         {
-            Response<RoleUserResponse> response = new Response<RoleUserResponse>();
 
+            Response<IEnumerable<RoleUserResponse>> response = new Response<IEnumerable<RoleUserResponse>>();
 
-            RoleUser newP = Mapper.Map<RoleUser>(permissionRequest);
+            IEnumerable<RoleUser> userRoles = from idsPer in permissionRequest.RoleIds
+                                                         select new RoleUser
+                                                         {
+                                                             Active = true,
+                                                             CreationDate = DateTime.Now,
+                                                             ModificationDate = DateTime.Now,
+                                                             RoleId = idsPer,
+                                                             UserId = permissionRequest.UserId,
+                                                         };
+            //Borrar todos los Roles del usuario
 
-            newP.CreationDate = DateTime.Now;
-            newP.ModificationDate = newP.CreationDate;
-            newP.Active = true;
-            _Repository.Create(newP);
+            _Repository.DeleteAllRolesByUserId(permissionRequest.UserId);
 
-            newP = _Repository.GetIncludesById(newP.Id);
-            response.Data = Mapper.Map<RoleUserResponse>(newP);
+            _Repository.CreateRange(userRoles);
+
+            var newP = _Repository.ReadIncludesByUserId(permissionRequest.UserId);
+            response.Data = Mapper.Map<IEnumerable<RoleUserResponse>>(newP);
             return response;
+
         }
 
         public IEnumerable<RoleUserResponse> Read()

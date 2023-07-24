@@ -32,7 +32,7 @@ namespace Business.Utils
         public static string CONTROLLER_VACCINESHEEP = "VaccineSheep";
         public static string CONTROLLER_SALESHEEP = "SaleSheep";
         public static string CONTROLLER_SHEEPHISTORICWEIGHT = "SheepHistoricWeight";
-       
+
         #endregion
 
         #region DefaultActions
@@ -58,13 +58,23 @@ namespace Business.Utils
         public static string ROLE_CUSTOM = "Custom";
         #endregion
 
-        public static string[] Controllers = new string[] { CONTROLLER_ACTION, CONTROLLER_CONTROLLER, CONTROLLER_PERMISSION, CONTROLLER_USER, CONTROLLER_PERMISSIONROLE,CONTROLLER_ROLE,CONTROLLER_ROLEUSER, CONTROLLER_SHEEP, CONTROLLER_VACCINE, CONTROLLER_VACCINESTOCK, CONTROLLER_VACCINESHEEP,CONTROLLER_SALESHEEP,CONTROLLER_SHEEPHISTORICWEIGHT };
-        public static string[] Actions = new string[] {ACTION_CREATE, ACTION_READ, ACTION_UPDATE, ACTION_DELETE,ACTION_TOGGLEACTIVE,ACTION_GETBYID,ACTION_DELETEALL,ACTION_READWITHFILTERS, ACTION_GETSHEEPWITHFINALWEIGHT };
-        public static string[] Roles = new string[] {ROLE_SUPERADMIN, ROLE_ADMIN, ROLE_USER, ROLE_INVITED,ROLE_CUSTOM};
+        public static string[] Controllers = new string[] { CONTROLLER_ACTION, CONTROLLER_CONTROLLER, CONTROLLER_PERMISSION, CONTROLLER_USER, CONTROLLER_PERMISSIONROLE, CONTROLLER_ROLE, CONTROLLER_ROLEUSER, CONTROLLER_SHEEP, CONTROLLER_VACCINE, CONTROLLER_VACCINESTOCK, CONTROLLER_VACCINESHEEP, CONTROLLER_SALESHEEP, CONTROLLER_SHEEPHISTORICWEIGHT };
+        public static string[] Actions = new string[] { ACTION_CREATE, ACTION_READ, ACTION_UPDATE, ACTION_DELETE, ACTION_TOGGLEACTIVE, ACTION_GETBYID, ACTION_DELETEALL, ACTION_READWITHFILTERS, ACTION_GETSHEEPWITHFINALWEIGHT };
+        public static string[] Roles = new string[] { ROLE_SUPERADMIN, ROLE_ADMIN, ROLE_USER, ROLE_INVITED, ROLE_CUSTOM };
 
         public static string USER_SUPERADMIN_NAME = "sa";
         public static string USER_SUPERADMIN_EMAIL = "sa@gmail.com";
         public static string USER_SUPERADMIN_PASSWORD = "sa";
         public static string USER_SUPERADMIN_PHONE = "9919596720";
+
+        string USER_ADMIN_NAME = "admin";
+        string USER_ADMIN_EMAIL = "admin@gmail.com";
+        string USER_ADMIN_PASSWORD = "admin";
+        string USER_ADMIN_PHONE = "9919596720";
+
+        string USER_USER_NAME = "Alvaro Kú";
+        string USER_USER_EMAIL = "alvaroku123@gmail.com";
+        string USER_USER_PASSWORD = "12345";
+        string USER_USER_PHONE = "9919596720";
     }
 }
