@@ -20,5 +20,15 @@ namespace DataAccess.Implementations
         {
             return _dbSet.Include(pu => pu.Role).Include(pu => pu.User).ToList();
         }
+        public IEnumerable<RoleUser> ReadIncludesByUserId(int id)
+        {
+            return _dbSet.Where(e => e.UserId == id).Include(pu => pu.Role).Include(x=>x.User).ToList();
+        }
+        public void DeleteAllRolesByUserId(int id)
+        {
+            var allPR = _dbSet.Where(r => r.UserId == id);
+            _dbSet.RemoveRange(allPR);
+            _context.SaveChanges();
+        }
     }
 }
