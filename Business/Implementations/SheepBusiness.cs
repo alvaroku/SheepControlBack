@@ -35,6 +35,18 @@ namespace Business.Implementations
 
                 _Repository.Create(newSheep);
 
+                SheepHistoricWeight sheepHistoricWeight = new SheepHistoricWeight
+                {
+                    Active = true,
+                    CreationDate = newSheep.CreationDate,
+                    ModificationDate = newSheep.ModificationDate,
+                    NewWeight = newSheep.Weight,
+                    SheepId = newSheep.Id,
+                    WeighingDate = newSheep.CreationDate,
+                };
+
+                _HistoricWeightRepository.Create(sheepHistoricWeight);
+
                 response.Data = Mapper.Map<SheepResponse>(newSheep);
                 response.Message = Constants.CreateSuccesMessage;
             }
@@ -92,6 +104,7 @@ namespace Business.Implementations
             sheep.AcquisitionCost = sheepRequest.AcquisitionCost;
             sheep.KiloPrice = sheepRequest.KiloPrice;
             sheep.IsAcquisition= sheepRequest.IsAcquisition;
+
             if(sheepRequest.ImageFile != null)
             {
                 sheep.Photo = sheepRequest.Photo;
@@ -99,6 +112,16 @@ namespace Business.Implementations
 
             _Repository.Update(sheep);
 
+            SheepHistoricWeight sheepHistoricWeight = _HistoricWeightRepository._dbSet.Where(x => x.SheepId == sheep.Id).First();
+
+            if(sheepHistoricWeight.NewWeight != sheep.Weight)
+            {
+                sheepHistoricWeight.NewWeight = sheep.Weight;
+                sheepHistoricWeight.ModificationDate = DateTime.Now;
+                _HistoricWeightRepository.Update(sheepHistoricWeight);
+            }
+
+           
             response.Data = Mapper.Map<SheepResponse>(sheep);
             response.Message = Constants.UpdateSuccesMessage;
             return response;

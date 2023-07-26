@@ -10,9 +10,7 @@ namespace Entities.DTOs
     {
         public int SheepId { get; set; }
         public Sheep Sheep { get; set; }    //diferencia = nuevo peso - prev
-        public float PreviousWeight { get; set; }
         public float NewWeight { get; set; }
-        public float DifferenceWithPreviousWeight { get; set; }
         public DateTime WeighingDate { get;set; }
     }
     public class SheepHistoricWeightRequest : ObjetoBase

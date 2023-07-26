@@ -25,26 +25,6 @@ namespace Business.Implementations
             sheepHistoricWeight.Active = true;
             sheepHistoricWeight.ModificationDate = DateTime.Now;
 
-            if (_Repository.Read().Where(z=>z.SheepId==request.SheepId).Count() == 0)
-            {
-                Sheep s = _Repository._context.Sheeps.Where(s => s.Id == request.SheepId).First();
-                sheepHistoricWeight.PreviousWeight = s.Weight;
-                sheepHistoricWeight.DifferenceWithPreviousWeight = sheepHistoricWeight.NewWeight - s.Weight;
-            }
-            else if(_Repository.Read().Where(z => z.SheepId == request.SheepId).Count() == 1)
-            {
-                float prevWeight = _Repository.Read().Where(x => x.SheepId == request.SheepId).OrderByDescending(x => x.Id).Take(1).First().NewWeight;
-                sheepHistoricWeight.PreviousWeight = prevWeight;
-                sheepHistoricWeight.DifferenceWithPreviousWeight = sheepHistoricWeight.NewWeight - prevWeight;
-            }
-            else
-            {
-                float prevWeight = _Repository.Read().Where(x => x.SheepId == request.SheepId).OrderByDescending(x => x.Id).First().NewWeight;
-                sheepHistoricWeight.PreviousWeight = prevWeight;
-                sheepHistoricWeight.DifferenceWithPreviousWeight = sheepHistoricWeight.NewWeight - prevWeight;
-            }
-
-
             _Repository.Create(sheepHistoricWeight);
             response.Message = Constants.CreateSuccesMessage;
             response.Data = Mapper.Map<SheepHistoricWeightResponse>(sheepHistoricWeight);
@@ -71,19 +51,6 @@ namespace Business.Implementations
             sheepHistoricWeight.ModificationDate = DateTime.Now;
             sheepHistoricWeight.NewWeight = request.NewWeight;
             sheepHistoricWeight.WeighingDate = request.WeighingDate;
-
-            if (_Repository.Read().Where(z => z.SheepId == request.SheepId).Count() == 1)
-            {
-                Sheep s = _Repository._context.Sheeps.Where(s=>s.Id == request.SheepId).First();
-                sheepHistoricWeight.PreviousWeight = s.Weight;
-                sheepHistoricWeight.DifferenceWithPreviousWeight = sheepHistoricWeight.NewWeight - s.Weight;
-            }
-            else
-            {
-                float prevWeight = _Repository.Read().Where(x=>x.SheepId==request.SheepId).OrderByDescending(x=>x.Id).Skip(1).First().NewWeight;
-                sheepHistoricWeight.PreviousWeight = prevWeight;
-                sheepHistoricWeight.DifferenceWithPreviousWeight = sheepHistoricWeight.NewWeight - prevWeight;
-            }
 
             _Repository.Update(sheepHistoricWeight);
 
