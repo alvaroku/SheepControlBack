@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Definitions;
+using Business.Utils;
 using DataAccess;
 using DataAccess.Implementations;
 using Entities;
@@ -14,20 +15,31 @@ namespace Business.Implementations
             _Repository = new PermissionRepository(context);
         }
 
-        public Response<PermissionResponse> Create(PermissionRequest permissionRequest)
+        public Response<IEnumerable<PermissionResponse>> Create(PermissionCreateRequest permissionRequest)
         {
-            Response<PermissionResponse> response = new Response<PermissionResponse>();
+            Response<IEnumerable<PermissionResponse>> response = new Response<IEnumerable<PermissionResponse>>();
 
+            IEnumerable<Permission> permisionRoles = from idsPer in permissionRequest.ActionIds 
+                                                     join c in _Repository._context.Controllers on permissionRequest.ControllerId equals c.Id
+                                                     join a in _Repository._context.Actions on idsPer equals a.Id
+                                                         select new Permission
+                                                         {
+                                                             ActionId = idsPer,
+                                                             Active = true,
+                                                             Clave = Utils.Utils.GenerateKeyForPermission(c.Name, a.Name),
+                                                             ControllerId = permissionRequest.ControllerId,
+                                                             Description = Utils.Utils.GenerateDescriptionForPermission(c.Name,a.Name), 
+                                                             ModificationDate = DateTime.Now,
+                                                             CreationDate = DateTime.Now,
+                                                         };
+            //Borrar todas las acciones del controlador
 
-            Permission newP = Mapper.Map<Permission>(permissionRequest);
+            _Repository.DeleteAllActionsByControllerId(permissionRequest.ControllerId);
 
-            newP.CreationDate = DateTime.Now;
-            newP.ModificationDate = newP.CreationDate;
-            newP.Clave = "test";
-            _Repository.Create(newP);
+            _Repository.CreateRange(permisionRoles);
 
-            newP = _Repository.GetIncludesById(newP.Id);
-            response.Data = Mapper.Map<PermissionResponse>(newP);
+            var newP = _Repository.ReadIncludesByControllerId(permissionRequest.ControllerId);
+            response.Data = Mapper.Map<IEnumerable<PermissionResponse>>(newP);
             return response;
         }
 
@@ -43,11 +55,11 @@ namespace Business.Implementations
         {
             Response<PermissionResponse> response = new Response<PermissionResponse>();
 
-            Permission vaccine = _Repository.GetById(id);
+            Permission vaccine = _Repository.GetIncludesById(id);
 
             vaccine.ModificationDate = DateTime.Now;
-            vaccine.Clave = "clave-nueva";
-            vaccine.Description = request.Description;
+            vaccine.Clave = Utils.Utils.GenerateKeyForPermission(vaccine.Controller.Name,vaccine.Action.Name);
+            vaccine.Description = Utils.Utils.GenerateDescriptionForPermission(vaccine.Controller.Name, vaccine.Action.Name);
             vaccine.ControllerId = request.ControllerId;
             vaccine.ActionId = request.ActionId;
 

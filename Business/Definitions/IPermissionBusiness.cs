@@ -4,7 +4,7 @@ namespace Business.Definitions
 {
     public interface IPermissionBusiness
     {
-        public Response<PermissionResponse> Create(PermissionRequest permissionRequest);
+        Response<IEnumerable<PermissionResponse>> Create(PermissionCreateRequest permissionRequest);
         public IEnumerable<PermissionResponse> Read();
         public Response<PermissionResponse> Update(int id, PermissionRequest request);
         public Response<bool> Delete(int id);

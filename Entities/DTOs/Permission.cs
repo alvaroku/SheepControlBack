@@ -11,6 +11,12 @@
         public int ActionId { get; set; }
         public Action Action { get; set; }
     }
+    public class PermissionCreateRequest : ObjetoBase
+    {
+        public int ControllerId { get; set; }
+
+        public int[] ActionIds { get; set; }
+    }
     public class PermissionRequest : ObjetoBase
     {
         public string Description { get; set; }

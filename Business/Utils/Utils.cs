@@ -19,5 +19,15 @@ namespace Business.Utils
 
             return doseRecomended + "" + unitVolume;
         }
+        public static string GenerateDescriptionForPermission(string controller, string action)
+        {
+            string description = $"Permiso para el módulo {controller} y la acción {action}";
+            return description;
+        }
+        public static string GenerateKeyForPermission(string controller,string action)
+        {
+            string clave = $"{controller}_{action}";
+            return clave;
+        }
     }
 }
