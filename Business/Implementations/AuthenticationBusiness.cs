@@ -9,6 +9,8 @@ using DataAccess;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
+using System.Security.Principal;
+using Azure.Core;
 
 namespace Business.Implementations
 {
@@ -86,9 +88,27 @@ namespace Business.Implementations
 
             return response;
         }
-        public UserResponse ValidarToken(ClaimsIdentity identity)
+        public Response<ProfileResponse> GetProfileInfoByToken(ClaimsIdentity claims) 
         {
-            UserResponse response = null;
+            Response<ProfileResponse> response = new Response<ProfileResponse>();
+
+            User userResponse = ValidarToken(claims);
+
+            if (userResponse == null)
+            {
+                response.Success = false;
+                response.Message = "Verificar token enviado";
+                response.StatusCode = (int)EnumStatusCode.InternalServer;
+
+                return response;
+            }
+            response.Data = Mapper.Map<ProfileResponse>(userResponse);
+            return response;
+
+        }
+        public User ValidarToken(ClaimsIdentity identity)
+        {
+            User response = null;
             try
             {
                 if (identity.Claims.Count() == 0)
@@ -97,8 +117,7 @@ namespace Business.Implementations
                 }
                 int id = int.Parse(identity.Claims.First(x => x.Type == "Id").Value);
 
-                User user = _UserRepository.GetById(id);
-                response = Mapper.Map<UserResponse>(user);
+                response = _UserRepository.GetById(id);
                 
                 return response;
 
@@ -114,7 +133,7 @@ namespace Business.Implementations
             
             Response<bool> response = new Response<bool>();
             
-            UserResponse userResponse = ValidarToken(claims);
+            User userResponse = ValidarToken(claims);
             
             if (userResponse == null)
             {

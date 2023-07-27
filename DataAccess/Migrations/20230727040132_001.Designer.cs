@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(SheepControlDbContext))]
-    [Migration("20230726042811_002")]
-    partial class _002
+    [Migration("20230727040132_001")]
+    partial class _001
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,73 +55,81 @@ namespace DataAccess.Migrations
                         {
                             Id = 1,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1665),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1666),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2750),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2752),
                             Name = "Create"
                         },
                         new
                         {
                             Id = 2,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1669),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1669),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2758),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2759),
                             Name = "Read"
                         },
                         new
                         {
                             Id = 3,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1670),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1670),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2760),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2761),
                             Name = "Update"
                         },
                         new
                         {
                             Id = 4,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1671),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1671),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2763),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2763),
                             Name = "Delete"
                         },
                         new
                         {
                             Id = 5,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1672),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1672),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2765),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2765),
                             Name = "ToggleActive"
                         },
                         new
                         {
                             Id = 6,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1674),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1674),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2770),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2770),
                             Name = "GetById"
                         },
                         new
                         {
                             Id = 7,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1675),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1675),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2772),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2772),
                             Name = "DeleteAll"
                         },
                         new
                         {
                             Id = 8,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1676),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1676),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2774),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2774),
                             Name = "GetWithFilters"
                         },
                         new
                         {
                             Id = 9,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1676),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1677),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2776),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2776),
                             Name = "GetSheepWithFinalWeight"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2779),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2780),
+                            Name = "UpdateProfile"
                         });
                 });
 
@@ -155,104 +163,104 @@ namespace DataAccess.Migrations
                         {
                             Id = 1,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1475),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1486),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2259),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2278),
                             Name = "Action"
                         },
                         new
                         {
                             Id = 2,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1492),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1492),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2294),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2295),
                             Name = "Controller"
                         },
                         new
                         {
                             Id = 3,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1493),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1493),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2296),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2297),
                             Name = "Permission"
                         },
                         new
                         {
                             Id = 4,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1493),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1494),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2298),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2299),
                             Name = "User"
                         },
                         new
                         {
                             Id = 5,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1535),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1535),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2300),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2301),
                             Name = "PermissionRole"
                         },
                         new
                         {
                             Id = 6,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1538),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1539),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2311),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2312),
                             Name = "Role"
                         },
                         new
                         {
                             Id = 7,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1539),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1540),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2313),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2314),
                             Name = "RoleUser"
                         },
                         new
                         {
                             Id = 8,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1540),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1540),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2316),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2316),
                             Name = "Sheep"
                         },
                         new
                         {
                             Id = 9,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1541),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1541),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2318),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2319),
                             Name = "Vaccine"
                         },
                         new
                         {
                             Id = 10,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1543),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1543),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2323),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2324),
                             Name = "VaccineStock"
                         },
                         new
                         {
                             Id = 11,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1544),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1544),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2325),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2326),
                             Name = "VaccineSheep"
                         },
                         new
                         {
                             Id = 12,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1545),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1545),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2327),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2328),
                             Name = "SaleSheep"
                         },
                         new
                         {
                             Id = 13,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1546),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1546),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2330),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2331),
                             Name = "SheepHistoricWeight"
                         });
                 });
@@ -304,9 +312,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Action_Create",
                             ControllerId = 1,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1705),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2885),
                             Description = "Permiso para el módulo Action y la acción Create",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1705)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2886)
                         },
                         new
                         {
@@ -315,9 +323,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Action_Read",
                             ControllerId = 1,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1713),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2909),
                             Description = "Permiso para el módulo Action y la acción Read",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1714)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2909)
                         },
                         new
                         {
@@ -326,9 +334,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Action_Update",
                             ControllerId = 1,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1715),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2915),
                             Description = "Permiso para el módulo Action y la acción Update",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1715)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2916)
                         },
                         new
                         {
@@ -337,9 +345,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Action_Delete",
                             ControllerId = 1,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1716),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2919),
                             Description = "Permiso para el módulo Action y la acción Delete",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1717)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2920)
                         },
                         new
                         {
@@ -348,9 +356,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Action_ToggleActive",
                             ControllerId = 1,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1718),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2924),
                             Description = "Permiso para el módulo Action y la acción ToggleActive",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1718)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2925)
                         },
                         new
                         {
@@ -359,9 +367,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Action_GetById",
                             ControllerId = 1,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1721),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2932),
                             Description = "Permiso para el módulo Action y la acción GetById",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1721)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2933)
                         },
                         new
                         {
@@ -370,9 +378,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Action_DeleteAll",
                             ControllerId = 1,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1722),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2937),
                             Description = "Permiso para el módulo Action y la acción DeleteAll",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1722)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2938)
                         },
                         new
                         {
@@ -381,9 +389,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Action_GetWithFilters",
                             ControllerId = 1,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1724),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2942),
                             Description = "Permiso para el módulo Action y la acción GetWithFilters",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1724)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2943)
                         },
                         new
                         {
@@ -392,9 +400,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Controller_Create",
                             ControllerId = 2,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1727),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2951),
                             Description = "Permiso para el módulo Controller y la acción Create",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1728)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2952)
                         },
                         new
                         {
@@ -403,9 +411,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Controller_Read",
                             ControllerId = 2,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1730),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2960),
                             Description = "Permiso para el módulo Controller y la acción Read",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1731)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2961)
                         },
                         new
                         {
@@ -414,9 +422,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Controller_Update",
                             ControllerId = 2,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1732),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2965),
                             Description = "Permiso para el módulo Controller y la acción Update",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1732)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2966)
                         },
                         new
                         {
@@ -425,9 +433,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Controller_Delete",
                             ControllerId = 2,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1734),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2969),
                             Description = "Permiso para el módulo Controller y la acción Delete",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1734)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2971)
                         },
                         new
                         {
@@ -436,9 +444,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Controller_ToggleActive",
                             ControllerId = 2,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1735),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2974),
                             Description = "Permiso para el módulo Controller y la acción ToggleActive",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1735)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(2975)
                         },
                         new
                         {
@@ -447,9 +455,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Controller_GetById",
                             ControllerId = 2,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1737),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3063),
                             Description = "Permiso para el módulo Controller y la acción GetById",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1737)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3064)
                         },
                         new
                         {
@@ -458,9 +466,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Controller_DeleteAll",
                             ControllerId = 2,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1738),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3069),
                             Description = "Permiso para el módulo Controller y la acción DeleteAll",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1739)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3070)
                         },
                         new
                         {
@@ -469,9 +477,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Controller_GetWithFilters",
                             ControllerId = 2,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1740),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3073),
                             Description = "Permiso para el módulo Controller y la acción GetWithFilters",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1740)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3074)
                         },
                         new
                         {
@@ -480,9 +488,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Permission_Create",
                             ControllerId = 3,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1742),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3081),
                             Description = "Permiso para el módulo Permission y la acción Create",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1742)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3082)
                         },
                         new
                         {
@@ -491,9 +499,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Permission_Read",
                             ControllerId = 3,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1744),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3089),
                             Description = "Permiso para el módulo Permission y la acción Read",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1744)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3090)
                         },
                         new
                         {
@@ -502,9 +510,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Permission_Update",
                             ControllerId = 3,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1745),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3093),
                             Description = "Permiso para el módulo Permission y la acción Update",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1746)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3094)
                         },
                         new
                         {
@@ -513,9 +521,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Permission_Delete",
                             ControllerId = 3,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1772),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3097),
                             Description = "Permiso para el módulo Permission y la acción Delete",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1773)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3098)
                         },
                         new
                         {
@@ -524,9 +532,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Permission_ToggleActive",
                             ControllerId = 3,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1774),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3102),
                             Description = "Permiso para el módulo Permission y la acción ToggleActive",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1774)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3103)
                         },
                         new
                         {
@@ -535,9 +543,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Permission_GetById",
                             ControllerId = 3,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1776),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3106),
                             Description = "Permiso para el módulo Permission y la acción GetById",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1776)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3107)
                         },
                         new
                         {
@@ -546,9 +554,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Permission_DeleteAll",
                             ControllerId = 3,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1777),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3111),
                             Description = "Permiso para el módulo Permission y la acción DeleteAll",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1777)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3112)
                         },
                         new
                         {
@@ -557,9 +565,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "Permission_GetWithFilters",
                             ControllerId = 3,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1778),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3115),
                             Description = "Permiso para el módulo Permission y la acción GetWithFilters",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1779)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3116)
                         },
                         new
                         {
@@ -568,9 +576,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "User_Create",
                             ControllerId = 4,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1780),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3121),
                             Description = "Permiso para el módulo User y la acción Create",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1781)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3122)
                         },
                         new
                         {
@@ -579,9 +587,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "User_Read",
                             ControllerId = 4,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1782),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3126),
                             Description = "Permiso para el módulo User y la acción Read",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1782)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3127)
                         },
                         new
                         {
@@ -590,9 +598,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "User_Update",
                             ControllerId = 4,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1784),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3130),
                             Description = "Permiso para el módulo User y la acción Update",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1784)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3131)
                         },
                         new
                         {
@@ -601,9 +609,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "User_Delete",
                             ControllerId = 4,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1785),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3135),
                             Description = "Permiso para el módulo User y la acción Delete",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1785)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3136)
                         },
                         new
                         {
@@ -612,9 +620,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "User_ToggleActive",
                             ControllerId = 4,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1786),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3139),
                             Description = "Permiso para el módulo User y la acción ToggleActive",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1787)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3140)
                         },
                         new
                         {
@@ -623,9 +631,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "User_GetById",
                             ControllerId = 4,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1788),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3144),
                             Description = "Permiso para el módulo User y la acción GetById",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1788)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3145)
                         },
                         new
                         {
@@ -634,9 +642,9 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "User_DeleteAll",
                             ControllerId = 4,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1789),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3148),
                             Description = "Permiso para el módulo User y la acción DeleteAll",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1790)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3149)
                         },
                         new
                         {
@@ -645,812 +653,823 @@ namespace DataAccess.Migrations
                             Active = true,
                             Clave = "User_GetWithFilters",
                             ControllerId = 4,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1791),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3152),
                             Description = "Permiso para el módulo User y la acción GetWithFilters",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1791)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3153)
                         },
                         new
                         {
                             Id = 33,
-                            ActionId = 1,
+                            ActionId = 10,
                             Active = true,
-                            Clave = "PermissionRole_Create",
-                            ControllerId = 5,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1793),
-                            Description = "Permiso para el módulo PermissionRole y la acción Create",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1793)
+                            Clave = "User_UpdateProfile",
+                            ControllerId = 4,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3159),
+                            Description = "Permiso para el módulo User y la acción UpdateProfile",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3160)
                         },
                         new
                         {
                             Id = 34,
-                            ActionId = 2,
+                            ActionId = 1,
                             Active = true,
-                            Clave = "PermissionRole_Read",
+                            Clave = "PermissionRole_Create",
                             ControllerId = 5,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1795),
-                            Description = "Permiso para el módulo PermissionRole y la acción Read",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1796)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3258),
+                            Description = "Permiso para el módulo PermissionRole y la acción Create",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3259)
                         },
                         new
                         {
                             Id = 35,
-                            ActionId = 3,
+                            ActionId = 2,
                             Active = true,
-                            Clave = "PermissionRole_Update",
+                            Clave = "PermissionRole_Read",
                             ControllerId = 5,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1797),
-                            Description = "Permiso para el módulo PermissionRole y la acción Update",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1797)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3264),
+                            Description = "Permiso para el módulo PermissionRole y la acción Read",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3265)
                         },
                         new
                         {
                             Id = 36,
-                            ActionId = 4,
+                            ActionId = 3,
                             Active = true,
-                            Clave = "PermissionRole_Delete",
+                            Clave = "PermissionRole_Update",
                             ControllerId = 5,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1798),
-                            Description = "Permiso para el módulo PermissionRole y la acción Delete",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1799)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3269),
+                            Description = "Permiso para el módulo PermissionRole y la acción Update",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3270)
                         },
                         new
                         {
                             Id = 37,
-                            ActionId = 5,
+                            ActionId = 4,
                             Active = true,
-                            Clave = "PermissionRole_ToggleActive",
+                            Clave = "PermissionRole_Delete",
                             ControllerId = 5,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1800),
-                            Description = "Permiso para el módulo PermissionRole y la acción ToggleActive",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1800)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3273),
+                            Description = "Permiso para el módulo PermissionRole y la acción Delete",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3275)
                         },
                         new
                         {
                             Id = 38,
-                            ActionId = 6,
+                            ActionId = 5,
                             Active = true,
-                            Clave = "PermissionRole_GetById",
+                            Clave = "PermissionRole_ToggleActive",
                             ControllerId = 5,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1801),
-                            Description = "Permiso para el módulo PermissionRole y la acción GetById",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1802)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3278),
+                            Description = "Permiso para el módulo PermissionRole y la acción ToggleActive",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3279)
                         },
                         new
                         {
                             Id = 39,
-                            ActionId = 7,
+                            ActionId = 6,
                             Active = true,
-                            Clave = "PermissionRole_DeleteAll",
+                            Clave = "PermissionRole_GetById",
                             ControllerId = 5,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1803),
-                            Description = "Permiso para el módulo PermissionRole y la acción DeleteAll",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1803)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3283),
+                            Description = "Permiso para el módulo PermissionRole y la acción GetById",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3284)
                         },
                         new
                         {
                             Id = 40,
-                            ActionId = 8,
+                            ActionId = 7,
                             Active = true,
-                            Clave = "PermissionRole_GetWithFilters",
+                            Clave = "PermissionRole_DeleteAll",
                             ControllerId = 5,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1804),
-                            Description = "Permiso para el módulo PermissionRole y la acción GetWithFilters",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1805)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3354),
+                            Description = "Permiso para el módulo PermissionRole y la acción DeleteAll",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3354)
                         },
                         new
                         {
                             Id = 41,
-                            ActionId = 1,
+                            ActionId = 8,
                             Active = true,
-                            Clave = "Role_Create",
-                            ControllerId = 6,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1806),
-                            Description = "Permiso para el módulo Role y la acción Create",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1807)
+                            Clave = "PermissionRole_GetWithFilters",
+                            ControllerId = 5,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3359),
+                            Description = "Permiso para el módulo PermissionRole y la acción GetWithFilters",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3360)
                         },
                         new
                         {
                             Id = 42,
-                            ActionId = 2,
+                            ActionId = 1,
                             Active = true,
-                            Clave = "Role_Read",
+                            Clave = "Role_Create",
                             ControllerId = 6,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1808),
-                            Description = "Permiso para el módulo Role y la acción Read",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1808)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3367),
+                            Description = "Permiso para el módulo Role y la acción Create",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3368)
                         },
                         new
                         {
                             Id = 43,
-                            ActionId = 3,
+                            ActionId = 2,
                             Active = true,
-                            Clave = "Role_Update",
+                            Clave = "Role_Read",
                             ControllerId = 6,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1809),
-                            Description = "Permiso para el módulo Role y la acción Update",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1809)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3371),
+                            Description = "Permiso para el módulo Role y la acción Read",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3372)
                         },
                         new
                         {
                             Id = 44,
-                            ActionId = 4,
+                            ActionId = 3,
                             Active = true,
-                            Clave = "Role_Delete",
+                            Clave = "Role_Update",
                             ControllerId = 6,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1811),
-                            Description = "Permiso para el módulo Role y la acción Delete",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1811)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3376),
+                            Description = "Permiso para el módulo Role y la acción Update",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3377)
                         },
                         new
                         {
                             Id = 45,
-                            ActionId = 5,
+                            ActionId = 4,
                             Active = true,
-                            Clave = "Role_ToggleActive",
+                            Clave = "Role_Delete",
                             ControllerId = 6,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1812),
-                            Description = "Permiso para el módulo Role y la acción ToggleActive",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1812)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3381),
+                            Description = "Permiso para el módulo Role y la acción Delete",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3382)
                         },
                         new
                         {
                             Id = 46,
-                            ActionId = 6,
+                            ActionId = 5,
                             Active = true,
-                            Clave = "Role_GetById",
+                            Clave = "Role_ToggleActive",
                             ControllerId = 6,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1814),
-                            Description = "Permiso para el módulo Role y la acción GetById",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1814)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3385),
+                            Description = "Permiso para el módulo Role y la acción ToggleActive",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3386)
                         },
                         new
                         {
                             Id = 47,
-                            ActionId = 7,
+                            ActionId = 6,
                             Active = true,
-                            Clave = "Role_DeleteAll",
+                            Clave = "Role_GetById",
                             ControllerId = 6,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1815),
-                            Description = "Permiso para el módulo Role y la acción DeleteAll",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1815)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3390),
+                            Description = "Permiso para el módulo Role y la acción GetById",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3391)
                         },
                         new
                         {
                             Id = 48,
-                            ActionId = 8,
+                            ActionId = 7,
                             Active = true,
-                            Clave = "Role_GetWithFilters",
+                            Clave = "Role_DeleteAll",
                             ControllerId = 6,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1816),
-                            Description = "Permiso para el módulo Role y la acción GetWithFilters",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1817)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3395),
+                            Description = "Permiso para el módulo Role y la acción DeleteAll",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3395)
                         },
                         new
                         {
                             Id = 49,
-                            ActionId = 1,
+                            ActionId = 8,
                             Active = true,
-                            Clave = "RoleUser_Create",
-                            ControllerId = 7,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1843),
-                            Description = "Permiso para el módulo RoleUser y la acción Create",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1844)
+                            Clave = "Role_GetWithFilters",
+                            ControllerId = 6,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3400),
+                            Description = "Permiso para el módulo Role y la acción GetWithFilters",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3400)
                         },
                         new
                         {
                             Id = 50,
-                            ActionId = 2,
+                            ActionId = 1,
                             Active = true,
-                            Clave = "RoleUser_Read",
+                            Clave = "RoleUser_Create",
                             ControllerId = 7,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1845),
-                            Description = "Permiso para el módulo RoleUser y la acción Read",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1846)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3412),
+                            Description = "Permiso para el módulo RoleUser y la acción Create",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3412)
                         },
                         new
                         {
                             Id = 51,
-                            ActionId = 3,
+                            ActionId = 2,
                             Active = true,
-                            Clave = "RoleUser_Update",
+                            Clave = "RoleUser_Read",
                             ControllerId = 7,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1847),
-                            Description = "Permiso para el módulo RoleUser y la acción Update",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1847)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3416),
+                            Description = "Permiso para el módulo RoleUser y la acción Read",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3417)
                         },
                         new
                         {
                             Id = 52,
-                            ActionId = 4,
+                            ActionId = 3,
                             Active = true,
-                            Clave = "RoleUser_Delete",
+                            Clave = "RoleUser_Update",
                             ControllerId = 7,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1848),
-                            Description = "Permiso para el módulo RoleUser y la acción Delete",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1848)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3421),
+                            Description = "Permiso para el módulo RoleUser y la acción Update",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3422)
                         },
                         new
                         {
                             Id = 53,
-                            ActionId = 5,
+                            ActionId = 4,
                             Active = true,
-                            Clave = "RoleUser_ToggleActive",
+                            Clave = "RoleUser_Delete",
                             ControllerId = 7,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1850),
-                            Description = "Permiso para el módulo RoleUser y la acción ToggleActive",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1850)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3426),
+                            Description = "Permiso para el módulo RoleUser y la acción Delete",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3426)
                         },
                         new
                         {
                             Id = 54,
-                            ActionId = 6,
+                            ActionId = 5,
                             Active = true,
-                            Clave = "RoleUser_GetById",
+                            Clave = "RoleUser_ToggleActive",
                             ControllerId = 7,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1851),
-                            Description = "Permiso para el módulo RoleUser y la acción GetById",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1851)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3430),
+                            Description = "Permiso para el módulo RoleUser y la acción ToggleActive",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3431)
                         },
                         new
                         {
                             Id = 55,
-                            ActionId = 7,
+                            ActionId = 6,
                             Active = true,
-                            Clave = "RoleUser_DeleteAll",
+                            Clave = "RoleUser_GetById",
                             ControllerId = 7,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1852),
-                            Description = "Permiso para el módulo RoleUser y la acción DeleteAll",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1853)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3436),
+                            Description = "Permiso para el módulo RoleUser y la acción GetById",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3437)
                         },
                         new
                         {
                             Id = 56,
-                            ActionId = 8,
+                            ActionId = 7,
                             Active = true,
-                            Clave = "RoleUser_GetWithFilters",
+                            Clave = "RoleUser_DeleteAll",
                             ControllerId = 7,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1854),
-                            Description = "Permiso para el módulo RoleUser y la acción GetWithFilters",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1854)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3441),
+                            Description = "Permiso para el módulo RoleUser y la acción DeleteAll",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3441)
                         },
                         new
                         {
                             Id = 57,
-                            ActionId = 1,
+                            ActionId = 8,
                             Active = true,
-                            Clave = "Sheep_Create",
-                            ControllerId = 8,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1856),
-                            Description = "Permiso para el módulo Sheep y la acción Create",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1856)
+                            Clave = "RoleUser_GetWithFilters",
+                            ControllerId = 7,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3445),
+                            Description = "Permiso para el módulo RoleUser y la acción GetWithFilters",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3446)
                         },
                         new
                         {
                             Id = 58,
-                            ActionId = 2,
+                            ActionId = 1,
                             Active = true,
-                            Clave = "Sheep_Read",
+                            Clave = "Sheep_Create",
                             ControllerId = 8,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1857),
-                            Description = "Permiso para el módulo Sheep y la acción Read",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1858)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3452),
+                            Description = "Permiso para el módulo Sheep y la acción Create",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3453)
                         },
                         new
                         {
                             Id = 59,
-                            ActionId = 3,
+                            ActionId = 2,
                             Active = true,
-                            Clave = "Sheep_Update",
+                            Clave = "Sheep_Read",
                             ControllerId = 8,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1859),
-                            Description = "Permiso para el módulo Sheep y la acción Update",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1859)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3457),
+                            Description = "Permiso para el módulo Sheep y la acción Read",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3458)
                         },
                         new
                         {
                             Id = 60,
-                            ActionId = 4,
+                            ActionId = 3,
                             Active = true,
-                            Clave = "Sheep_Delete",
+                            Clave = "Sheep_Update",
                             ControllerId = 8,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1860),
-                            Description = "Permiso para el módulo Sheep y la acción Delete",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1860)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3462),
+                            Description = "Permiso para el módulo Sheep y la acción Update",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3462)
                         },
                         new
                         {
                             Id = 61,
-                            ActionId = 5,
+                            ActionId = 4,
                             Active = true,
-                            Clave = "Sheep_ToggleActive",
+                            Clave = "Sheep_Delete",
                             ControllerId = 8,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1862),
-                            Description = "Permiso para el módulo Sheep y la acción ToggleActive",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1862)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3466),
+                            Description = "Permiso para el módulo Sheep y la acción Delete",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3467)
                         },
                         new
                         {
                             Id = 62,
-                            ActionId = 6,
+                            ActionId = 5,
                             Active = true,
-                            Clave = "Sheep_GetById",
+                            Clave = "Sheep_ToggleActive",
                             ControllerId = 8,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1863),
-                            Description = "Permiso para el módulo Sheep y la acción GetById",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1863)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3471),
+                            Description = "Permiso para el módulo Sheep y la acción ToggleActive",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3471)
                         },
                         new
                         {
                             Id = 63,
-                            ActionId = 7,
+                            ActionId = 6,
                             Active = true,
-                            Clave = "Sheep_DeleteAll",
+                            Clave = "Sheep_GetById",
                             ControllerId = 8,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1864),
-                            Description = "Permiso para el módulo Sheep y la acción DeleteAll",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1865)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3475),
+                            Description = "Permiso para el módulo Sheep y la acción GetById",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3476)
                         },
                         new
                         {
                             Id = 64,
-                            ActionId = 8,
+                            ActionId = 7,
                             Active = true,
-                            Clave = "Sheep_GetWithFilters",
+                            Clave = "Sheep_DeleteAll",
                             ControllerId = 8,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1866),
-                            Description = "Permiso para el módulo Sheep y la acción GetWithFilters",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1866)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3479),
+                            Description = "Permiso para el módulo Sheep y la acción DeleteAll",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3480)
                         },
                         new
                         {
                             Id = 65,
-                            ActionId = 9,
+                            ActionId = 8,
                             Active = true,
-                            Clave = "Sheep_GetSheepWithFinalWeight",
+                            Clave = "Sheep_GetWithFilters",
                             ControllerId = 8,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1868),
-                            Description = "Permiso para el módulo Sheep y la acción GetSheepWithFinalWeight",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1868)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3484),
+                            Description = "Permiso para el módulo Sheep y la acción GetWithFilters",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3485)
                         },
                         new
                         {
                             Id = 66,
-                            ActionId = 1,
+                            ActionId = 9,
                             Active = true,
-                            Clave = "Vaccine_Create",
-                            ControllerId = 9,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1901),
-                            Description = "Permiso para el módulo Vaccine y la acción Create",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1901)
+                            Clave = "Sheep_GetSheepWithFinalWeight",
+                            ControllerId = 8,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3495),
+                            Description = "Permiso para el módulo Sheep y la acción GetSheepWithFinalWeight",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3496)
                         },
                         new
                         {
                             Id = 67,
-                            ActionId = 2,
+                            ActionId = 1,
                             Active = true,
-                            Clave = "Vaccine_Read",
+                            Clave = "Vaccine_Create",
                             ControllerId = 9,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1902),
-                            Description = "Permiso para el módulo Vaccine y la acción Read",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1903)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3608),
+                            Description = "Permiso para el módulo Vaccine y la acción Create",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3610)
                         },
                         new
                         {
                             Id = 68,
-                            ActionId = 3,
+                            ActionId = 2,
                             Active = true,
-                            Clave = "Vaccine_Update",
+                            Clave = "Vaccine_Read",
                             ControllerId = 9,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1904),
-                            Description = "Permiso para el módulo Vaccine y la acción Update",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1904)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3614),
+                            Description = "Permiso para el módulo Vaccine y la acción Read",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3615)
                         },
                         new
                         {
                             Id = 69,
-                            ActionId = 4,
+                            ActionId = 3,
                             Active = true,
-                            Clave = "Vaccine_Delete",
+                            Clave = "Vaccine_Update",
                             ControllerId = 9,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1905),
-                            Description = "Permiso para el módulo Vaccine y la acción Delete",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1906)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3618),
+                            Description = "Permiso para el módulo Vaccine y la acción Update",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3619)
                         },
                         new
                         {
                             Id = 70,
-                            ActionId = 5,
+                            ActionId = 4,
                             Active = true,
-                            Clave = "Vaccine_ToggleActive",
+                            Clave = "Vaccine_Delete",
                             ControllerId = 9,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1907),
-                            Description = "Permiso para el módulo Vaccine y la acción ToggleActive",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1907)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3623),
+                            Description = "Permiso para el módulo Vaccine y la acción Delete",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3624)
                         },
                         new
                         {
                             Id = 71,
-                            ActionId = 6,
+                            ActionId = 5,
                             Active = true,
-                            Clave = "Vaccine_GetById",
+                            Clave = "Vaccine_ToggleActive",
                             ControllerId = 9,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1908),
-                            Description = "Permiso para el módulo Vaccine y la acción GetById",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1909)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3628),
+                            Description = "Permiso para el módulo Vaccine y la acción ToggleActive",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3629)
                         },
                         new
                         {
                             Id = 72,
-                            ActionId = 7,
+                            ActionId = 6,
                             Active = true,
-                            Clave = "Vaccine_DeleteAll",
+                            Clave = "Vaccine_GetById",
                             ControllerId = 9,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1910),
-                            Description = "Permiso para el módulo Vaccine y la acción DeleteAll",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1910)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3634),
+                            Description = "Permiso para el módulo Vaccine y la acción GetById",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3634)
                         },
                         new
                         {
                             Id = 73,
-                            ActionId = 8,
+                            ActionId = 7,
                             Active = true,
-                            Clave = "Vaccine_GetWithFilters",
+                            Clave = "Vaccine_DeleteAll",
                             ControllerId = 9,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1911),
-                            Description = "Permiso para el módulo Vaccine y la acción GetWithFilters",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1911)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3638),
+                            Description = "Permiso para el módulo Vaccine y la acción DeleteAll",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3639)
                         },
                         new
                         {
                             Id = 74,
-                            ActionId = 1,
+                            ActionId = 8,
                             Active = true,
-                            Clave = "VaccineStock_Create",
-                            ControllerId = 10,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1937),
-                            Description = "Permiso para el módulo VaccineStock y la acción Create",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1937)
+                            Clave = "Vaccine_GetWithFilters",
+                            ControllerId = 9,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3643),
+                            Description = "Permiso para el módulo Vaccine y la acción GetWithFilters",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3644)
                         },
                         new
                         {
                             Id = 75,
-                            ActionId = 2,
+                            ActionId = 1,
                             Active = true,
-                            Clave = "VaccineStock_Read",
+                            Clave = "VaccineStock_Create",
                             ControllerId = 10,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1938),
-                            Description = "Permiso para el módulo VaccineStock y la acción Read",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1939)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3650),
+                            Description = "Permiso para el módulo VaccineStock y la acción Create",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3651)
                         },
                         new
                         {
                             Id = 76,
-                            ActionId = 3,
+                            ActionId = 2,
                             Active = true,
-                            Clave = "VaccineStock_Update",
+                            Clave = "VaccineStock_Read",
                             ControllerId = 10,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1940),
-                            Description = "Permiso para el módulo VaccineStock y la acción Update",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1940)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3655),
+                            Description = "Permiso para el módulo VaccineStock y la acción Read",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3656)
                         },
                         new
                         {
                             Id = 77,
-                            ActionId = 4,
+                            ActionId = 3,
                             Active = true,
-                            Clave = "VaccineStock_Delete",
+                            Clave = "VaccineStock_Update",
                             ControllerId = 10,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1941),
-                            Description = "Permiso para el módulo VaccineStock y la acción Delete",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1942)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3661),
+                            Description = "Permiso para el módulo VaccineStock y la acción Update",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3662)
                         },
                         new
                         {
                             Id = 78,
-                            ActionId = 5,
+                            ActionId = 4,
                             Active = true,
-                            Clave = "VaccineStock_ToggleActive",
+                            Clave = "VaccineStock_Delete",
                             ControllerId = 10,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1943),
-                            Description = "Permiso para el módulo VaccineStock y la acción ToggleActive",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1943)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3666),
+                            Description = "Permiso para el módulo VaccineStock y la acción Delete",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3666)
                         },
                         new
                         {
                             Id = 79,
-                            ActionId = 6,
+                            ActionId = 5,
                             Active = true,
-                            Clave = "VaccineStock_GetById",
+                            Clave = "VaccineStock_ToggleActive",
                             ControllerId = 10,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1944),
-                            Description = "Permiso para el módulo VaccineStock y la acción GetById",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1945)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3670),
+                            Description = "Permiso para el módulo VaccineStock y la acción ToggleActive",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3672)
                         },
                         new
                         {
                             Id = 80,
-                            ActionId = 7,
+                            ActionId = 6,
                             Active = true,
-                            Clave = "VaccineStock_DeleteAll",
+                            Clave = "VaccineStock_GetById",
                             ControllerId = 10,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1946),
-                            Description = "Permiso para el módulo VaccineStock y la acción DeleteAll",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1946)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3676),
+                            Description = "Permiso para el módulo VaccineStock y la acción GetById",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3677)
                         },
                         new
                         {
                             Id = 81,
-                            ActionId = 8,
+                            ActionId = 7,
                             Active = true,
-                            Clave = "VaccineStock_GetWithFilters",
+                            Clave = "VaccineStock_DeleteAll",
                             ControllerId = 10,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1947),
-                            Description = "Permiso para el módulo VaccineStock y la acción GetWithFilters",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1948)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3681),
+                            Description = "Permiso para el módulo VaccineStock y la acción DeleteAll",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3682)
                         },
                         new
                         {
                             Id = 82,
-                            ActionId = 1,
+                            ActionId = 8,
                             Active = true,
-                            Clave = "VaccineSheep_Create",
-                            ControllerId = 11,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1949),
-                            Description = "Permiso para el módulo VaccineSheep y la acción Create",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1950)
+                            Clave = "VaccineStock_GetWithFilters",
+                            ControllerId = 10,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3686),
+                            Description = "Permiso para el módulo VaccineStock y la acción GetWithFilters",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3687)
                         },
                         new
                         {
                             Id = 83,
-                            ActionId = 2,
+                            ActionId = 1,
                             Active = true,
-                            Clave = "VaccineSheep_Read",
+                            Clave = "VaccineSheep_Create",
                             ControllerId = 11,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1951),
-                            Description = "Permiso para el módulo VaccineSheep y la acción Read",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1951)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3693),
+                            Description = "Permiso para el módulo VaccineSheep y la acción Create",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3694)
                         },
                         new
                         {
                             Id = 84,
-                            ActionId = 3,
+                            ActionId = 2,
                             Active = true,
-                            Clave = "VaccineSheep_Update",
+                            Clave = "VaccineSheep_Read",
                             ControllerId = 11,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1952),
-                            Description = "Permiso para el módulo VaccineSheep y la acción Update",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1952)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3698),
+                            Description = "Permiso para el módulo VaccineSheep y la acción Read",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3699)
                         },
                         new
                         {
                             Id = 85,
-                            ActionId = 4,
+                            ActionId = 3,
                             Active = true,
-                            Clave = "VaccineSheep_Delete",
+                            Clave = "VaccineSheep_Update",
                             ControllerId = 11,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1953),
-                            Description = "Permiso para el módulo VaccineSheep y la acción Delete",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1954)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3704),
+                            Description = "Permiso para el módulo VaccineSheep y la acción Update",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3705)
                         },
                         new
                         {
                             Id = 86,
-                            ActionId = 5,
+                            ActionId = 4,
                             Active = true,
-                            Clave = "VaccineSheep_ToggleActive",
+                            Clave = "VaccineSheep_Delete",
                             ControllerId = 11,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1955),
-                            Description = "Permiso para el módulo VaccineSheep y la acción ToggleActive",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1955)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3708),
+                            Description = "Permiso para el módulo VaccineSheep y la acción Delete",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3709)
                         },
                         new
                         {
                             Id = 87,
-                            ActionId = 6,
+                            ActionId = 5,
                             Active = true,
-                            Clave = "VaccineSheep_GetById",
+                            Clave = "VaccineSheep_ToggleActive",
                             ControllerId = 11,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1956),
-                            Description = "Permiso para el módulo VaccineSheep y la acción GetById",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1957)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3713),
+                            Description = "Permiso para el módulo VaccineSheep y la acción ToggleActive",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3715)
                         },
                         new
                         {
                             Id = 88,
-                            ActionId = 7,
+                            ActionId = 6,
                             Active = true,
-                            Clave = "VaccineSheep_DeleteAll",
+                            Clave = "VaccineSheep_GetById",
                             ControllerId = 11,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1958),
-                            Description = "Permiso para el módulo VaccineSheep y la acción DeleteAll",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1958)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3719),
+                            Description = "Permiso para el módulo VaccineSheep y la acción GetById",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3719)
                         },
                         new
                         {
                             Id = 89,
-                            ActionId = 8,
+                            ActionId = 7,
                             Active = true,
-                            Clave = "VaccineSheep_GetWithFilters",
+                            Clave = "VaccineSheep_DeleteAll",
                             ControllerId = 11,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1959),
-                            Description = "Permiso para el módulo VaccineSheep y la acción GetWithFilters",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1960)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3723),
+                            Description = "Permiso para el módulo VaccineSheep y la acción DeleteAll",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3724)
                         },
                         new
                         {
                             Id = 90,
-                            ActionId = 1,
+                            ActionId = 8,
                             Active = true,
-                            Clave = "SaleSheep_Create",
-                            ControllerId = 12,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1961),
-                            Description = "Permiso para el módulo SaleSheep y la acción Create",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1962)
+                            Clave = "VaccineSheep_GetWithFilters",
+                            ControllerId = 11,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3728),
+                            Description = "Permiso para el módulo VaccineSheep y la acción GetWithFilters",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3729)
                         },
                         new
                         {
                             Id = 91,
-                            ActionId = 2,
+                            ActionId = 1,
                             Active = true,
-                            Clave = "SaleSheep_Read",
+                            Clave = "SaleSheep_Create",
                             ControllerId = 12,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1963),
-                            Description = "Permiso para el módulo SaleSheep y la acción Read",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1963)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3734),
+                            Description = "Permiso para el módulo SaleSheep y la acción Create",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3735)
                         },
                         new
                         {
                             Id = 92,
-                            ActionId = 3,
+                            ActionId = 2,
                             Active = true,
-                            Clave = "SaleSheep_Update",
+                            Clave = "SaleSheep_Read",
                             ControllerId = 12,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1964),
-                            Description = "Permiso para el módulo SaleSheep y la acción Update",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1964)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3738),
+                            Description = "Permiso para el módulo SaleSheep y la acción Read",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3739)
                         },
                         new
                         {
                             Id = 93,
-                            ActionId = 4,
+                            ActionId = 3,
                             Active = true,
-                            Clave = "SaleSheep_Delete",
+                            Clave = "SaleSheep_Update",
                             ControllerId = 12,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1965),
-                            Description = "Permiso para el módulo SaleSheep y la acción Delete",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1966)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3742),
+                            Description = "Permiso para el módulo SaleSheep y la acción Update",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3743)
                         },
                         new
                         {
                             Id = 94,
-                            ActionId = 5,
+                            ActionId = 4,
                             Active = true,
-                            Clave = "SaleSheep_ToggleActive",
+                            Clave = "SaleSheep_Delete",
                             ControllerId = 12,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1967),
-                            Description = "Permiso para el módulo SaleSheep y la acción ToggleActive",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1967)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3746),
+                            Description = "Permiso para el módulo SaleSheep y la acción Delete",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3747)
                         },
                         new
                         {
                             Id = 95,
-                            ActionId = 6,
+                            ActionId = 5,
                             Active = true,
-                            Clave = "SaleSheep_GetById",
+                            Clave = "SaleSheep_ToggleActive",
                             ControllerId = 12,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1968),
-                            Description = "Permiso para el módulo SaleSheep y la acción GetById",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1969)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3847),
+                            Description = "Permiso para el módulo SaleSheep y la acción ToggleActive",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3849)
                         },
                         new
                         {
                             Id = 96,
-                            ActionId = 7,
+                            ActionId = 6,
                             Active = true,
-                            Clave = "SaleSheep_DeleteAll",
+                            Clave = "SaleSheep_GetById",
                             ControllerId = 12,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1970),
-                            Description = "Permiso para el módulo SaleSheep y la acción DeleteAll",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1970)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3853),
+                            Description = "Permiso para el módulo SaleSheep y la acción GetById",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3854)
                         },
                         new
                         {
                             Id = 97,
-                            ActionId = 8,
+                            ActionId = 7,
                             Active = true,
-                            Clave = "SaleSheep_GetWithFilters",
+                            Clave = "SaleSheep_DeleteAll",
                             ControllerId = 12,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1971),
-                            Description = "Permiso para el módulo SaleSheep y la acción GetWithFilters",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1971)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3858),
+                            Description = "Permiso para el módulo SaleSheep y la acción DeleteAll",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3859)
                         },
                         new
                         {
                             Id = 98,
-                            ActionId = 1,
+                            ActionId = 8,
                             Active = true,
-                            Clave = "SheepHistoricWeight_Create",
-                            ControllerId = 13,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1973),
-                            Description = "Permiso para el módulo SheepHistoricWeight y la acción Create",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1973)
+                            Clave = "SaleSheep_GetWithFilters",
+                            ControllerId = 12,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3862),
+                            Description = "Permiso para el módulo SaleSheep y la acción GetWithFilters",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3863)
                         },
                         new
                         {
                             Id = 99,
-                            ActionId = 2,
+                            ActionId = 1,
                             Active = true,
-                            Clave = "SheepHistoricWeight_Read",
+                            Clave = "SheepHistoricWeight_Create",
                             ControllerId = 13,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1975),
-                            Description = "Permiso para el módulo SheepHistoricWeight y la acción Read",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1975)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3869),
+                            Description = "Permiso para el módulo SheepHistoricWeight y la acción Create",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3870)
                         },
                         new
                         {
                             Id = 100,
-                            ActionId = 3,
+                            ActionId = 2,
                             Active = true,
-                            Clave = "SheepHistoricWeight_Update",
+                            Clave = "SheepHistoricWeight_Read",
                             ControllerId = 13,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1976),
-                            Description = "Permiso para el módulo SheepHistoricWeight y la acción Update",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1976)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3875),
+                            Description = "Permiso para el módulo SheepHistoricWeight y la acción Read",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3876)
                         },
                         new
                         {
                             Id = 101,
-                            ActionId = 4,
+                            ActionId = 3,
                             Active = true,
-                            Clave = "SheepHistoricWeight_Delete",
+                            Clave = "SheepHistoricWeight_Update",
                             ControllerId = 13,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1978),
-                            Description = "Permiso para el módulo SheepHistoricWeight y la acción Delete",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1978)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3880),
+                            Description = "Permiso para el módulo SheepHistoricWeight y la acción Update",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3881)
                         },
                         new
                         {
                             Id = 102,
-                            ActionId = 5,
+                            ActionId = 4,
                             Active = true,
-                            Clave = "SheepHistoricWeight_ToggleActive",
+                            Clave = "SheepHistoricWeight_Delete",
                             ControllerId = 13,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1979),
-                            Description = "Permiso para el módulo SheepHistoricWeight y la acción ToggleActive",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(1979)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3885),
+                            Description = "Permiso para el módulo SheepHistoricWeight y la acción Delete",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3886)
                         },
                         new
                         {
                             Id = 103,
-                            ActionId = 6,
+                            ActionId = 5,
                             Active = true,
-                            Clave = "SheepHistoricWeight_GetById",
+                            Clave = "SheepHistoricWeight_ToggleActive",
                             ControllerId = 13,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2003),
-                            Description = "Permiso para el módulo SheepHistoricWeight y la acción GetById",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2004)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3890),
+                            Description = "Permiso para el módulo SheepHistoricWeight y la acción ToggleActive",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3891)
                         },
                         new
                         {
                             Id = 104,
-                            ActionId = 7,
+                            ActionId = 6,
                             Active = true,
-                            Clave = "SheepHistoricWeight_DeleteAll",
+                            Clave = "SheepHistoricWeight_GetById",
                             ControllerId = 13,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2005),
-                            Description = "Permiso para el módulo SheepHistoricWeight y la acción DeleteAll",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2005)
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3894),
+                            Description = "Permiso para el módulo SheepHistoricWeight y la acción GetById",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3895)
                         },
                         new
                         {
                             Id = 105,
+                            ActionId = 7,
+                            Active = true,
+                            Clave = "SheepHistoricWeight_DeleteAll",
+                            ControllerId = 13,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3899),
+                            Description = "Permiso para el módulo SheepHistoricWeight y la acción DeleteAll",
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3900)
+                        },
+                        new
+                        {
+                            Id = 106,
                             ActionId = 8,
                             Active = true,
                             Clave = "SheepHistoricWeight_GetWithFilters",
                             ControllerId = 13,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2007),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3904),
                             Description = "Permiso para el módulo SheepHistoricWeight y la acción GetWithFilters",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2007)
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(3905)
                         });
                 });
 
@@ -1490,8 +1509,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 1,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2078),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2079),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4194),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4195),
                             PermissionId = 1,
                             RoleId = 1
                         },
@@ -1499,8 +1518,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 2,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2090),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2090),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4231),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4231),
                             PermissionId = 2,
                             RoleId = 1
                         },
@@ -1508,8 +1527,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 3,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2092),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2093),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4239),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4240),
                             PermissionId = 3,
                             RoleId = 1
                         },
@@ -1517,8 +1536,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 4,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2094),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2095),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4245),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4246),
                             PermissionId = 4,
                             RoleId = 1
                         },
@@ -1526,8 +1545,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 5,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2096),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2097),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4251),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4252),
                             PermissionId = 5,
                             RoleId = 1
                         },
@@ -1535,8 +1554,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 6,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2099),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2099),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4259),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4260),
                             PermissionId = 6,
                             RoleId = 1
                         },
@@ -1544,8 +1563,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 7,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2101),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2101),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4265),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4266),
                             PermissionId = 7,
                             RoleId = 1
                         },
@@ -1553,8 +1572,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 8,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2103),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2103),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4333),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4334),
                             PermissionId = 8,
                             RoleId = 1
                         },
@@ -1562,8 +1581,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 9,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2105),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2105),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4341),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4342),
                             PermissionId = 9,
                             RoleId = 1
                         },
@@ -1571,8 +1590,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 10,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2107),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2108),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4351),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4352),
                             PermissionId = 10,
                             RoleId = 1
                         },
@@ -1580,8 +1599,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 11,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2109),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2109),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4357),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4358),
                             PermissionId = 11,
                             RoleId = 1
                         },
@@ -1589,8 +1608,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 12,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2111),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2111),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4364),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4365),
                             PermissionId = 12,
                             RoleId = 1
                         },
@@ -1598,8 +1617,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 13,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2113),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2113),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4370),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4371),
                             PermissionId = 13,
                             RoleId = 1
                         },
@@ -1607,8 +1626,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 14,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2115),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2115),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4376),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4377),
                             PermissionId = 14,
                             RoleId = 1
                         },
@@ -1616,8 +1635,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 15,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2117),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2117),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4382),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4383),
                             PermissionId = 15,
                             RoleId = 1
                         },
@@ -1625,8 +1644,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 16,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2118),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2119),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4388),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4388),
                             PermissionId = 16,
                             RoleId = 1
                         },
@@ -1634,8 +1653,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 17,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2120),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2120),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4393),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4394),
                             PermissionId = 17,
                             RoleId = 1
                         },
@@ -1643,8 +1662,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 18,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2123),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2123),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4401),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4401),
                             PermissionId = 18,
                             RoleId = 1
                         },
@@ -1652,8 +1671,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 19,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2125),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2125),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4406),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4407),
                             PermissionId = 19,
                             RoleId = 1
                         },
@@ -1661,8 +1680,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 20,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2127),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2127),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4412),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4413),
                             PermissionId = 20,
                             RoleId = 1
                         },
@@ -1670,8 +1689,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 21,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2128),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2129),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4417),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4418),
                             PermissionId = 21,
                             RoleId = 1
                         },
@@ -1679,8 +1698,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 22,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2130),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2131),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4423),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4424),
                             PermissionId = 22,
                             RoleId = 1
                         },
@@ -1688,8 +1707,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 23,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2132),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2132),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4428),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4429),
                             PermissionId = 23,
                             RoleId = 1
                         },
@@ -1697,8 +1716,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 24,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2134),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2134),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4433),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4434),
                             PermissionId = 24,
                             RoleId = 1
                         },
@@ -1706,8 +1725,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 25,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2161),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2162),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4438),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4438),
                             PermissionId = 25,
                             RoleId = 1
                         },
@@ -1715,8 +1734,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 26,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2163),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2164),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4443),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4443),
                             PermissionId = 26,
                             RoleId = 1
                         },
@@ -1724,8 +1743,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 27,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2166),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2166),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4448),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4449),
                             PermissionId = 27,
                             RoleId = 1
                         },
@@ -1733,8 +1752,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 28,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2168),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2168),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4453),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4453),
                             PermissionId = 28,
                             RoleId = 1
                         },
@@ -1742,8 +1761,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 29,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2169),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2170),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4457),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4458),
                             PermissionId = 29,
                             RoleId = 1
                         },
@@ -1751,8 +1770,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 30,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2171),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2172),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4462),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4463),
                             PermissionId = 30,
                             RoleId = 1
                         },
@@ -1760,8 +1779,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 31,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2173),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2173),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4467),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4468),
                             PermissionId = 31,
                             RoleId = 1
                         },
@@ -1769,8 +1788,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 32,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2175),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2175),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4473),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4474),
                             PermissionId = 32,
                             RoleId = 1
                         },
@@ -1778,8 +1797,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 33,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2177),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2177),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4479),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4479),
                             PermissionId = 33,
                             RoleId = 1
                         },
@@ -1787,8 +1806,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 34,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2180),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2180),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4487),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4488),
                             PermissionId = 34,
                             RoleId = 1
                         },
@@ -1796,8 +1815,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 35,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2181),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2182),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4493),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4493),
                             PermissionId = 35,
                             RoleId = 1
                         },
@@ -1805,8 +1824,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 36,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2183),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2184),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4499),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4500),
                             PermissionId = 36,
                             RoleId = 1
                         },
@@ -1814,8 +1833,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 37,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2185),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2185),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4505),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4505),
                             PermissionId = 37,
                             RoleId = 1
                         },
@@ -1823,8 +1842,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 38,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2187),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2187),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4510),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4511),
                             PermissionId = 38,
                             RoleId = 1
                         },
@@ -1832,8 +1851,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 39,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2189),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2189),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4515),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4516),
                             PermissionId = 39,
                             RoleId = 1
                         },
@@ -1841,8 +1860,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 40,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2191),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2191),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4520),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4521),
                             PermissionId = 40,
                             RoleId = 1
                         },
@@ -1850,8 +1869,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 41,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2192),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2193),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4526),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4527),
                             PermissionId = 41,
                             RoleId = 1
                         },
@@ -1859,8 +1878,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 42,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2194),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2195),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4531),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4532),
                             PermissionId = 42,
                             RoleId = 1
                         },
@@ -1868,8 +1887,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 43,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2196),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2196),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4536),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4537),
                             PermissionId = 43,
                             RoleId = 1
                         },
@@ -1877,8 +1896,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 44,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2198),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2198),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4542),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4543),
                             PermissionId = 44,
                             RoleId = 1
                         },
@@ -1886,8 +1905,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 45,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2200),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2200),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4548),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4549),
                             PermissionId = 45,
                             RoleId = 1
                         },
@@ -1895,8 +1914,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 46,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2201),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2202),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4554),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4554),
                             PermissionId = 46,
                             RoleId = 1
                         },
@@ -1904,8 +1923,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 47,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2203),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2203),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4559),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4560),
                             PermissionId = 47,
                             RoleId = 1
                         },
@@ -1913,8 +1932,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 48,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2205),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2205),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4565),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4566),
                             PermissionId = 48,
                             RoleId = 1
                         },
@@ -1922,8 +1941,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 49,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2207),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2208),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4572),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4572),
                             PermissionId = 49,
                             RoleId = 1
                         },
@@ -1931,8 +1950,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 50,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2209),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2210),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4578),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4579),
                             PermissionId = 50,
                             RoleId = 1
                         },
@@ -1940,8 +1959,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 51,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2211),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2211),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4583),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4584),
                             PermissionId = 51,
                             RoleId = 1
                         },
@@ -1949,8 +1968,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 52,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2213),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2213),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4588),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4589),
                             PermissionId = 52,
                             RoleId = 1
                         },
@@ -1958,8 +1977,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 53,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2215),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2215),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4593),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4594),
                             PermissionId = 53,
                             RoleId = 1
                         },
@@ -1967,8 +1986,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 54,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2217),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2217),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4598),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4599),
                             PermissionId = 54,
                             RoleId = 1
                         },
@@ -1976,8 +1995,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 55,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2218),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2219),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4604),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4604),
                             PermissionId = 55,
                             RoleId = 1
                         },
@@ -1985,8 +2004,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 56,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2220),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2220),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4609),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4610),
                             PermissionId = 56,
                             RoleId = 1
                         },
@@ -1994,8 +2013,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 57,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2222),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2222),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4614),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4614),
                             PermissionId = 57,
                             RoleId = 1
                         },
@@ -2003,8 +2022,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 58,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2224),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2224),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4618),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4619),
                             PermissionId = 58,
                             RoleId = 1
                         },
@@ -2012,8 +2031,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 59,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2226),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2226),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4623),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4624),
                             PermissionId = 59,
                             RoleId = 1
                         },
@@ -2021,8 +2040,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 60,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2227),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2228),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4629),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4629),
                             PermissionId = 60,
                             RoleId = 1
                         },
@@ -2030,8 +2049,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 61,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2229),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2230),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4690),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4692),
                             PermissionId = 61,
                             RoleId = 1
                         },
@@ -2039,8 +2058,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 62,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2231),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2231),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4700),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4701),
                             PermissionId = 62,
                             RoleId = 1
                         },
@@ -2048,8 +2067,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 63,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2233),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2233),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4705),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4706),
                             PermissionId = 63,
                             RoleId = 1
                         },
@@ -2057,8 +2076,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 64,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2235),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2235),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4710),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4711),
                             PermissionId = 64,
                             RoleId = 1
                         },
@@ -2066,8 +2085,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 65,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2236),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2237),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4716),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4717),
                             PermissionId = 65,
                             RoleId = 1
                         },
@@ -2075,8 +2094,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 66,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2239),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2240),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4726),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4726),
                             PermissionId = 66,
                             RoleId = 1
                         },
@@ -2084,8 +2103,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 67,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2241),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2242),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4732),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4732),
                             PermissionId = 67,
                             RoleId = 1
                         },
@@ -2093,8 +2112,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 68,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2243),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2243),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4737),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4738),
                             PermissionId = 68,
                             RoleId = 1
                         },
@@ -2102,8 +2121,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 69,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2245),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2245),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4744),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4744),
                             PermissionId = 69,
                             RoleId = 1
                         },
@@ -2111,8 +2130,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 70,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2247),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2247),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4749),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4750),
                             PermissionId = 70,
                             RoleId = 1
                         },
@@ -2120,8 +2139,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 71,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2249),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2249),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4754),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4755),
                             PermissionId = 71,
                             RoleId = 1
                         },
@@ -2129,8 +2148,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 72,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2250),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2251),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4759),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4760),
                             PermissionId = 72,
                             RoleId = 1
                         },
@@ -2138,8 +2157,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 73,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2277),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2277),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4764),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4765),
                             PermissionId = 73,
                             RoleId = 1
                         },
@@ -2147,8 +2166,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 74,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2279),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2280),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4769),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4770),
                             PermissionId = 74,
                             RoleId = 1
                         },
@@ -2156,8 +2175,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 75,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2281),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2282),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4774),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4775),
                             PermissionId = 75,
                             RoleId = 1
                         },
@@ -2165,8 +2184,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 76,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2283),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2284),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4779),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4779),
                             PermissionId = 76,
                             RoleId = 1
                         },
@@ -2174,8 +2193,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 77,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2285),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2285),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4784),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4785),
                             PermissionId = 77,
                             RoleId = 1
                         },
@@ -2183,8 +2202,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 78,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2287),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2287),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4789),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4790),
                             PermissionId = 78,
                             RoleId = 1
                         },
@@ -2192,8 +2211,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 79,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2289),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2289),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4794),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4795),
                             PermissionId = 79,
                             RoleId = 1
                         },
@@ -2201,8 +2220,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 80,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2290),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2291),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4800),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4800),
                             PermissionId = 80,
                             RoleId = 1
                         },
@@ -2210,8 +2229,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 81,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2292),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2293),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4806),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4806),
                             PermissionId = 81,
                             RoleId = 1
                         },
@@ -2219,8 +2238,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 82,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2294),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2294),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4811),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4812),
                             PermissionId = 82,
                             RoleId = 1
                         },
@@ -2228,8 +2247,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 83,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2296),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2296),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4817),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4817),
                             PermissionId = 83,
                             RoleId = 1
                         },
@@ -2237,8 +2256,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 84,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2298),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2298),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4822),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4823),
                             PermissionId = 84,
                             RoleId = 1
                         },
@@ -2246,8 +2265,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 85,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2299),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2300),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4828),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4829),
                             PermissionId = 85,
                             RoleId = 1
                         },
@@ -2255,8 +2274,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 86,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2301),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2302),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4834),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4834),
                             PermissionId = 86,
                             RoleId = 1
                         },
@@ -2264,8 +2283,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 87,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2303),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2304),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4838),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4839),
                             PermissionId = 87,
                             RoleId = 1
                         },
@@ -2273,8 +2292,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 88,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2305),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2305),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4844),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4845),
                             PermissionId = 88,
                             RoleId = 1
                         },
@@ -2282,8 +2301,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 89,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2307),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2307),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4849),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4850),
                             PermissionId = 89,
                             RoleId = 1
                         },
@@ -2291,8 +2310,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 90,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2309),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2309),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4854),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4855),
                             PermissionId = 90,
                             RoleId = 1
                         },
@@ -2300,8 +2319,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 91,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2310),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2311),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4859),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4860),
                             PermissionId = 91,
                             RoleId = 1
                         },
@@ -2309,8 +2328,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 92,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2312),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2312),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4864),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4865),
                             PermissionId = 92,
                             RoleId = 1
                         },
@@ -2318,8 +2337,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 93,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2314),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2314),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4870),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4871),
                             PermissionId = 93,
                             RoleId = 1
                         },
@@ -2327,8 +2346,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 94,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2316),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2316),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4876),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4877),
                             PermissionId = 94,
                             RoleId = 1
                         },
@@ -2336,8 +2355,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 95,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2318),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2318),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4882),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4882),
                             PermissionId = 95,
                             RoleId = 1
                         },
@@ -2345,8 +2364,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 96,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2319),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2320),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4887),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4888),
                             PermissionId = 96,
                             RoleId = 1
                         },
@@ -2354,8 +2373,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 97,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2321),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2321),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4893),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4894),
                             PermissionId = 97,
                             RoleId = 1
                         },
@@ -2363,8 +2382,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 98,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2323),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2323),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4899),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4900),
                             PermissionId = 98,
                             RoleId = 1
                         },
@@ -2372,8 +2391,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 99,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2325),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2325),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4906),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4907),
                             PermissionId = 99,
                             RoleId = 1
                         },
@@ -2381,8 +2400,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 100,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2327),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2327),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4912),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4913),
                             PermissionId = 100,
                             RoleId = 1
                         },
@@ -2390,8 +2409,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 101,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2328),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2329),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4917),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4918),
                             PermissionId = 101,
                             RoleId = 1
                         },
@@ -2399,8 +2418,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 102,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2330),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2331),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4923),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4924),
                             PermissionId = 102,
                             RoleId = 1
                         },
@@ -2408,8 +2427,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 103,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2332),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2332),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4929),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4930),
                             PermissionId = 103,
                             RoleId = 1
                         },
@@ -2417,8 +2436,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 104,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2334),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2334),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4934),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4935),
                             PermissionId = 104,
                             RoleId = 1
                         },
@@ -2426,8 +2445,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 105,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2336),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2336),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4940),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4941),
                             PermissionId = 105,
                             RoleId = 1
                         },
@@ -2435,17 +2454,17 @@ namespace DataAccess.Migrations
                         {
                             Id = 106,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2615),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2616),
-                            PermissionId = 90,
-                            RoleId = 2
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4946),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4947),
+                            PermissionId = 106,
+                            RoleId = 1
                         },
                         new
                         {
                             Id = 107,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2921),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2921),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(5854),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(5857),
                             PermissionId = 91,
                             RoleId = 2
                         },
@@ -2453,8 +2472,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 108,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(3220),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(3221),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(6767),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(6770),
                             PermissionId = 92,
                             RoleId = 2
                         },
@@ -2462,8 +2481,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 109,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(3514),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(3515),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(7691),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(7695),
                             PermissionId = 93,
                             RoleId = 2
                         },
@@ -2471,17 +2490,17 @@ namespace DataAccess.Migrations
                         {
                             Id = 110,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(3825),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(3825),
-                            PermissionId = 96,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(8676),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(8679),
+                            PermissionId = 94,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 111,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(4122),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(4123),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(9659),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(9662),
                             PermissionId = 97,
                             RoleId = 2
                         },
@@ -2489,17 +2508,17 @@ namespace DataAccess.Migrations
                         {
                             Id = 112,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(4418),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(4419),
-                            PermissionId = 94,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(565),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(569),
+                            PermissionId = 98,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 113,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(4715),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(4715),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(1483),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(1485),
                             PermissionId = 95,
                             RoleId = 2
                         },
@@ -2507,17 +2526,17 @@ namespace DataAccess.Migrations
                         {
                             Id = 114,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(4898),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(4899),
-                            PermissionId = 57,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(2394),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(2397),
+                            PermissionId = 96,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 115,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(5155),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(5156),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(2922),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(2924),
                             PermissionId = 58,
                             RoleId = 2
                         },
@@ -2525,8 +2544,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 116,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(5402),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(5402),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(3712),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(3716),
                             PermissionId = 59,
                             RoleId = 2
                         },
@@ -2534,8 +2553,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 117,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(5654),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(5654),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(4490),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(4495),
                             PermissionId = 60,
                             RoleId = 2
                         },
@@ -2543,17 +2562,17 @@ namespace DataAccess.Migrations
                         {
                             Id = 118,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(5914),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(5915),
-                            PermissionId = 63,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(5280),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(5283),
+                            PermissionId = 61,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 119,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(6200),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(6200),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(6105),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(6109),
                             PermissionId = 64,
                             RoleId = 2
                         },
@@ -2561,17 +2580,17 @@ namespace DataAccess.Migrations
                         {
                             Id = 120,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(6440),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(6441),
-                            PermissionId = 61,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(6961),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(6965),
+                            PermissionId = 65,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 121,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(6694),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(6694),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(7736),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(7739),
                             PermissionId = 62,
                             RoleId = 2
                         },
@@ -2579,873 +2598,891 @@ namespace DataAccess.Migrations
                         {
                             Id = 122,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(6966),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(6966),
-                            PermissionId = 65,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(8522),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(8526),
+                            PermissionId = 63,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 123,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(7087),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(7087),
-                            PermissionId = 25,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(9378),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 229, DateTimeKind.Local).AddTicks(9381),
+                            PermissionId = 66,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 124,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(7270),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(7270),
-                            PermissionId = 26,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(143),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(147),
+                            PermissionId = 67,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 125,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(7476),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(7477),
-                            PermissionId = 27,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(1004),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(1006),
+                            PermissionId = 68,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 126,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(7661),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(7661),
-                            PermissionId = 28,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(1797),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(1802),
+                            PermissionId = 69,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 127,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(7855),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(7855),
-                            PermissionId = 31,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(2657),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(2660),
+                            PermissionId = 70,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 128,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(8048),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(8048),
-                            PermissionId = 32,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(3566),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(3569),
+                            PermissionId = 73,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 129,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(8220),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(8220),
-                            PermissionId = 29,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(4385),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(4388),
+                            PermissionId = 74,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 130,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(8414),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(8415),
-                            PermissionId = 30,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(5199),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(5202),
+                            PermissionId = 71,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 131,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(8685),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(8686),
-                            PermissionId = 66,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(6033),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(6036),
+                            PermissionId = 72,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 132,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(8940),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(8940),
-                            PermissionId = 67,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(6952),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(6956),
+                            PermissionId = 83,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 133,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(9222),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(9222),
-                            PermissionId = 68,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(7851),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(7856),
+                            PermissionId = 84,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 134,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(9480),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(9481),
-                            PermissionId = 69,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(8838),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(8842),
+                            PermissionId = 85,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 135,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(9750),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(9751),
-                            PermissionId = 72,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(9755),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 230, DateTimeKind.Local).AddTicks(9758),
+                            PermissionId = 86,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 136,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(16),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(16),
-                            PermissionId = 73,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(706),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(709),
+                            PermissionId = 89,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 137,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(268),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(269),
-                            PermissionId = 70,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(1687),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(1691),
+                            PermissionId = 90,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 138,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(526),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(527),
-                            PermissionId = 71,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(2533),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(2538),
+                            PermissionId = 87,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 139,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(818),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(818),
-                            PermissionId = 82,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(3467),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(3471),
+                            PermissionId = 88,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 140,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(1097),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(1097),
-                            PermissionId = 83,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(4219),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(4221),
+                            PermissionId = 75,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 141,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(1379),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(1380),
-                            PermissionId = 84,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(5093),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(5096),
+                            PermissionId = 76,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 142,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(1668),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(1669),
-                            PermissionId = 85,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(5949),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(5952),
+                            PermissionId = 77,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 143,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(1965),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(1966),
-                            PermissionId = 88,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(6822),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(6824),
+                            PermissionId = 78,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 144,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(2252),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(2252),
-                            PermissionId = 89,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(7761),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(7762),
+                            PermissionId = 81,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 145,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(2527),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(2528),
-                            PermissionId = 86,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(8621),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(8623),
+                            PermissionId = 82,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 146,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(2810),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(2811),
-                            PermissionId = 87,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(9429),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 231, DateTimeKind.Local).AddTicks(9432),
+                            PermissionId = 79,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 147,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(3047),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(3047),
-                            PermissionId = 74,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(285),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(287),
+                            PermissionId = 80,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 148,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(3310),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(3311),
-                            PermissionId = 75,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(1323),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(1328),
+                            PermissionId = 99,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 149,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(3581),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(3582),
-                            PermissionId = 76,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(2295),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(2300),
+                            PermissionId = 100,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 150,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(3899),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(3900),
-                            PermissionId = 77,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(3311),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(3314),
+                            PermissionId = 101,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 151,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(4181),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(4182),
-                            PermissionId = 80,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(4326),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(4329),
+                            PermissionId = 102,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 152,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(4464),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(4465),
-                            PermissionId = 81,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(5341),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(5345),
+                            PermissionId = 105,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 153,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(4723),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(4723),
-                            PermissionId = 78,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(6357),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(6361),
+                            PermissionId = 106,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 154,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(5009),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(5010),
-                            PermissionId = 79,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(7264),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(7269),
+                            PermissionId = 103,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 155,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(5715),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(5715),
-                            PermissionId = 98,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(8259),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(8264),
+                            PermissionId = 104,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 156,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(6021),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(6021),
-                            PermissionId = 99,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(8460),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(8463),
+                            PermissionId = 25,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 157,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(6333),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(6333),
-                            PermissionId = 100,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(8643),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(8645),
+                            PermissionId = 26,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 158,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(6918),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(6918),
-                            PermissionId = 101,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(8934),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(8936),
+                            PermissionId = 27,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 159,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(7384),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(7385),
-                            PermissionId = 104,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(9166),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(9168),
+                            PermissionId = 32,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 160,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(7701),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(7701),
-                            PermissionId = 105,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(9425),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(9427),
+                            PermissionId = 29,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 161,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(7991),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(7992),
-                            PermissionId = 102,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(9634),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(9636),
+                            PermissionId = 30,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 162,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(8297),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(8298),
-                            PermissionId = 103,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(9880),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 232, DateTimeKind.Local).AddTicks(9882),
+                            PermissionId = 33,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 163,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(8562),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(8563),
-                            PermissionId = 90,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(651),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(655),
+                            PermissionId = 91,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 164,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(8859),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(8859),
-                            PermissionId = 91,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(1575),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(1580),
+                            PermissionId = 92,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 165,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(9174),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(9174),
-                            PermissionId = 92,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(2723),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(2727),
+                            PermissionId = 93,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 166,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(9504),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(9505),
-                            PermissionId = 97,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(3797),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(3802),
+                            PermissionId = 98,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 167,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(9785),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 830, DateTimeKind.Local).AddTicks(9786),
-                            PermissionId = 94,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(4664),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(4666),
+                            PermissionId = 95,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 168,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(79),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(80),
-                            PermissionId = 95,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(5640),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(5642),
+                            PermissionId = 96,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 169,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(226),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(226),
-                            PermissionId = 57,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(6147),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(6149),
+                            PermissionId = 58,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 170,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(473),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(473),
-                            PermissionId = 58,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(6995),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(6997),
+                            PermissionId = 59,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 171,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(747),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(747),
-                            PermissionId = 59,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(7768),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(7771),
+                            PermissionId = 60,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 172,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(1016),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(1017),
-                            PermissionId = 64,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(8625),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(8627),
+                            PermissionId = 65,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 173,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(1254),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(1254),
-                            PermissionId = 61,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(9468),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 233, DateTimeKind.Local).AddTicks(9470),
+                            PermissionId = 62,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 174,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(1512),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(1512),
-                            PermissionId = 62,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(316),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(320),
+                            PermissionId = 63,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 175,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(1795),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(1795),
-                            PermissionId = 65,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(1190),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(1192),
+                            PermissionId = 66,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 176,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(2046),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(2046),
-                            PermissionId = 66,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(2004),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(2006),
+                            PermissionId = 67,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 177,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(2303),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(2304),
-                            PermissionId = 67,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(2887),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(2889),
+                            PermissionId = 68,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 178,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(2560),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(2560),
-                            PermissionId = 68,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(3697),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(3701),
+                            PermissionId = 69,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 179,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(2842),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(2843),
-                            PermissionId = 73,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(4590),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(4593),
+                            PermissionId = 74,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 180,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(3091),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(3092),
-                            PermissionId = 70,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(5348),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(5352),
+                            PermissionId = 71,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 181,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(3353),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(3353),
-                            PermissionId = 71,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(6190),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(6194),
+                            PermissionId = 72,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 182,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(3650),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(3650),
-                            PermissionId = 82,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(7213),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(7216),
+                            PermissionId = 83,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 183,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(3927),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(3927),
-                            PermissionId = 83,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(8127),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(8131),
+                            PermissionId = 84,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 184,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(4227),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(4227),
-                            PermissionId = 84,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(9063),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 234, DateTimeKind.Local).AddTicks(9066),
+                            PermissionId = 85,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 185,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(4527),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(4528),
-                            PermissionId = 89,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 235, DateTimeKind.Local).AddTicks(99),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 235, DateTimeKind.Local).AddTicks(102),
+                            PermissionId = 90,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 186,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(4805),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(4805),
-                            PermissionId = 86,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 235, DateTimeKind.Local).AddTicks(1283),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 235, DateTimeKind.Local).AddTicks(1293),
+                            PermissionId = 87,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 187,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(5086),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(5086),
-                            PermissionId = 87,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 235, DateTimeKind.Local).AddTicks(2281),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 235, DateTimeKind.Local).AddTicks(2283),
+                            PermissionId = 88,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 188,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(5321),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(5321),
-                            PermissionId = 74,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 235, DateTimeKind.Local).AddTicks(3071),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 235, DateTimeKind.Local).AddTicks(3072),
+                            PermissionId = 75,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 189,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(5597),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(5598),
-                            PermissionId = 75,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 235, DateTimeKind.Local).AddTicks(3950),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 235, DateTimeKind.Local).AddTicks(3951),
+                            PermissionId = 76,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 190,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(5868),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(5868),
-                            PermissionId = 76,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 235, DateTimeKind.Local).AddTicks(6821),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 235, DateTimeKind.Local).AddTicks(6826),
+                            PermissionId = 77,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 191,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(6157),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(6157),
-                            PermissionId = 81,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 235, DateTimeKind.Local).AddTicks(8602),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 235, DateTimeKind.Local).AddTicks(8606),
+                            PermissionId = 82,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 192,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(6414),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(6415),
-                            PermissionId = 78,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 235, DateTimeKind.Local).AddTicks(9468),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 235, DateTimeKind.Local).AddTicks(9469),
+                            PermissionId = 79,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 193,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(6687),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(6687),
-                            PermissionId = 79,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 236, DateTimeKind.Local).AddTicks(368),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 236, DateTimeKind.Local).AddTicks(369),
+                            PermissionId = 80,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 194,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(7026),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(7026),
-                            PermissionId = 98,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 236, DateTimeKind.Local).AddTicks(1841),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 236, DateTimeKind.Local).AddTicks(1849),
+                            PermissionId = 99,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 195,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(7332),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(7333),
-                            PermissionId = 99,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 249, DateTimeKind.Local).AddTicks(5258),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 249, DateTimeKind.Local).AddTicks(5277),
+                            PermissionId = 100,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 196,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(7640),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(7641),
-                            PermissionId = 100,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 249, DateTimeKind.Local).AddTicks(6274),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 249, DateTimeKind.Local).AddTicks(6277),
+                            PermissionId = 101,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 197,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(7976),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(7976),
-                            PermissionId = 105,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 249, DateTimeKind.Local).AddTicks(7257),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 249, DateTimeKind.Local).AddTicks(7259),
+                            PermissionId = 106,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 198,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(8270),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(8270),
-                            PermissionId = 102,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 249, DateTimeKind.Local).AddTicks(8137),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 249, DateTimeKind.Local).AddTicks(8139),
+                            PermissionId = 103,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 199,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(8607),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(8607),
-                            PermissionId = 103,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 249, DateTimeKind.Local).AddTicks(9080),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 249, DateTimeKind.Local).AddTicks(9083),
+                            PermissionId = 104,
                             RoleId = 3
                         },
                         new
                         {
                             Id = 200,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(8873),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(8874),
-                            PermissionId = 91,
-                            RoleId = 4
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 249, DateTimeKind.Local).AddTicks(9401),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 249, DateTimeKind.Local).AddTicks(9403),
+                            PermissionId = 33,
+                            RoleId = 3
                         },
                         new
                         {
                             Id = 201,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(9200),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(9201),
-                            PermissionId = 97,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(212),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(215),
+                            PermissionId = 92,
                             RoleId = 4
                         },
                         new
                         {
                             Id = 202,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(9484),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(9484),
-                            PermissionId = 95,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(1236),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(1239),
+                            PermissionId = 98,
                             RoleId = 4
                         },
                         new
                         {
                             Id = 203,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(9630),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(9631),
-                            PermissionId = 58,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(2154),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(2156),
+                            PermissionId = 96,
                             RoleId = 4
                         },
                         new
                         {
                             Id = 204,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(9929),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 831, DateTimeKind.Local).AddTicks(9929),
-                            PermissionId = 64,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(2674),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(2676),
+                            PermissionId = 59,
                             RoleId = 4
                         },
                         new
                         {
                             Id = 205,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(173),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(173),
-                            PermissionId = 62,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(3524),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(3526),
+                            PermissionId = 65,
                             RoleId = 4
                         },
                         new
                         {
                             Id = 206,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(444),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(444),
-                            PermissionId = 65,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(5982),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(5984),
+                            PermissionId = 63,
                             RoleId = 4
                         },
                         new
                         {
                             Id = 207,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(691),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(692),
-                            PermissionId = 67,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(6690),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(6691),
+                            PermissionId = 66,
                             RoleId = 4
                         },
                         new
                         {
                             Id = 208,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(971),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(971),
-                            PermissionId = 73,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(7390),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(7392),
+                            PermissionId = 68,
                             RoleId = 4
                         },
                         new
                         {
                             Id = 209,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(1222),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(1222),
-                            PermissionId = 71,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(8194),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(8196),
+                            PermissionId = 74,
                             RoleId = 4
                         },
                         new
                         {
                             Id = 210,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(1519),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(1519),
-                            PermissionId = 83,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(8941),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 250, DateTimeKind.Local).AddTicks(8944),
+                            PermissionId = 72,
                             RoleId = 4
                         },
                         new
                         {
                             Id = 211,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(1826),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(1826),
-                            PermissionId = 89,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(297),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(302),
+                            PermissionId = 84,
                             RoleId = 4
                         },
                         new
                         {
                             Id = 212,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(2110),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(2110),
-                            PermissionId = 87,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(1253),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(1257),
+                            PermissionId = 90,
                             RoleId = 4
                         },
                         new
                         {
                             Id = 213,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(2349),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(2349),
-                            PermissionId = 75,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(2086),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(2111),
+                            PermissionId = 88,
                             RoleId = 4
                         },
                         new
                         {
                             Id = 214,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(2634),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(2635),
-                            PermissionId = 81,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(2826),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(2830),
+                            PermissionId = 76,
                             RoleId = 4
                         },
                         new
                         {
                             Id = 215,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(2894),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(2895),
-                            PermissionId = 79,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(3733),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(3737),
+                            PermissionId = 82,
                             RoleId = 4
                         },
                         new
                         {
                             Id = 216,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(3253),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(3253),
-                            PermissionId = 99,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(4494),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(4498),
+                            PermissionId = 80,
                             RoleId = 4
                         },
                         new
                         {
                             Id = 217,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(3578),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(3578),
-                            PermissionId = 105,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(5546),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(5549),
+                            PermissionId = 100,
                             RoleId = 4
                         },
                         new
                         {
                             Id = 218,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(3876),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(3876),
-                            PermissionId = 103,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(6564),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(6568),
+                            PermissionId = 106,
+                            RoleId = 4
+                        },
+                        new
+                        {
+                            Id = 219,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(7525),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(7528),
+                            PermissionId = 104,
+                            RoleId = 4
+                        },
+                        new
+                        {
+                            Id = 220,
+                            Active = true,
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(7810),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(7811),
+                            PermissionId = 33,
                             RoleId = 4
                         });
                 });
@@ -3480,40 +3517,40 @@ namespace DataAccess.Migrations
                         {
                             Id = 1,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2052),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2053),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4096),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4098),
                             Name = "SuperAdmin"
                         },
                         new
                         {
                             Id = 2,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2055),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2055),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4106),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4106),
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 3,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2056),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2056),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4108),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4109),
                             Name = "User"
                         },
                         new
                         {
                             Id = 4,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2057),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2057),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4111),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4112),
                             Name = "Invited"
                         },
                         new
                         {
                             Id = 5,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2058),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 829, DateTimeKind.Local).AddTicks(2058),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4113),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 228, DateTimeKind.Local).AddTicks(4114),
                             Name = "Custom"
                         });
                 });
@@ -3554,8 +3591,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 1,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(4059),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(4059),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(8689),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(8690),
                             RoleId = 1,
                             UserId = 1
                         },
@@ -3563,8 +3600,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 2,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(4099),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(4099),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(8731),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(8732),
                             RoleId = 2,
                             UserId = 2
                         },
@@ -3572,8 +3609,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 3,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(4104),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(4104),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(8746),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(8747),
                             RoleId = 3,
                             UserId = 3
                         },
@@ -3581,8 +3618,8 @@ namespace DataAccess.Migrations
                         {
                             Id = 4,
                             Active = true,
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(4108),
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(4109),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(8759),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(8761),
                             RoleId = 4,
                             UserId = 4
                         });
@@ -3752,6 +3789,9 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Photo")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
@@ -3762,10 +3802,10 @@ namespace DataAccess.Migrations
                             Id = 1,
                             Active = true,
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(4023),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(8538),
                             Email = "sa@gmail.com",
                             LastName = "sa",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(4023),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(8540),
                             Name = "sa",
                             Password = "sa",
                             PhoneNumber = "9919596720"
@@ -3775,10 +3815,10 @@ namespace DataAccess.Migrations
                             Id = 2,
                             Active = true,
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(4037),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(8611),
                             Email = "admin@gmail.com",
                             LastName = "admin",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(4038),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(8612),
                             Name = "admin",
                             Password = "admin",
                             PhoneNumber = "9919596720"
@@ -3788,10 +3828,10 @@ namespace DataAccess.Migrations
                             Id = 3,
                             Active = true,
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(4047),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(8642),
                             Email = "alvaroku123@gmail.com",
                             LastName = "Kú",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(4047),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(8643),
                             Name = "Alvaro",
                             Password = "12345",
                             PhoneNumber = "9919596720"
@@ -3801,10 +3841,10 @@ namespace DataAccess.Migrations
                             Id = 4,
                             Active = true,
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(4055),
+                            CreationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(8671),
                             Email = "invitado@gmail.com",
                             LastName = "Invitado",
-                            ModificationDate = new DateTime(2023, 7, 25, 22, 28, 10, 832, DateTimeKind.Local).AddTicks(4056),
+                            ModificationDate = new DateTime(2023, 7, 26, 22, 1, 32, 251, DateTimeKind.Local).AddTicks(8673),
                             Name = "Invitado",
                             Password = "12345",
                             PhoneNumber = "9919596720"

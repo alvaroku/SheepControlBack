@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Entities.DTOs;
 using Business.Utils;
+using Microsoft.Extensions.Hosting;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,10 +15,14 @@ namespace SheepControlApi.Controllers
     {
         IUserBusiness _Business { get; set; }
         IAuthenticationBusiness _AuthenticationBusiness { get; set; }
-        public UserController(IUserBusiness userBusiness, IAuthenticationBusiness authenticationBusiness)
+        IWebHostEnvironment _HostEnvironment;
+        string _fullPathImage = string.Empty;
+        public UserController(IUserBusiness userBusiness, IWebHostEnvironment hostEnvironment, IAuthenticationBusiness authenticationBusiness)
         {
             _Business = userBusiness;
             _AuthenticationBusiness = authenticationBusiness;
+            _HostEnvironment = hostEnvironment;
+            _fullPathImage = Path.Combine(_HostEnvironment.WebRootPath, Constants.USERIMAGEPATH);
         }
         // GET: api/<UserController>
         [HttpGet]
@@ -33,7 +38,13 @@ namespace SheepControlApi.Controllers
             }
             return Ok(_Business.Read());
         }
-
+        [HttpGet("GetImage/{imageName}")]
+        public IActionResult GetImage(string imageName)
+        {
+            var filePath = Path.Combine(_HostEnvironment.WebRootPath, Constants.USERIMAGEPATH + imageName);
+            var fileStream = new FileStream(filePath, FileMode.Open);
+            return File(fileStream, "image/jpeg");
+        }
         // GET api/<UserController>/5
         [HttpGet("{id}")]
         public string Get(int id)
@@ -72,7 +83,30 @@ namespace SheepControlApi.Controllers
             var response = _Business.Update(id,request);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
+        [HttpPut("UpdateProfile/{id}")]
+        public IActionResult UpdateProfile(int id,[FromForm] ProfileRequest request)
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
 
+            var responseAuth = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_UPDATEPROFILE);
+
+            if (!responseAuth.Success)
+            {
+                return StatusCode(responseAuth.StatusCode, responseAuth);
+            }
+
+            if (request.ImageFile != null)
+            {
+                if (!string.IsNullOrEmpty(request.Photo))
+                {
+                    FileManager.DeleteFile(Path.Combine(_fullPathImage, request.Photo));
+                }
+                request.Photo = FileManager.UploadImage(_fullPathImage, request.ImageFile);
+            }
+
+            var response = _Business.Update(id, request);
+            return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
+        }//UpdateProfile
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
         //[Authorize]//para que solo tenga acceso cuando se envie un token válido
@@ -101,6 +135,13 @@ namespace SheepControlApi.Controllers
         public IActionResult GetEmailFromToken(EmailRequest request)
         {
             var response = _AuthenticationBusiness.GetEmailFromToken(request);
+            return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
+        }
+        [HttpPost("GetProfileInfoByToken")]
+        public IActionResult GetProfileInfoByToken()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            var response = _AuthenticationBusiness.GetProfileInfoByToken(identity);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
         [HttpGet("ToggleActive/{id}")]

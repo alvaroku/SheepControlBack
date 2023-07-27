@@ -69,6 +69,25 @@ namespace Business.Implementations
 
             return response;
         }
+        public Response<ProfileResponse> Update(int id, ProfileRequest request)
+        {
+            Response<ProfileResponse> response = new Response<ProfileResponse>();
+
+            User u = _Repository.GetById(id);
+
+            u.ModificationDate = DateTime.Now;
+            u.Name = request.Name;
+            u.BirthDate = request.BirthDate;
+            u.LastName = request.LastName;
+            u.PhoneNumber = request.PhoneNumber;
+            u.Email = request.Email;
+            u.Photo = request.Photo;
+            _Repository.Update(u);
+
+            response.Data = Mapper.Map<ProfileResponse>(u);
+
+            return response;
+        }
         public Response<bool> Delete(int id)
         {
 

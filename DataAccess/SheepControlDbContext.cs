@@ -53,7 +53,8 @@ namespace DataAccess
             string ACTION_TOGGLEACTIVE = "ToggleActive";
             string ACTION_GETBYID = "GetById";
             string ACTION_DELETEALL = "DeleteAll";
-            string ACTION_GETSHEEPWITHFINALWEIGHT = "GetSheepWithFinalWeight";
+            string ACTION_GETSHEEPWITHFINALWEIGHT = "GetSheepWithFinalWeight";//solo para sheep
+            string ACTION_UPDATEPROFILE = "UpdateProfile";
             #endregion
 
             #region Roles
@@ -65,7 +66,7 @@ namespace DataAccess
             #endregion
 
             string[] _Controllers = new string[] { CONTROLLER_ACTION, CONTROLLER_CONTROLLER, CONTROLLER_PERMISSION, CONTROLLER_USER, CONTROLLER_PERMISSIONROLE, CONTROLLER_ROLE, CONTROLLER_ROLEUSER, CONTROLLER_SHEEP, CONTROLLER_VACCINE, CONTROLLER_VACCINESTOCK, CONTROLLER_VACCINESHEEP, CONTROLLER_SALESHEEP, CONTROLLER_SHEEPHISTORICWEIGHT };
-            string[] _Actions = new string[] { ACTION_CREATE, ACTION_READ, ACTION_UPDATE, ACTION_DELETE, ACTION_TOGGLEACTIVE, ACTION_GETBYID, ACTION_DELETEALL, ACTION_READWITHFILTERS, ACTION_GETSHEEPWITHFINALWEIGHT };
+            string[] _Actions = new string[] { ACTION_CREATE, ACTION_READ, ACTION_UPDATE, ACTION_DELETE, ACTION_TOGGLEACTIVE, ACTION_GETBYID, ACTION_DELETEALL, ACTION_READWITHFILTERS, ACTION_GETSHEEPWITHFINALWEIGHT,ACTION_UPDATEPROFILE };
             string[] _Roles = new string[] { ROLE_SUPERADMIN, ROLE_ADMIN, ROLE_USER, ROLE_INVITED, ROLE_CUSTOM };
 
 
@@ -101,7 +102,7 @@ namespace DataAccess
             {
                 foreach (var a in actions)
                 {
-                    if (!a.Name.Equals(ACTION_GETSHEEPWITHFINALWEIGHT))
+                    if (!a.Name.Equals(ACTION_GETSHEEPWITHFINALWEIGHT) && !a.Name.Equals(ACTION_UPDATEPROFILE))
                     {
                         contPermissionId++;
                         permissions.Add(new Permission { Id = contPermissionId, Active = true, CreationDate = DateTime.Now, ModificationDate = DateTime.Now, ControllerId = c.Id, ActionId = a.Id, Clave = $"{c.Name}_{a.Name}", Description = $"Permiso para el módulo {c.Name} y la acción {a.Name}" });
@@ -112,6 +113,11 @@ namespace DataAccess
                 {
                     contPermissionId++;
                     permissions.Add(new Permission { Id = contPermissionId, Active = true, CreationDate = DateTime.Now, ModificationDate = DateTime.Now, ControllerId = c.Id, ActionId = actions.Where(x => x.Name.Equals(ACTION_GETSHEEPWITHFINALWEIGHT)).First().Id, Clave = $"{c.Name}_{actions.Where(x => x.Name.Equals(ACTION_GETSHEEPWITHFINALWEIGHT)).First().Name}", Description = $"Permiso para el módulo {c.Name} y la acción {actions.Where(x => x.Name.Equals(ACTION_GETSHEEPWITHFINALWEIGHT)).First().Name}" });
+                }
+                if (c.Name.Equals(CONTROLLER_USER))
+                {
+                    contPermissionId++;
+                    permissions.Add(new Permission { Id = contPermissionId, Active = true, CreationDate = DateTime.Now, ModificationDate = DateTime.Now, ControllerId = c.Id, ActionId = actions.Where(x => x.Name.Equals(ACTION_UPDATEPROFILE)).First().Id, Clave = $"{c.Name}_{actions.Where(x => x.Name.Equals(ACTION_UPDATEPROFILE)).First().Name}", Description = $"Permiso para el módulo {c.Name} y la acción {actions.Where(x => x.Name.Equals(ACTION_UPDATEPROFILE)).First().Name}" });
                 }
             }
             modelBuilder.Entity<Permission>().HasData(permissions);
@@ -142,7 +148,7 @@ namespace DataAccess
             }
 
             //para el admin
-            var controllersForAdmin = new string[] { CONTROLLER_SALESHEEP, CONTROLLER_SHEEP, CONTROLLER_USER, CONTROLLER_VACCINE, CONTROLLER_VACCINESHEEP, CONTROLLER_VACCINESTOCK, CONTROLLER_SHEEPHISTORICWEIGHT };
+            var controllersForAdmin = new string[] { CONTROLLER_SALESHEEP, CONTROLLER_SHEEP, CONTROLLER_VACCINE, CONTROLLER_VACCINESHEEP, CONTROLLER_VACCINESTOCK, CONTROLLER_SHEEPHISTORICWEIGHT };
             var actionsForAdmin = new string[] { ACTION_CREATE, ACTION_READ, ACTION_UPDATE, ACTION_DELETE, ACTION_DELETEALL, ACTION_READWITHFILTERS, ACTION_TOGGLEACTIVE, ACTION_GETBYID };
             foreach (var c in controllersForAdmin)
             {
@@ -161,10 +167,39 @@ namespace DataAccess
                         );
                 }
             }
+            //adicional para el admin
+            contPermisionRoleId++;
+            permisionRole.Add(
+                permissions.Where(x => (x.ControllerId == controllers.Where(y => y.Name == CONTROLLER_USER).First().Id) && (x.ActionId == actions.Where(d => d.Name == ACTION_CREATE).First().Id)).Select(a => new PermissionRole { Active = true, Id = contPermisionRoleId, CreationDate = DateTime.Now, ModificationDate = DateTime.Now, PermissionId = a.Id, RoleId = roles.Where(r => r.Name.Equals(ROLE_ADMIN)).First().Id }).First()
+                );
+            contPermisionRoleId++;
+            permisionRole.Add(
+                permissions.Where(x => (x.ControllerId == controllers.Where(y => y.Name == CONTROLLER_USER).First().Id) && (x.ActionId == actions.Where(d => d.Name == ACTION_READ).First().Id)).Select(a => new PermissionRole { Active = true, Id = contPermisionRoleId, CreationDate = DateTime.Now, ModificationDate = DateTime.Now, PermissionId = a.Id, RoleId = roles.Where(r => r.Name.Equals(ROLE_ADMIN)).First().Id }).First()
+                );
+            contPermisionRoleId++;
+            permisionRole.Add(
+                permissions.Where(x => (x.ControllerId == controllers.Where(y => y.Name == CONTROLLER_USER).First().Id) && (x.ActionId == actions.Where(d => d.Name == ACTION_UPDATE).First().Id)).Select(a => new PermissionRole { Active = true, Id = contPermisionRoleId, CreationDate = DateTime.Now, ModificationDate = DateTime.Now, PermissionId = a.Id, RoleId = roles.Where(r => r.Name.Equals(ROLE_ADMIN)).First().Id }).First()
+                );
+            contPermisionRoleId++;
+            permisionRole.Add(
+                permissions.Where(x => (x.ControllerId == controllers.Where(y => y.Name == CONTROLLER_USER).First().Id) && (x.ActionId == actions.Where(d => d.Name == ACTION_READWITHFILTERS).First().Id)).Select(a => new PermissionRole { Active = true, Id = contPermisionRoleId, CreationDate = DateTime.Now, ModificationDate = DateTime.Now, PermissionId = a.Id, RoleId = roles.Where(r => r.Name.Equals(ROLE_ADMIN)).First().Id }).First()
+                );
+            contPermisionRoleId++;
+            permisionRole.Add(
+                permissions.Where(x => (x.ControllerId == controllers.Where(y => y.Name == CONTROLLER_USER).First().Id) && (x.ActionId == actions.Where(d => d.Name == ACTION_TOGGLEACTIVE).First().Id)).Select(a => new PermissionRole { Active = true, Id = contPermisionRoleId, CreationDate = DateTime.Now, ModificationDate = DateTime.Now, PermissionId = a.Id, RoleId = roles.Where(r => r.Name.Equals(ROLE_ADMIN)).First().Id }).First()
+                );
+            contPermisionRoleId++;
+            permisionRole.Add(
+                permissions.Where(x => (x.ControllerId == controllers.Where(y => y.Name == CONTROLLER_USER).First().Id) && (x.ActionId == actions.Where(d => d.Name == ACTION_GETBYID).First().Id)).Select(a => new PermissionRole { Active = true, Id = contPermisionRoleId, CreationDate = DateTime.Now, ModificationDate = DateTime.Now, PermissionId = a.Id, RoleId = roles.Where(r => r.Name.Equals(ROLE_ADMIN)).First().Id }).First()
+                );
+            contPermisionRoleId++;
+            permisionRole.Add(
+                permissions.Where(x => (x.ControllerId == controllers.Where(y => y.Name == CONTROLLER_USER).First().Id) && (x.ActionId == actions.Where(d => d.Name == ACTION_UPDATEPROFILE).First().Id)).Select(a => new PermissionRole { Active = true, Id = contPermisionRoleId, CreationDate = DateTime.Now, ModificationDate = DateTime.Now, PermissionId = a.Id, RoleId = roles.Where(r => r.Name.Equals(ROLE_ADMIN)).First().Id }).First()
+                );
 
             //para el user
-            var controllersForUser = new string[] { CONTROLLER_SALESHEEP, CONTROLLER_SHEEP, CONTROLLER_VACCINE, CONTROLLER_VACCINESHEEP, CONTROLLER_VACCINESTOCK, CONTROLLER_SHEEPHISTORICWEIGHT };
-            var actionsForUser = new string[] { ACTION_CREATE, ACTION_READ, ACTION_UPDATE, ACTION_READWITHFILTERS, ACTION_TOGGLEACTIVE, ACTION_GETBYID };
+            var controllersForUser = new string[] { CONTROLLER_SALESHEEP, CONTROLLER_SHEEP, CONTROLLER_VACCINE, CONTROLLER_VACCINESHEEP, CONTROLLER_VACCINESTOCK, CONTROLLER_SHEEPHISTORICWEIGHT};
+            var actionsForUser = new string[] { ACTION_CREATE, ACTION_READ, ACTION_UPDATE, ACTION_READWITHFILTERS, ACTION_TOGGLEACTIVE, ACTION_GETBYID};
             foreach (var c in controllersForUser)
             {
                 foreach (var ac in actionsForUser)
@@ -183,9 +218,15 @@ namespace DataAccess
                 }
             }
 
+            //Adicional para el user
+            contPermisionRoleId++;
+            permisionRole.Add(
+                permissions.Where(x => (x.ControllerId == controllers.Where(y => y.Name == CONTROLLER_USER).First().Id) && (x.ActionId == actions.Where(d => d.Name == ACTION_UPDATEPROFILE).First().Id)).Select(a => new PermissionRole { Active = true, Id = contPermisionRoleId, CreationDate = DateTime.Now, ModificationDate = DateTime.Now, PermissionId = a.Id, RoleId = roles.Where(r => r.Name.Equals(ROLE_USER)).First().Id }).First()
+                );
+
             //para el invited
             var controllersForInvited = new string[] { CONTROLLER_SALESHEEP, CONTROLLER_SHEEP, CONTROLLER_VACCINE, CONTROLLER_VACCINESHEEP, CONTROLLER_VACCINESTOCK, CONTROLLER_SHEEPHISTORICWEIGHT };
-            var actionsForInvited = new string[] { ACTION_READ, ACTION_READWITHFILTERS, ACTION_GETBYID };
+            var actionsForInvited = new string[] { ACTION_READ, ACTION_READWITHFILTERS, ACTION_GETBYID};
             foreach (var c in controllersForInvited)
             {
                 foreach (var ac in actionsForInvited)
@@ -203,6 +244,13 @@ namespace DataAccess
                         );
                 }
             }
+
+            //Adicional para el invited
+            contPermisionRoleId++;
+            permisionRole.Add(
+                permissions.Where(x => (x.ControllerId == controllers.Where(y => y.Name == CONTROLLER_USER).First().Id) && (x.ActionId == actions.Where(d => d.Name == ACTION_UPDATEPROFILE).First().Id)).Select(a => new PermissionRole { Active = true, Id = contPermisionRoleId, CreationDate = DateTime.Now, ModificationDate = DateTime.Now, PermissionId = a.Id, RoleId = roles.Where(r => r.Name.Equals(ROLE_INVITED)).First().Id }).First()
+                );
+
             modelBuilder.Entity<PermissionRole>().HasData(permisionRole);
 
             //usuarios base

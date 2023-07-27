@@ -10,6 +10,7 @@ namespace Business.Utils
     {
         public static string SHEEPIMAGEPATH = "imgs/sheep/";
         public static string VACCINEIMAGEPATH = "imgs/vaccine/";
+        public static string USERIMAGEPATH = "imgs/user/";
 
         public static string CreateSuccesMessage = "Datos registrados correctamente.";
         public static string UpdateSuccesMessage = "Datos actualizados correctamente.";
@@ -48,6 +49,8 @@ namespace Business.Utils
         public static string ACTION_TOGGLEACTIVE = "ToggleActive";
         public static string ACTION_GETBYID = "GetById";
         public static string ACTION_DELETEALL = "DeleteAll";
+
+        public static string ACTION_UPDATEPROFILE = "UpdateProfile";
         #endregion
 
         #region Roles
