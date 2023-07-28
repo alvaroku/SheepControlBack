@@ -106,7 +106,21 @@ namespace SheepControlApi.Controllers
 
             var response = _Business.Update(id, request);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
-        }//UpdateProfile
+        }
+        [HttpPut("ChangePassword/{id}")]
+        public IActionResult ChangePassword(int id,ChangePasswordRequest request)
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var responseAuth = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_UPDATEPROFILE);
+
+            if (!responseAuth.Success)
+            {
+                return StatusCode(responseAuth.StatusCode, responseAuth);
+            }
+            var response = _Business.ChangePassword(id, request);
+            return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
+        }
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
         //[Authorize]//para que solo tenga acceso cuando se envie un token válido

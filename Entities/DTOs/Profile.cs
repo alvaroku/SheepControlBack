@@ -27,4 +27,9 @@ namespace Entities.DTOs
         public string Photo { get; set; }
         public IFormFile? ImageFile { get; set; }
     }
+    public class ChangePasswordRequest : ObjetoBase
+    {
+        public string CurrentPassword { get; set; }
+        public string NewPassword { get; set; }
+    }
 }

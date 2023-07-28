@@ -79,5 +79,88 @@ namespace Business.Utils
         string USER_USER_EMAIL = "alvaroku123@gmail.com";
         string USER_USER_PASSWORD = "12345";
         string USER_USER_PHONE = "9919596720";
+
+
+
+        public static string plantillaEmailRecoveryPassword = @"
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset='UTF-8'>
+        <title>Sheep Control</title>
+    </head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333333;
+        }
+
+        p {
+            color: #666666;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+    </style>
+    <body>
+        <h1>¡Hola! {name}</h1>
+        <p>Haz solicitado la recuperación de tu contraseña.</p>
+        <p>Tu contraseña es: {password}</p>
+<a href=""https://projectsheepcontrol.web.app/login.html"" class=""button"">Iniciar sesión</a>
+    </body>
+    </html>
+";
+        public static string plantillaEmailDataAccess = @"
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset='UTF-8'>
+        <title>Sheep Control</title>
+    </head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333333;
+        }
+
+        p {
+            color: #666666;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+    </style>
+    <body>
+        <h1>¡Hola! {name}</h1>
+        <p>Bienvenido a Sheep Control</p>
+<p>{message}</p>
+<p>Correo: {email}</p>
+        <p>Contraseña: {password}</p>
+<a href=""https://projectsheepcontrol.web.app/login.html"" class=""button"">Iniciar sesión</a>
+    </body>
+    </html>
+";
     }
 }

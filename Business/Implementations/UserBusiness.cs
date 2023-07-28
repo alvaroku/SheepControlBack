@@ -5,17 +5,17 @@ using DataAccess;
 using DataAccess.Implementations;
 using Entities;
 using Entities.DTOs;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Business.Implementations
 {
     public class UserBusiness : IUserBusiness
     {
         UserRepository _Repository { get; set; }
+
         public UserBusiness(SheepControlDbContext context)
         {
-
             _Repository = new UserRepository(context);
-
         }
         public Response<UserResponse> Create(UserRequest userRequest)
         {
@@ -29,6 +29,7 @@ namespace Business.Implementations
                 _Repository.Create(newUser);
 
                 response.Data = Mapper.Map<UserResponse>(newUser);
+                Utils.EmailSender.SendEmailDataAccess(newUser.Name, newUser.Email, newUser.Password, "Por este medio te proporcionamos tus datos de acceso para que puedas ingresar al sistema.", "Datos de acceso Sheep Control");
             }
             catch (Exception ex)
             {
@@ -55,6 +56,8 @@ namespace Business.Implementations
 
             User u = _Repository.GetById(id);
 
+            bool changes = (u.Email != request.Email || u.Password != request.Password)?true:false;
+
             u.ModificationDate = DateTime.Now;
             u.Name = request.Name;
             u.BirthDate = request.BirthDate;
@@ -67,6 +70,11 @@ namespace Business.Implementations
 
             response.Data = Mapper.Map<UserResponse>(u);
 
+            if (changes)
+            {
+                Utils.EmailSender.SendEmailDataAccess(response.Data.Name,response.Data.Email,response.Data.Password,"Hemos detectado cambios en tus datos de acceso, por lo que nuevamente te los propocionamos.", "Cambios datos de acceso Sheep Control");
+            }
+
             return response;
         }
         public Response<ProfileResponse> Update(int id, ProfileRequest request)
@@ -75,16 +83,54 @@ namespace Business.Implementations
 
             User u = _Repository.GetById(id);
 
+            bool changes = (u.Email != request.Email) ? true : false;
+
             u.ModificationDate = DateTime.Now;
             u.Name = request.Name;
             u.BirthDate = request.BirthDate;
             u.LastName = request.LastName;
             u.PhoneNumber = request.PhoneNumber;
             u.Email = request.Email;
-            u.Photo = request.Photo;
+            u.Photo = (string.IsNullOrEmpty(request.Photo) || request.Photo == "null")?null:request.Photo;
             _Repository.Update(u);
 
             response.Data = Mapper.Map<ProfileResponse>(u);
+
+            if (changes)
+            {
+                Utils.EmailSender.SendEmailDataAccess(response.Data.Name, response.Data.Email, u.Password, "Hemos detectado cambios en tus datos de acceso, por lo que nuevamente te los propocionamos.", "Cambios datos de acceso Sheep Control");
+            }
+
+            return response;
+        }
+        public Response<bool> ChangePassword(int id, ChangePasswordRequest request)
+        {
+            Response<bool> response = new Response<bool>();
+
+            User u = _Repository.GetById(id);
+            if (u.Password != request.CurrentPassword)
+            {
+                response.Success = false;
+                response.Message = "La contraseña actual es incorrecta.";
+                response.StatusCode = (int)EnumStatusCode.BadRequest;
+                return response;
+            }
+            bool changes = (u.Password != request.NewPassword ) ? true : false;
+
+            if (changes)
+            {
+                u.Password = request.NewPassword;
+                _Repository.Update(u);
+                response.Message = "Contraseña actualizada.";
+                Utils.EmailSender.SendEmailDataAccess(u.Name,u.Email,u.Password, "Hemos detectado cambios en tus datos de acceso, por lo que nuevamente te los propocionamos.", "Cambios datos de acceso Sheep Control");
+            }
+            else
+            {
+                response.Success = false;
+                response.StatusCode= (int)EnumStatusCode.BadRequest;
+                response.Message = "La contraseña actual es la misma que la nueva.";
+            }
+            
 
             return response;
         }
@@ -123,48 +169,7 @@ namespace Business.Implementations
                 }
                 response.Message = "La contraseña se ha enviado al correo ingresado";
 
-                string body = @"
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset='UTF-8'>
-        <title>Sheep Control</title>
-    </head>
-<style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            padding: 20px;
-        }
-
-        h1 {
-            color: #333333;
-        }
-
-        p {
-            color: #666666;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-    </style>
-    <body>
-        <h1>¡Hola! {name}</h1>
-        <p>Haz solicitado la recuperación de tu contraseña.</p>
-        <p>Tu contraseña es: {password}</p>
-<a href=""https://testersite-a8be1.web.app/login.html"" class=""button"">Iniciar sesión</a>
-    </body>
-    </html>
-";
-                body = body.Replace("{name}",data.Name);
-                body = body.Replace("{password}", data.Password);
-                Utils.EmailSender.SendEmail(data.Email, body, "Recuperación de contraseña");
+                Utils.EmailSender.SendEmailResetPassword(data.Name, data.Email, data.Password);
             }
             catch (Exception ex)
             {

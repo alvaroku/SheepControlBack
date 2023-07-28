@@ -13,6 +13,7 @@ namespace Business.Utils
                 //mappers principales
 
                 cfg.CreateMap<User, UserResponse>().ReverseMap();
+                cfg.CreateMap<UserRequest, User>().ReverseMap();
                 cfg.CreateMap<User, LoginResponse>().ReverseMap();
                 cfg.CreateMap<VaccineSheepRequest,VaccineSheep >().ReverseMap();
                 cfg.CreateMap<Permission, PermissionRequest>().ReverseMap();

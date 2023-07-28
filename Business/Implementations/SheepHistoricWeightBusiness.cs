@@ -63,6 +63,17 @@ namespace Business.Implementations
             Response<bool> response = new Response<bool>();
             response.Data = true;
             SheepHistoricWeight sh = _Repository.GetById(id);
+
+            SheepHistoricWeight sheepHistoricWeight = _Repository._dbSet.Where(x => x.SheepId == sh.SheepId).First();
+            if(sh.Id == sheepHistoricWeight.Id)
+            {
+                response.Data = false;
+                response.Success = false;
+                response.Message = "El primer registro de pesado no se puede eliminar.";
+                response.StatusCode = (int)EnumStatusCode.BadRequest;
+                return response;
+            }
+
             _Repository.Delete(sh);
             response.Message = Constants.DeleteSuccesMessage;
             return response;
