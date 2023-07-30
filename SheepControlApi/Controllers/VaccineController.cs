@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Business.Definitions;
+using Business.Utils;
+using Entities.DTOs;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +12,37 @@ namespace SheepControlApi.Controllers
     [ApiController]
     public class VaccineController : ControllerBase
     {
+        IVaccineBusiness _Business;
+        IWebHostEnvironment _HostEnvironment;
+        IAuthenticationBusiness _AuthenticationBusiness { get; set; }
+        string _fullPathImage = string.Empty;
+        public VaccineController(IVaccineBusiness VaccineBusiness, IWebHostEnvironment hostEnvironment, IAuthenticationBusiness authenticationBusiness)
+        {
+            _Business = VaccineBusiness;
+            _HostEnvironment = hostEnvironment;
+            _fullPathImage = Path.Combine(_HostEnvironment.WebRootPath, Constants.VACCINEIMAGEPATH);
+            _AuthenticationBusiness = authenticationBusiness;
+        }
         // GET: api/<VaccineController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_READ);
+
+            if (!response1.Success)
+            {
+                return StatusCode(response1.StatusCode, response1);
+            }
+            return Ok(_Business.Read());
+        }
+        [HttpGet("GetImage/{imageName}")]
+        public IActionResult GetImage(string imageName)
+        {
+            var filePath = Path.Combine(_HostEnvironment.WebRootPath, Constants.VACCINEIMAGEPATH + imageName);
+            var fileStream = new FileStream(filePath, FileMode.Open);
+            return File(fileStream, "image/jpeg");
         }
 
         // GET api/<VaccineController>/5
@@ -24,20 +54,65 @@ namespace SheepControlApi.Controllers
 
         // POST api/<VaccineController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromForm] VaccineRequest vaccineRequest)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_CREATE);
+
+            if (!response1.Success)
+            {
+                return StatusCode(response1.StatusCode, response1);
+            }
+            vaccineRequest.Photo = FileManager.UploadImage(_fullPathImage, vaccineRequest.ImageFile); ;
+            var response = _Business.Create(vaccineRequest);
+            return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
         // PUT api/<VaccineController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromForm] VaccineUpdateRequest request)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_UPDATE);
+
+            if (!response1.Success)
+            {
+                return StatusCode(response1.StatusCode, response1);
+            }
+            var response = _Business.Update(id, request,_fullPathImage);
+            return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
         // DELETE api/<VaccineController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_DELETE);
+
+            if (!response1.Success)
+            {
+                return StatusCode(response1.StatusCode, response1);
+            }
+            var response = _Business.Delete(id,_fullPathImage);
+            return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
+        }
+        [HttpGet("ToggleActive/{id}")]
+        public IActionResult ToggleActive(int id)
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_TOGGLEACTIVE);
+
+            if (!response1.Success)
+            {
+                return StatusCode(response1.StatusCode, response1);
+            }
+            var response2 = _Business.ToggleActive(id);
+            return response2.Success ? Ok(response2) : StatusCode(response2.StatusCode, response2);
         }
     }
 }
