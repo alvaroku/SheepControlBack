@@ -36,7 +36,7 @@ namespace Business.Implementations
                 newData.CreationDate = DateTime.Now;
                 newData.ModificationDate = newData.CreationDate;
                 newData.Active = true;
-                newData.DoseApplied = Utils.Utils.CalculateDoseRecomended(v.IndicatedDose,s.Weight);
+                newData.DoseApplied = Utils.Utils.CalculateDoseRecomended(v.IndicatedDose, s.Weight);
                 _Repository.Create(newData);
 
                 if (_HistoricWeightRepository.Read().Where(x => x.SheepId == newData.SheepId).Count() > 0)
@@ -55,10 +55,10 @@ namespace Business.Implementations
 
             return response;
         }
-        public Response< IEnumerable<VaccineSheepResponse>> ApplyVaccineToAllSheeps(VaccineSheepVaccineToAllRequest request)
+        public Response<IEnumerable<VaccineSheepResponse>> ApplyVaccineToAllSheeps(VaccineSheepVaccineToAllRequest request)
         {
             Response<IEnumerable<VaccineSheepResponse>> response = new Response<IEnumerable<VaccineSheepResponse>>();
-            
+
             Vaccine vaccineToApply = _VaccineRepository.GetById(request.VaccineId);
             List<VaccineSheep> dataToInsert = new List<VaccineSheep>();
 
@@ -69,7 +69,7 @@ namespace Business.Implementations
                 WeighingDayWeight = sheep.Weight;
                 if (_HistoricWeightRepository.Read().Where(x => x.SheepId == sheepId).Count() > 0)
                 {
-                    sheep.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId ==sheep.Id).OrderByDescending(x => x.Id).First().NewWeight;
+                    sheep.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == sheep.Id).OrderByDescending(x => x.Id).First().NewWeight;
                     WeighingDayWeight = _HistoricWeightRepository.Read().Where(x => x.SheepId == sheep.Id).OrderByDescending(x => x.Id).First().NewWeight;
                 }
                 VaccineSheep newData = new VaccineSheep
@@ -95,7 +95,7 @@ namespace Business.Implementations
                 }
             }
 
-            response.Data =  Mapper.Map<IEnumerable<VaccineSheepResponse>>(dataToInsert);
+            response.Data = Mapper.Map<IEnumerable<VaccineSheepResponse>>(dataToInsert);
             response.Message = $"Se agregó la vacuna {vaccineToApply.Name} a {dataToInsert.Count} carneros.";
             return response;
         }
@@ -109,7 +109,7 @@ namespace Business.Implementations
         {
             var respuesta = _Repository.Read().ToList();
 
-            
+
 
             var mapeo = Mapper.Map<IEnumerable<VaccineSheepResponse>>(respuesta);
 
@@ -128,7 +128,7 @@ namespace Business.Implementations
             }
 
             var mapeo = Mapper.Map<IEnumerable<VaccineSheepResponse>>(respuesta);
-            
+
             return mapeo.ToList().OrderBy(x => x.Id).OrderBy(x => x.SheepId); ;
         }
         public IEnumerable<VaccineSheepResponse> ReadIncludesWithFilters(FilterVaccineSheepRequest request)
