@@ -12,5 +12,6 @@ namespace Business.Definitions
         public Response<bool> Delete(int id);
         public Response<bool> ToggleActive(int id);
         public Response<string> RecoveryPassword(string email);
+        FileStream GetImage(string imageName);
     }
 }

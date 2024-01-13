@@ -13,10 +13,14 @@ namespace Business.Implementations
     {
         SheepRepository _Repository;
         SheepHistoricWeightRepository _HistoricWeightRepository;
-        public SheepBusiness(SheepControlDbContext context) 
+        IFileManager fileManager;
+        private string ResourcePath = string.Empty;
+        public SheepBusiness(SheepControlDbContext context,IFileManager _fileManager) 
         { 
             _Repository = new SheepRepository(context);
             _HistoricWeightRepository = new SheepHistoricWeightRepository(context);
+            ResourcePath = Constants.SHEEPIMAGEPATH;
+            fileManager = _fileManager;
         }
 
         public Response<SheepResponse> Create(SheepRequest sheepRequest)
@@ -31,7 +35,7 @@ namespace Business.Implementations
                 newSheep.ModificationDate = newSheep.CreationDate;
                 newSheep.Active = true;
 
-                
+                newSheep.Photo = fileManager.UploadImage(ResourcePath, sheepRequest.ImageFile);
 
                 _Repository.Create(newSheep);
 
@@ -84,7 +88,7 @@ namespace Business.Implementations
 
             return mapeo.ToList();
         }
-        public Response<SheepResponse> Update(int id,SheepRequest sheepRequest, string fullPathImage)
+        public Response<SheepResponse> Update(int id,SheepRequest sheepRequest)
         {
             Response<SheepResponse> response = new Response<SheepResponse>();
 
@@ -92,8 +96,8 @@ namespace Business.Implementations
 
             if (sheepRequest.ImageFile != null)
             {
-                FileManager.DeleteFile(Path.Combine(fullPathImage, sheepRequest.Photo));
-                sheepRequest.Photo = FileManager.UploadImage(fullPathImage, sheepRequest.ImageFile); ;
+                fileManager.DeleteFile(ResourcePath, sheepRequest.Photo);
+                sheep.Photo = fileManager.UploadImage(ResourcePath, sheepRequest.ImageFile); ;
             }
 
             sheep.ModificationDate = DateTime.Now;
@@ -104,11 +108,6 @@ namespace Business.Implementations
             sheep.AcquisitionCost = sheepRequest.AcquisitionCost;
             sheep.KiloPrice = sheepRequest.KiloPrice;
             sheep.IsAcquisition= sheepRequest.IsAcquisition;
-
-            if(sheepRequest.ImageFile != null)
-            {
-                sheep.Photo = sheepRequest.Photo;
-            }
 
             _Repository.Update(sheep);
 
@@ -126,11 +125,11 @@ namespace Business.Implementations
             response.Message = Constants.UpdateSuccesMessage;
             return response;
         }
-        public Response<bool> Delete(int id,string _fullPathImage)
+        public Response<bool> Delete(int id)
         {
             Response<bool> response = new Response<bool>();
             Sheep sh = _Repository.GetById(id);
-            FileManager.DeleteFile(Path.Combine(_fullPathImage,sh.Photo));
+            fileManager.DeleteFile(ResourcePath, sh.Photo);
             _Repository.Delete(sh);
             response.Message = Constants.DeleteSuccesMessage;
             return response;
@@ -152,6 +151,10 @@ namespace Business.Implementations
             response.Data = data.Active;
             response.Message = data.Active ? Constants.ActiveSuccesMessage : Constants.InactiveSuccesMessage;
             return response;
+        }
+        public FileStream GetImage(string imageName)
+        {
+            return fileManager.GetImage(ResourcePath, imageName);
         }
     }
 }

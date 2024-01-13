@@ -29,8 +29,6 @@ namespace Business.Implementations
         }
         public Response<LoginResponse> Auth(LoginRequest userRequest)
         {
-
-
             Response<LoginResponse> response = new Response<LoginResponse>();
 
             User u = _UserRepository.Login(userRequest);

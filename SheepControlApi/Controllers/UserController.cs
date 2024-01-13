@@ -13,16 +13,18 @@ namespace SheepControlApi.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        IFileManager _fileManager;
         IUserBusiness _Business { get; set; }
         IAuthenticationBusiness _AuthenticationBusiness { get; set; }
         IWebHostEnvironment _HostEnvironment;
-        string _fullPathImage = string.Empty;
-        public UserController(IUserBusiness userBusiness, IWebHostEnvironment hostEnvironment, IAuthenticationBusiness authenticationBusiness)
+        string ResourcePath = string.Empty;
+        public UserController(IFileManager fileManager,IUserBusiness userBusiness, IWebHostEnvironment hostEnvironment, IAuthenticationBusiness authenticationBusiness)
         {
             _Business = userBusiness;
             _AuthenticationBusiness = authenticationBusiness;
             _HostEnvironment = hostEnvironment;
-            _fullPathImage = Path.Combine(_HostEnvironment.WebRootPath, Constants.USERIMAGEPATH);
+            ResourcePath =  Constants.USERIMAGEPATH;
+            _fileManager = fileManager;
         }
         // GET: api/<UserController>
         [HttpGet]
@@ -41,8 +43,7 @@ namespace SheepControlApi.Controllers
         [HttpGet("GetImage/{imageName}")]
         public IActionResult GetImage(string imageName)
         {
-            var filePath = Path.Combine(_HostEnvironment.WebRootPath, Constants.USERIMAGEPATH + imageName);
-            var fileStream = new FileStream(filePath, FileMode.Open);
+            FileStream fileStream = _Business.GetImage(imageName);
             return File(fileStream, "image/jpeg");
         }
         // GET api/<UserController>/5
@@ -93,15 +94,6 @@ namespace SheepControlApi.Controllers
             if (!responseAuth.Success)
             {
                 return StatusCode(responseAuth.StatusCode, responseAuth);
-            }
-
-            if (request.ImageFile != null)
-            {
-                if (!string.IsNullOrEmpty(request.Photo))
-                {
-                    FileManager.DeleteFile(Path.Combine(_fullPathImage, request.Photo));
-                }
-                request.Photo = FileManager.UploadImage(_fullPathImage, request.ImageFile);
             }
 
             var response = _Business.Update(id, request);

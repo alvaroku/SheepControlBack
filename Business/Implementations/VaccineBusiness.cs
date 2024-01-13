@@ -12,10 +12,14 @@ namespace Business.Implementations
     {
         VaccineRepository _Repository;
         VaccineStockRepository _VaccineStockRepository;
-        public VaccineBusiness(SheepControlDbContext context)
+        IFileManager _fileManager { get; set; }
+        string ResourcePath = string.Empty;
+        public VaccineBusiness(SheepControlDbContext context, IFileManager fileManager)
         {
             _Repository = new VaccineRepository(context);
             _VaccineStockRepository = new VaccineStockRepository(context);
+            _fileManager = fileManager;
+            ResourcePath = Constants.VACCINEIMAGEPATH;
         }
 
         public Response<VaccineResponse> Create(VaccineRequest request)
@@ -30,7 +34,7 @@ namespace Business.Implementations
                 newData.ModificationDate = newData.CreationDate;
                 newData.Active = true;
 
-
+                newData.Photo = _fileManager.UploadImage(ResourcePath, request.ImageFile);
 
                 _Repository.Create(newData);
 
@@ -61,7 +65,7 @@ namespace Business.Implementations
 
             return mapeo.ToList();
         }
-        public Response<VaccineResponse> Update(int id, VaccineUpdateRequest request,string fullPathImage)
+        public Response<VaccineResponse> Update(int id, VaccineUpdateRequest request)
         {
             Response<VaccineResponse> response = new Response<VaccineResponse>();
 
@@ -69,34 +73,27 @@ namespace Business.Implementations
 
             if (request.ImageFile != null)
             {
-                FileManager.DeleteFile(Path.Combine(fullPathImage,request.Photo));
-                request.Photo = FileManager.UploadImage(fullPathImage, request.ImageFile); ;
+                _fileManager.DeleteFile(ResourcePath, request.Photo);
+                vaccine.Photo = _fileManager.UploadImage(ResourcePath, request.ImageFile); ;
             }
 
             vaccine.ModificationDate = DateTime.Now;
             vaccine.Observations = request.Observations;
             vaccine.Name = request.Name;
             vaccine.IndicatedDose = request.IndicatedDose;
-
-            if (request.ImageFile != null)
-            {
-                vaccine.Photo = request.Photo;
-            }
-
-            
-
+        
             _Repository.Update(vaccine);
             response.Message = Constants.UpdateSuccesMessage;
             response.Data = Mapper.Map<VaccineResponse>(vaccine);
 
             return response;
         }
-        public Response<bool> Delete(int id,string _fullPathImage)
+        public Response<bool> Delete(int id)
         {
             Response<bool> response = new Response<bool>();
             response.Data = true;
             Vaccine sh = _Repository.GetById(id);
-            FileManager.DeleteFile(Path.Combine(_fullPathImage, sh.Photo));
+            _fileManager.DeleteFile(ResourcePath, sh.Photo);
             _Repository.Delete(sh);
             response.Message = Constants.DeleteSuccesMessage;
             return response;
@@ -118,6 +115,10 @@ namespace Business.Implementations
             response.Data = data.Active;
             response.Message = data.Active ? Constants.ActiveSuccesMessage : Constants.InactiveSuccesMessage;
             return response;
+        }
+        public FileStream GetImage(string imageName)
+        {
+            return _fileManager.GetImage(ResourcePath, imageName);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Definitions;
+using Business.Utils;
 using DataAccess;
 using DataAccess.Implementations;
 using Entities;
@@ -35,6 +36,7 @@ namespace Business.Implementations
             _Repository.CreateRange(userRoles);
 
             var newP = _Repository.ReadIncludesByUserId(permissionRequest.UserId);
+            response.Message = Constants.CreateSuccesMessage;
             response.Data = Mapper.Map<IEnumerable<RoleUserResponse>>(newP);
             return response;
 
@@ -62,6 +64,7 @@ namespace Business.Implementations
 
             vaccine = _Repository.GetIncludesById(vaccine.Id);
             response.Data = Mapper.Map<RoleUserResponse>(vaccine);
+            response.Message = Constants.UpdateSuccesMessage;
 
             return response;
         }
@@ -71,6 +74,7 @@ namespace Business.Implementations
             response.Data = true;
             RoleUser sh = _Repository.GetById(id);
             _Repository.Delete(sh);
+            response.Message = Constants.DeleteSuccesMessage;
             return response;
         }
         public Response<bool> ToggleActive(int id)
@@ -81,6 +85,7 @@ namespace Business.Implementations
             data.Active = !data.Active;
             _Repository.Update(data);
             response.Data = data.Active;
+            response.Message = data.Active ? Constants.ActiveSuccesMessage : Constants.InactiveSuccesMessage;
             return response;
         }
     }

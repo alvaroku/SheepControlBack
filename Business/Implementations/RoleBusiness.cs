@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Definitions;
+using Business.Utils;
 using DataAccess;
 using DataAccess.Implementations;
 using Entities;
@@ -26,6 +27,7 @@ namespace Business.Implementations
             newP.Active = true;
             _Repository.Create(newP);
             response.Data = Mapper.Map<RoleResponse>(newP);
+            response.Message = Constants.CreateSuccesMessage;
             return response;
         }
 
@@ -49,6 +51,7 @@ namespace Business.Implementations
             _Repository.Update(vaccine);
 
             response.Data = Mapper.Map<RoleResponse>(vaccine);
+            response.Message = Constants.UpdateSuccesMessage;
 
             return response;
         }
@@ -58,6 +61,7 @@ namespace Business.Implementations
             response.Data = true;
             Role sh = _Repository.GetById(id);
             _Repository.Delete(sh);
+            response.Message = Constants.DeleteSuccesMessage;
             return response;
         }
         public Response<bool> ToggleActive(int id)
@@ -68,6 +72,7 @@ namespace Business.Implementations
             data.Active = !data.Active;
             _Repository.Update(data);
             response.Data = data.Active;
+            response.Message = data.Active ? Constants.ActiveSuccesMessage : Constants.InactiveSuccesMessage;
             return response;
         }
     }

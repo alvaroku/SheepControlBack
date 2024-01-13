@@ -186,7 +186,7 @@ namespace Business.Implementations
             }
 
             _Repository.Update(newSaleSheep);
-
+            response.Message = Constants.UpdateSuccesMessage;
             response.Data = Mapper.Map<SaleSheepResponse>(newSaleSheep);
 
             return response;
