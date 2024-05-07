@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Jpeg;
+using SixLabors.ImageSharp.Processing;
 namespace Business.Implementations
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Business.Implementations
                     var height = (int)(image.Height * 0.3);
 
                     // Redimensionar la imagen al nuevo tamaño y guardarla en el stream
-                    image.Mutate(x => x.Resize(new ResizeOptions
+                    image.Clone(x => x.Resize(new ResizeOptions
                     {
                         Size = new Size(width, height),
                         Mode = ResizeMode.Max

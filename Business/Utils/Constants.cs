@@ -117,7 +117,7 @@ namespace Business.Utils
         <h1>¡Hola! {name}</h1>
         <p>Haz solicitado la recuperación de tu contraseña.</p>
         <p>Tu contraseña es: {password}</p>
-<a href=""https://projectsheepcontrol.web.app/login.html"" class=""button"">Iniciar sesión</a>
+<a href=""https://sheepcontrol-ad63e.web.app/login.html"" class=""button"">Iniciar sesión</a>
     </body>
     </html>
 ";
@@ -158,7 +158,7 @@ namespace Business.Utils
 <p>{message}</p>
 <p>Correo: {email}</p>
         <p>Contraseña: {password}</p>
-<a href=""https://projectsheepcontrol.web.app/login.html"" class=""button"">Iniciar sesión</a>
+<a href=""https://sheepcontrol-ad63e.web.app/login.html"" class=""button"">Iniciar sesión</a>
     </body>
     </html>
 ";

@@ -152,14 +152,13 @@ namespace Business.Implementations
                 return response;
             }
             bool hasPermission = false;
-            foreach(RoleUser roleUser in roles)
-            {
-                var permisos = _PermissionRolRepository.ReadIncludesListByRoleId(roleUser.RoleId);
-                hasPermission = permisos.Where(pr => pr.Permission.Controller.Name.Equals(control) && pr.Permission.Action.Name.Equals(action)).Any();
-                if(hasPermission) { break; }
-            }
+            
+            hasPermission = roles
+                .SelectMany(role => _PermissionRolRepository.ReadIncludesListByRoleId(role.RoleId))
+                .Where(pr => pr.Permission.Controller.Name.Equals(control) && pr.Permission.Action.Name.Equals(action))
+                .Any();
 
-            if(!hasPermission)
+            if (!hasPermission)
             {
                 response.Success = false;
                 response.Message = "Sin permiso para realzar esta acción";
