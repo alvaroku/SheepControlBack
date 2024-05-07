@@ -30,11 +30,11 @@ namespace SheepControlApi.Controllers
 
         // GET: api/<SheepController>
         [HttpGet]
-        public IActionResult Get()
+        public  async Task<IActionResult> Get()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_SHEEP, Constants.ACTION_READ);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_SHEEP, Constants.ACTION_READ);
 
             if (!response1.Success)
             {
@@ -43,11 +43,11 @@ namespace SheepControlApi.Controllers
             return Ok(_Business.Read());
         }
         [HttpGet("GetSheepsWithFinalWeight")]
-        public IActionResult GetSheepsWithFinalWeight()
+        public  async Task<IActionResult> GetSheepsWithFinalWeight()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_SHEEP, Constants.ACTION_GETSHEEPWITHFINALWEIGHT);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_SHEEP, Constants.ACTION_GETSHEEPWITHFINALWEIGHT);
 
             if (!response1.Success)
             {
@@ -57,7 +57,7 @@ namespace SheepControlApi.Controllers
         }
 
         [HttpGet("GetImage/{imageName}")]
-        public IActionResult GetImage(string imageName)
+        public  async Task<IActionResult> GetImage(string imageName)
         {
             FileStream fileStream = _Business.GetImage(imageName);
             return File(fileStream, "image/jpeg");
@@ -65,7 +65,7 @@ namespace SheepControlApi.Controllers
 
         // GET api/<SheepController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public  async Task<IActionResult> Get(int id)
         {
             var response = _Business.GetById(id);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
@@ -73,12 +73,12 @@ namespace SheepControlApi.Controllers
 
         // POST api/<SheepController>
         [HttpPost]
-        public IActionResult Post([FromForm] SheepRequest sheepRequest)
+        public  async Task<IActionResult> Post([FromForm] SheepRequest sheepRequest)
 
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_SHEEP, Constants.ACTION_CREATE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_SHEEP, Constants.ACTION_CREATE);
 
             if (!response1.Success)
             {
@@ -91,11 +91,11 @@ namespace SheepControlApi.Controllers
 
         // PUT api/<SheepController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromForm] SheepRequest sheepRequest)
+        public  async Task<IActionResult> Put(int id, [FromForm] SheepRequest sheepRequest)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_SHEEP, Constants.ACTION_UPDATE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_SHEEP, Constants.ACTION_UPDATE);
 
             if (!response1.Success)
             {
@@ -107,11 +107,11 @@ namespace SheepControlApi.Controllers
 
         // DELETE api/<SheepController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public  async Task<IActionResult> Delete(int id)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_SHEEP, Constants.ACTION_DELETE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_SHEEP, Constants.ACTION_DELETE);
 
             if (!response1.Success)
             {
@@ -121,11 +121,11 @@ namespace SheepControlApi.Controllers
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
         [HttpGet("ToggleActive/{id}")]
-        public IActionResult ToggleActive(int id)
+        public  async Task<IActionResult> ToggleActive(int id)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_SHEEP, Constants.ACTION_TOGGLEACTIVE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_SHEEP, Constants.ACTION_TOGGLEACTIVE);
 
             if (!response1.Success)
             {

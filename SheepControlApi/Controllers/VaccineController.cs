@@ -27,11 +27,11 @@ namespace SheepControlApi.Controllers
         }
         // GET: api/<VaccineController>
         [HttpGet]
-        public IActionResult Get()
+        public  async Task<IActionResult> Get()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_READ);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_READ);
 
             if (!response1.Success)
             {
@@ -41,7 +41,7 @@ namespace SheepControlApi.Controllers
         }
 
         [HttpGet("GetImage/{imageName}")]
-        public IActionResult GetImage(string imageName)
+        public  async Task<IActionResult> GetImage(string imageName)
         {
             FileStream fileStream = _Business.GetImage(imageName);
             return File(fileStream, "image/jpeg");
@@ -56,11 +56,11 @@ namespace SheepControlApi.Controllers
 
         // POST api/<VaccineController>
         [HttpPost]
-        public IActionResult Post([FromForm] VaccineRequest vaccineRequest)
+        public  async Task<IActionResult> Post([FromForm] VaccineRequest vaccineRequest)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_CREATE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_CREATE);
 
             if (!response1.Success)
             {
@@ -72,11 +72,11 @@ namespace SheepControlApi.Controllers
 
         // PUT api/<VaccineController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromForm] VaccineUpdateRequest request)
+        public  async Task<IActionResult> Put(int id, [FromForm] VaccineUpdateRequest request)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_UPDATE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_UPDATE);
 
             if (!response1.Success)
             {
@@ -88,11 +88,11 @@ namespace SheepControlApi.Controllers
 
         // DELETE api/<VaccineController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public  async Task<IActionResult> Delete(int id)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_DELETE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_DELETE);
 
             if (!response1.Success)
             {
@@ -102,11 +102,11 @@ namespace SheepControlApi.Controllers
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
         [HttpGet("ToggleActive/{id}")]
-        public IActionResult ToggleActive(int id)
+        public  async Task<IActionResult> ToggleActive(int id)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_TOGGLEACTIVE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_TOGGLEACTIVE);
 
             if (!response1.Success)
             {

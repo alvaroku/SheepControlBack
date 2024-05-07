@@ -2,7 +2,7 @@
 using Business.Definitions;
 using Business.Utils;
 using DataAccess;
-using DataAccess.Implementations;
+using DataAccess.Repositories.Implementations;
 using Entities;
 using Entities.DTOs;
 
@@ -19,7 +19,7 @@ namespace Business.Implementations
             ResourcePath = Constants.USERIMAGEPATH;
             _FileManager = fileManager;
         }
-        public Response<UserResponse> Create(UserRequest userRequest)
+        public async Task<Response<UserResponse>> Create(UserRequest userRequest)
         {
             Response<UserResponse> response = new Response<UserResponse>();
 
@@ -28,7 +28,7 @@ namespace Business.Implementations
                 User newUser = Mapper.Map<User>(userRequest);
                 newUser.CreationDate = DateTime.Now;
                 newUser.ModificationDate = newUser.CreationDate;
-                _Repository.Create(newUser);
+                await _Repository.Add(newUser);
                 response.Message = Constants.CreateSuccesMessage;
                 response.Data = Mapper.Map<UserResponse>(newUser);
                 EmailSender.SendEmailDataAccess(newUser.Name, newUser.Email, newUser.Password, 
@@ -45,20 +45,20 @@ namespace Business.Implementations
             return response;
 
         }
-        public IEnumerable<UserResponse> Read()
+        public async Task<IEnumerable<UserResponse>> Read()
         {
 
-            var respuesta = _Repository.Read();
+            IEnumerable<User> respuesta = await _Repository.GetAll();
 
-            var mapeo = Mapper.Map<IEnumerable<UserResponse>>(respuesta);
+            IEnumerable<UserResponse> mapeo = Mapper.Map<IEnumerable<UserResponse>>(respuesta);
 
-            return mapeo.ToList();
+            return mapeo;
         }
-        public Response<UserResponse> Update(int id, UserRequest request)
+        public async Task<Response<UserResponse>> Update(int id, UserRequest request)
         {
             Response<UserResponse> response = new Response<UserResponse>();
 
-            User u = _Repository.GetById(id);
+            User u = await _Repository.GetById(id);
 
             bool changes = (u.Email != request.Email || u.Password != request.Password) ? true : false;
 
@@ -70,7 +70,7 @@ namespace Business.Implementations
             u.Password = request.Password;
             u.Email = request.Email;
 
-            _Repository.Update(u);
+            await _Repository.Update(u);
             response.Message = Constants.UpdateSuccesMessage;
             response.Data = Mapper.Map<UserResponse>(u);
 
@@ -81,11 +81,11 @@ namespace Business.Implementations
 
             return response;
         }
-        public Response<ProfileResponse> Update(int id, ProfileRequest request)
+        public async Task<Response<ProfileResponse>> Update(int id, ProfileRequest request)
         {
             Response<ProfileResponse> response = new Response<ProfileResponse>();
 
-            User u = _Repository.GetById(id);
+            User u =await _Repository.GetById(id);
 
             if (request.ImageFile != null)
             {
@@ -105,7 +105,7 @@ namespace Business.Implementations
             u.PhoneNumber = request.PhoneNumber;
             u.Email = request.Email;
             u.Photo = (string.IsNullOrEmpty(request.Photo) || request.Photo == "null") ? null : request.Photo;
-            _Repository.Update(u);
+            await _Repository.Update(u);
             response.Message = Constants.UpdateSuccesMessage;
             response.Data = Mapper.Map<ProfileResponse>(u);
 
@@ -116,11 +116,11 @@ namespace Business.Implementations
 
             return response;
         }
-        public Response<bool> ChangePassword(int id, ChangePasswordRequest request)
+        public async Task<Response<bool>> ChangePassword(int id, ChangePasswordRequest request)
         {
             Response<bool> response = new Response<bool>();
 
-            User u = _Repository.GetById(id);
+            User u =await _Repository.GetById(id);
             if (u.Password != request.CurrentPassword)
             {
                 response.Success = false;
@@ -133,7 +133,7 @@ namespace Business.Implementations
             if (changes)
             {
                 u.Password = request.NewPassword;
-                _Repository.Update(u);
+                await _Repository.Update(u);
                 response.Message = "Contraseña actualizada.";
                 Utils.EmailSender.SendEmailDataAccess(u.Name, u.Email, u.Password, "Hemos detectado cambios en tus datos de acceso, por lo que nuevamente te los propocionamos.", "Cambios datos de acceso Sheep Control");
             }
@@ -147,33 +147,33 @@ namespace Business.Implementations
 
             return response;
         }
-        public Response<bool> Delete(int id)
+        public async Task<Response<bool>> Delete(int id)
         {
 
             Response<bool> response = new Response<bool>();
-            User u = _Repository.GetById(id);
-            _Repository.Delete(u);
+            User u = await _Repository.GetById(id);
+            await _Repository.Delete(id);
             response.Message = Constants.DeleteSuccesMessage;
             return response;
         }
-        public Response<bool> ToggleActive(int id)
+        public async Task<Response<bool>> ToggleActive(int id)
         {
             Response<bool> response = new Response<bool>();
 
-            var data = _Repository.GetById(id);
+            var data = await _Repository.GetById(id);
             data.Active = !data.Active;
-            _Repository.Update(data);
+           await _Repository.Update(data);
             response.Message = data.Active ? Constants.ActiveSuccesMessage : Constants.InactiveSuccesMessage;
             response.Data = data.Active;
             return response;
         }
-        public Response<string> RecoveryPassword(string email)
+        public async Task<Response<string>> RecoveryPassword(string email)
         {
             Response<string> response = new Response<string>();
 
             try
             {
-                User data = _Repository.GetByEmail(email);
+                User data =await _Repository.GetByEmail(email);
 
                 if (data == null)
                 {
@@ -195,7 +195,7 @@ namespace Business.Implementations
             }
             return response;
         }
-        public FileStream GetImage(string imageName)
+        public async Task<FileStream> GetImage(string imageName)
         {
             return _FileManager.GetImage(ResourcePath, imageName);
         }

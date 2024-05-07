@@ -2,6 +2,8 @@ using Business.Definitions;
 using Business.Implementations;
 using Business.Utils;
 using DataAccess;
+using DataAccess.Repositories.Definitions;
+using DataAccess.Repositories.Implementations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -69,6 +71,7 @@ namespace SheepControlApi
                 options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString"))
                 );//bd
 
+            // Services
             builder.Services.AddScoped<IUserBusiness, UserBusiness>();//business
             builder.Services.AddScoped<IVaccineBusiness, VaccineBusiness>();
             builder.Services.AddScoped<IVaccineStockBusiness, VaccineStockBusiness>();
@@ -85,6 +88,10 @@ namespace SheepControlApi
             builder.Services.AddScoped<ISheepHistoricWeightBusiness, SheepHistoricWeightBusiness>();
             builder.Services.AddScoped<IGraphicBusiness, GraphicBusiness>();
             builder.Services.AddScoped<IFileManager, LocalFileManager>();
+
+            // Repositories
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             AutoMapperConfiguration.Configure();
 

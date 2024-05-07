@@ -11,6 +11,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
 using System.Security.Principal;
 using Azure.Core;
+using DataAccess.Repositories.Implementations;
 
 namespace Business.Implementations
 {
@@ -27,11 +28,11 @@ namespace Business.Implementations
             _RoleUserRepository = new RoleUserRepository(dbContext);
             _configuration = configuration;
         }
-        public Response<LoginResponse> Auth(LoginRequest userRequest)
+        public async Task<Response<LoginResponse>> Auth(LoginRequest userRequest)
         {
             Response<LoginResponse> response = new Response<LoginResponse>();
 
-            User u = _UserRepository.Login(userRequest);
+            User u =await _UserRepository.Login(userRequest);
 
             if (u == null)
             {
@@ -86,11 +87,11 @@ namespace Business.Implementations
 
             return response;
         }
-        public Response<ProfileResponse> GetProfileInfoByToken(ClaimsIdentity claims) 
+        public async Task<Response<ProfileResponse>> GetProfileInfoByToken(ClaimsIdentity claims) 
         {
             Response<ProfileResponse> response = new Response<ProfileResponse>();
 
-            User userResponse = ValidarToken(claims);
+            User userResponse =await ValidarToken(claims);
 
             if (userResponse == null)
             {
@@ -104,7 +105,7 @@ namespace Business.Implementations
             return response;
 
         }
-        public User ValidarToken(ClaimsIdentity identity)
+        public async Task<User> ValidarToken(ClaimsIdentity identity)
         {
             User response = null;
             try
@@ -115,7 +116,7 @@ namespace Business.Implementations
                 }
                 int id = int.Parse(identity.Claims.First(x => x.Type == "Id").Value);
 
-                response = _UserRepository.GetById(id);
+                response = await _UserRepository.GetById(id);
                 
                 return response;
 
@@ -127,11 +128,11 @@ namespace Business.Implementations
 
 
         }
-        public Response<bool> CheckPermissionControllerActionForUser(ClaimsIdentity claims, string control, string action) {
+        public async Task<Response<bool>> CheckPermissionControllerActionForUser(ClaimsIdentity claims, string control, string action) {
             
             Response<bool> response = new Response<bool>();
             
-            User userResponse = ValidarToken(claims);
+            User userResponse = await ValidarToken(claims);
             
             if (userResponse == null)
             {

@@ -28,147 +28,140 @@ namespace SheepControlApi.Controllers
         }
         // GET: api/<UserController>
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_READ);
+            var response = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_READ);
 
             if (!response.Success)
             {
               return StatusCode(response.StatusCode, response);
             }
-            return Ok(_Business.Read());
+            return Ok(await _Business.Read());
         }
         [HttpGet("GetImage/{imageName}")]
-        public IActionResult GetImage(string imageName)
+        public async Task<IActionResult> GetImage(string imageName)
         {
-            FileStream fileStream = _Business.GetImage(imageName);
+            FileStream fileStream = await _Business.GetImage(imageName);
             return File(fileStream, "image/jpeg");
-        }
-        // GET api/<UserController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
         }
 
         // POST api/<UserController>
         [HttpPost]
-        public IActionResult Post(UserRequest userRequest)
+        public async Task<IActionResult> Post(UserRequest userRequest)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var responseAuth = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_CREATE);
+            var responseAuth = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_CREATE);
 
             if (!responseAuth.Success)
             {
                 return StatusCode(responseAuth.StatusCode, responseAuth);
             }
-            var response = _Business.Create(userRequest);
+            var response = await _Business.Create(userRequest);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, UserRequest request)
+        public async Task<IActionResult> Put(int id, UserRequest request)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var responseAuth = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_UPDATE);
+            var responseAuth =await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_UPDATE);
 
             if (!responseAuth.Success)
             {
                 return StatusCode(responseAuth.StatusCode, responseAuth);
             }
-            var response = _Business.Update(id,request);
+            var response = await _Business.Update(id,request);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
         [HttpPut("UpdateProfile/{id}")]
-        public IActionResult UpdateProfile(int id,[FromForm] ProfileRequest request)
+        public async Task<IActionResult> UpdateProfile(int id,[FromForm] ProfileRequest request)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var responseAuth = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_UPDATEPROFILE);
+            var responseAuth = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_UPDATEPROFILE);
 
             if (!responseAuth.Success)
             {
                 return StatusCode(responseAuth.StatusCode, responseAuth);
             }
 
-            var response = _Business.Update(id, request);
+            var response =await _Business.Update(id, request);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
         [HttpPut("ChangePassword/{id}")]
-        public IActionResult ChangePassword(int id,ChangePasswordRequest request)
+        public  async Task<IActionResult> ChangePassword(int id,ChangePasswordRequest request)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var responseAuth = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_UPDATEPROFILE);
+            var responseAuth = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_UPDATEPROFILE);
 
             if (!responseAuth.Success)
             {
                 return StatusCode(responseAuth.StatusCode, responseAuth);
             }
-            var response = _Business.ChangePassword(id, request);
+            var response =await _Business.ChangePassword(id, request);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
         //[Authorize]//para que solo tenga acceso cuando se envie un token válido
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_DELETE);
+            var response = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_DELETE);
 
             if (!response.Success) 
             {
                 return StatusCode(response.StatusCode,response);
             }
 
-            response = _Business.Delete(id);
+            response = await _Business.Delete(id);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
 
         }
         [HttpPost("Login")]
-        public IActionResult Login([FromBody] LoginRequest log)
+        public async Task<IActionResult> Login([FromBody] LoginRequest log)
         {
-            var response = _AuthenticationBusiness.Auth(log);
+            var response = await _AuthenticationBusiness.Auth(log);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
         [HttpPost("GetEmailFromToken")]
-        public IActionResult GetEmailFromToken(EmailRequest request)
+        public  async Task<IActionResult> GetEmailFromToken(EmailRequest request)
         {
             var response = _AuthenticationBusiness.GetEmailFromToken(request);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
         [HttpPost("GetProfileInfoByToken")]
-        public IActionResult GetProfileInfoByToken()
+        public async Task<IActionResult> GetProfileInfoByToken()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
-            var response = _AuthenticationBusiness.GetProfileInfoByToken(identity);
+            var response =await _AuthenticationBusiness.GetProfileInfoByToken(identity);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
         [HttpGet("ToggleActive/{id}")]
-        public IActionResult ToggleActive(int id)
+        public async Task<IActionResult> ToggleActive(int id)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_TOGGLEACTIVE);
+            var response = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_TOGGLEACTIVE);
 
             if (!response.Success)
             {
                 return StatusCode(response.StatusCode, response);
             }
-            var response2 = _Business.ToggleActive(id);
+            var response2 =await _Business.ToggleActive(id);
             return response2.Success ? Ok(response2) : StatusCode(response2.StatusCode, response2);
         }
         [HttpPost("RecoveryPassword")]
-        public IActionResult Login(string email)
+        public async Task<IActionResult> RecoveryPassword(string email)
         {
-            
-            var response = _Business.RecoveryPassword(email);
+            var response =await _Business.RecoveryPassword(email);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
     }

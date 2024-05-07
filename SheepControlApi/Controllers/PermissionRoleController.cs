@@ -21,11 +21,11 @@ namespace SheepControlApi.Controllers
         }
         // GET: api/<PermissionController>
         [HttpGet]
-        public IActionResult Get()
+        public  async Task<IActionResult> Get()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSIONROLE, Constants.ACTION_READ);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSIONROLE, Constants.ACTION_READ);
 
             if (!response1.Success)
             {
@@ -43,11 +43,11 @@ namespace SheepControlApi.Controllers
 
         // POST api/<PermissionController>
         [HttpPost]
-        public IActionResult Post(PermissionRoleCreateRequest permissionRequest)
+        public  async Task<IActionResult> Post(PermissionRoleCreateRequest permissionRequest)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSIONROLE, Constants.ACTION_CREATE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSIONROLE, Constants.ACTION_CREATE);
 
             if (!response1.Success)
             {
@@ -59,11 +59,11 @@ namespace SheepControlApi.Controllers
 
         // PUT api/<PermissionController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, PermissionRoleRequest actionRequest)
+        public  async Task<IActionResult> Put(int id, PermissionRoleRequest actionRequest)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSIONROLE, Constants.ACTION_UPDATE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSIONROLE, Constants.ACTION_UPDATE);
 
             if (!response1.Success)
             {
@@ -75,11 +75,11 @@ namespace SheepControlApi.Controllers
 
         // DELETE api/<PermissionController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public  async Task<IActionResult> Delete(int id)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSIONROLE, Constants.ACTION_DELETE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSIONROLE, Constants.ACTION_DELETE);
 
             if (!response1.Success)
             {
@@ -89,11 +89,11 @@ namespace SheepControlApi.Controllers
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
         [HttpGet("ToggleActive/{id}")]
-        public IActionResult ToggleActive(int id)
+        public  async Task<IActionResult> ToggleActive(int id)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSIONROLE, Constants.ACTION_TOGGLEACTIVE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSIONROLE, Constants.ACTION_TOGGLEACTIVE);
 
             if (!response1.Success)
             {
