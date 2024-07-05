@@ -5,6 +5,7 @@ using DataAccess.Repositories.Definitions;
 using DataAccess.Repositories.Implementations;
 using Entities;
 using Entities.DTOs;
+using Microsoft.Extensions.Configuration;
 using Shared;
 
 namespace Business.Implementations
@@ -13,13 +14,14 @@ namespace Business.Implementations
     {
         IEmailSender _EmailSender { get; set; }
         IUserRepository _Repository { get; set; }
-        
         IFileManager _FileManager { get; set; }
-        public UserBusiness(SheepControlDbContext context, IFileManager fileManager,IEmailSender emailSender,IUserRepository userRepository)
+        IConfiguration _configuration { get; set; }
+        public UserBusiness(SheepControlDbContext context, IFileManager fileManager,IEmailSender emailSender,IUserRepository userRepository, IConfiguration configuration)
         {
             _Repository = userRepository;
             _EmailSender = emailSender;
             _FileManager = fileManager;
+            _configuration = configuration;
         }
         public async Task<Response<UserResponse>> Create(UserRequest userRequest)
         {
@@ -237,28 +239,34 @@ namespace Business.Implementations
 
         public async Task SendEmailDataAccess(string name, string email, string password, string mensaje, string asunto)
         {
+            string url = _configuration["frontUrl"];
             string body = EmailTemplateConstants.plantillaEmailDataAccess;
             body = body.Replace("{name}", name);
             body = body.Replace("{email}", email);
             body = body.Replace("{password}", password);
             body = body.Replace("{message}", mensaje);
+            body = body.Replace("{url}", url);
             await _EmailSender.SendEmail(email, body, asunto);
         }
 
         public async Task SendEmailEmailChanged(string name, string email, string mensaje, string asunto)
         {
+            string url = _configuration["frontUrl"];
             string body = EmailTemplateConstants.plantillaEmailChanged;
             body = body.Replace("{name}", name);
             body = body.Replace("{email}", email);
             body = body.Replace("{message}", mensaje);
+            body = body.Replace("{url}", url);
             await _EmailSender.SendEmail(email, body, asunto);
         }
 
         public async Task SendEmailResetPassword(string name, string email, string password)
         {
+            string url = _configuration["frontUrl"];
             string body = EmailTemplateConstants.plantillaEmailRecoveryPassword;
             body = body.Replace("{name}", name);
             body = body.Replace("{password}", password);
+            body = body.Replace("{url}", url);
             await _EmailSender.SendEmail(email, body, "Recuperación de contraseña");
         }
     }

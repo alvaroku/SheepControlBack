@@ -38,7 +38,7 @@
         <p>Haz solicitado la recuperación de tu contraseña.</p>
         <p>Por lo tanto, hemos generado una contraseña temporal para que puedas acceder al sistema y cambiarla por una que tu elijas.</p>
         <p>La contraseña temporal es: {password}</p>
-<a href=""https://sheepcontrol-ad63e.web.app/login.html"" class=""button"">Iniciar sesión</a>
+<a href=""{url}"" class=""button"">Iniciar sesión</a>
     </body>
     </html>
 ";
@@ -79,7 +79,7 @@
 <p>{message}</p>
 <p>Correo: {email}</p>
         <p>Contraseña: {password}</p>
-<a href=""https://sheepcontrol-ad63e.web.app/login.html"" class=""button"">Iniciar sesión</a>
+<a href=""{url}"" class=""button"">Iniciar sesión</a>
     </body>
     </html>
 ";
@@ -121,7 +121,7 @@
         <p>Bienvenido a Sheep Control</p>
 <p>{message}</p>
         <p>De ahora en adelante este será tu corrreo para acceder al sistema.</p>
-<a href=""https://sheepcontrol-ad63e.web.app/login.html"" class=""button"">Iniciar sesión</a>
+<a href=""{url}"" class=""button"">Iniciar sesión</a>
     </body>
     </html>
 ";
