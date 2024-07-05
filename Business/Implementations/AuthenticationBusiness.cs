@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Business.Definitions;
-using DataAccess.Implementations;
 using Entities.DTOs;
 using Entities;
 using System.Security.Claims;
@@ -9,28 +8,31 @@ using DataAccess;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
-using System.Security.Principal;
-using Azure.Core;
 using DataAccess.Repositories.Implementations;
+using Shared;
+using DataAccess.Repositories.Definitions;
 
 namespace Business.Implementations
 {
     public class AuthenticationBusiness : IAuthenticationBusiness
     {
-        UserRepository _UserRepository;
-        PermissionRoleRepository _PermissionRolRepository;
-        RoleUserRepository _RoleUserRepository;
+        IUserRepository _UserRepository;
+        IPermissionRoleRepository _PermissionRolRepository;
+        IRoleUserRepository _RoleUserRepository;
         IConfiguration _configuration;
-        public AuthenticationBusiness(IConfiguration configuration, SheepControlDbContext dbContext)
+        public AuthenticationBusiness(IConfiguration configuration, IUserRepository userRepository,IPermissionRoleRepository permissionRoleRepository,IRoleUserRepository roleUserRepository)
         {
-            _UserRepository = new UserRepository(dbContext);
-            _PermissionRolRepository = new PermissionRoleRepository(dbContext);
-            _RoleUserRepository = new RoleUserRepository(dbContext);
             _configuration = configuration;
+            _UserRepository = userRepository;
+            _PermissionRolRepository = permissionRoleRepository;
+            _RoleUserRepository = roleUserRepository;
         }
         public async Task<Response<LoginResponse>> Auth(LoginRequest userRequest)
         {
             Response<LoginResponse> response = new Response<LoginResponse>();
+
+            string unhased = Utilities.CalcularHash(userRequest.Password);
+            userRequest.Password = unhased;
 
             User u =await _UserRepository.Login(userRequest);
 
@@ -41,6 +43,8 @@ namespace Business.Implementations
                 response.StatusCode = (int)EnumStatusCode.InternalServer;
                 return response;
             }
+ 
+          
             var jwt = _configuration.GetSection("Jwt").Get<Jwt>();
 
 
@@ -143,9 +147,9 @@ namespace Business.Implementations
                 return response;
             }
 
-            IEnumerable<RoleUser> roles = _RoleUserRepository.GetIncludesListById(userResponse.Id);
+            IEnumerable<RoleUser> roles = await _RoleUserRepository.GetIncludesListById(userResponse.Id);
             
-            if(roles.Count() == 0)
+            if(!roles.Any())
             {
                 response.Success = false;
                 response.Message = "Sin roles asignados";
@@ -154,10 +158,7 @@ namespace Business.Implementations
             }
             bool hasPermission = false;
             
-            hasPermission = roles
-                .SelectMany(role => _PermissionRolRepository.ReadIncludesListByRoleId(role.RoleId))
-                .Where(pr => pr.Permission.Controller.Name.Equals(control) && pr.Permission.Action.Name.Equals(action))
-                .Any();
+            hasPermission = roles.SelectMany(role =>_PermissionRolRepository.ReadIncludesListByRoleId(role.RoleId).Result).Where(pr => pr.Permission.Controller.Name.Equals(control) && pr.Permission.Action.Name.Equals(action)).Any();
 
             if (!hasPermission)
             {

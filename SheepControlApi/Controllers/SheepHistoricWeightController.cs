@@ -2,6 +2,7 @@
 using Business.Utils;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using Shared;
 using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -25,26 +26,26 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_SHEEPHISTORICWEIGHT, Constants.ACTION_READ);
+            var response = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_SHEEPHISTORICWEIGHT, DefaultInformationDbConstants.ACTION_READ);
 
             if (!response.Success)
             {
                 return StatusCode(response.StatusCode, response);
             }
-            return Ok(_Business.Read());
+            return Ok(await _Business.Read());
         }
         [HttpPost]
         public  async Task<IActionResult> Post(SheepHistoricWeightRequest actionRequest)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var responseAuth = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_SHEEPHISTORICWEIGHT, Constants.ACTION_CREATE);
+            var responseAuth = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_SHEEPHISTORICWEIGHT, DefaultInformationDbConstants.ACTION_CREATE);
 
             if (!responseAuth.Success)
             {
                 return StatusCode(responseAuth.StatusCode, responseAuth);
             }
-            var response = _Business.Create(actionRequest);
+            var response =await _Business.Create(actionRequest);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
 
         }
@@ -63,13 +64,13 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_SHEEPHISTORICWEIGHT, Constants.ACTION_UPDATE);
+            var response = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_SHEEPHISTORICWEIGHT, DefaultInformationDbConstants.ACTION_UPDATE);
 
             if (!response.Success)
             {
                 return StatusCode(response.StatusCode, response);
             }
-            var response2 = _Business.Update(id, actionRequest);
+            var response2 =await _Business.Update(id, actionRequest);
             return response2.Success ? Ok(response2) : StatusCode(response2.StatusCode, response2);
         }
 
@@ -79,13 +80,13 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_SHEEPHISTORICWEIGHT, Constants.ACTION_DELETE);
+            var response = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_SHEEPHISTORICWEIGHT, DefaultInformationDbConstants.ACTION_DELETE);
 
             if (!response.Success)
             {
                 return StatusCode(response.StatusCode, response);
             }
-            var response2 = _Business.Delete(id);
+            var response2 =await _Business.Delete(id);
             return response2.Success ? Ok(response2) : StatusCode(response2.StatusCode, response2);
         }
         // GET api/<ActionController>/5
@@ -94,13 +95,13 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_SHEEPHISTORICWEIGHT, Constants.ACTION_TOGGLEACTIVE);
+            var response = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_SHEEPHISTORICWEIGHT, DefaultInformationDbConstants.ACTION_TOGGLEACTIVE);
 
             if (!response.Success)
             {
                 return StatusCode(response.StatusCode, response);
             }
-            var response2 = _Business.ToggleActive(id);
+            var response2 =await _Business.ToggleActive(id);
             return response2.Success ? Ok(response2) : StatusCode(response2.StatusCode, response2);
         }
     }

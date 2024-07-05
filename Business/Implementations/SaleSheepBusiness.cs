@@ -1,33 +1,30 @@
 ﻿using AutoMapper;
 using Business.Definitions;
-using Business.Utils;
-using DataAccess;
-using DataAccess.Implementations;
+using DataAccess.Repositories.Definitions;
 using Entities;
 using Entities.DTOs;
-using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata;
-using static Microsoft.AspNetCore.Hosting.Internal.HostingApplication;
+using Shared;
 
 namespace Business.Implementations
 {
-   public class SaleSheepBusiness : ISaleSheepBusiness
+    public class SaleSheepBusiness : ISaleSheepBusiness
     {
-        SaleSheepRepository _Repository;
-        SheepRepository _SheepRepository;
-        SheepHistoricWeightRepository _HistoricWeightRepository;
-        public SaleSheepBusiness(SheepControlDbContext context) {
-        
-            _Repository = new SaleSheepRepository(context);
-            _SheepRepository = new SheepRepository(context);
-            _HistoricWeightRepository = new SheepHistoricWeightRepository(context);
+        ISaleSheepRepository _Repository;
+        ISheepRepository _SheepRepository;
+        ISheepHistoricWeightRepository _HistoricWeightRepository;
+        public SaleSheepBusiness(ISaleSheepRepository saleSheepRepository, ISheepRepository sheepRepository, ISheepHistoricWeightRepository sheepHistoricWeightRepository)
+        {
+
+            _Repository = saleSheepRepository;
+            _SheepRepository = sheepRepository;
+            _HistoricWeightRepository = sheepHistoricWeightRepository;
         }
 
-        public Response<SaleSheepResponse> Create(SaleSheepRequest SaleSheepRequest)
+        public async Task<Response<SaleSheepResponse>> Create(SaleSheepRequest SaleSheepRequest)
         {
             Response<SaleSheepResponse> response = new Response<SaleSheepResponse>();
 
-            Sheep s = _SheepRepository.GetById(SaleSheepRequest.SheepId);
+            Sheep s = await _SheepRepository.GetById(SaleSheepRequest.SheepId);
 
             Entities.SaleSheep newSaleSheep = Mapper.Map<Entities.SaleSheep>(SaleSheepRequest);
 
@@ -46,19 +43,19 @@ namespace Business.Implementations
             }
 
             s.Sold = true;
-            
-            _SheepRepository.Update(s);
-            _Repository.Create(newSaleSheep);
 
-            if (_HistoricWeightRepository.Read().Where(x => x.SheepId == newSaleSheep.SheepId).Count() > 0)
+            await _SheepRepository.Update(s);
+            await _Repository.Add(newSaleSheep);
+
+            if (_HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == newSaleSheep.SheepId).Count() > 0)
             {
-                newSaleSheep.Sheep.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == newSaleSheep.SheepId).OrderByDescending(x => x.Id).First().NewWeight;
+                newSaleSheep.Sheep.Weight = _HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == newSaleSheep.SheepId).OrderByDescending(x => x.Id).First().NewWeight;
             }
-            response.Message = Constants.CreateSuccesMessage;
+            response.Message = MessageConstants.CreateSuccesMessage;
             response.Data = Mapper.Map<SaleSheepResponse>(newSaleSheep);
             return response;
         }
-        public Response<IEnumerable<SaleSheepResponse>> CreateMultiple(SaleMultipleSheepRequest SaleSheepRequest)
+        public async Task<Response<IEnumerable<SaleSheepResponse>>> CreateMultiple(SaleMultipleSheepRequest SaleSheepRequest)
         {
             Response<IEnumerable<SaleSheepResponse>> response = new Response<IEnumerable<SaleSheepResponse>>();
 
@@ -67,19 +64,19 @@ namespace Business.Implementations
 
             foreach (int sheepId in SaleSheepRequest.SheepIds)
             {
-                Sheep s = _SheepRepository.GetById(sheepId);
+                Sheep s = await _SheepRepository.GetById(sheepId);
                 s.Sold = true;
                 sheepsToSale.Add(s);
             }
-            _SheepRepository.UpdateRange(sheepsToSale);
+            await _SheepRepository.UpdateRange(sheepsToSale);
 
             foreach (int sheepId in SaleSheepRequest.SheepIds)
             {
-                Sheep s = _SheepRepository.GetById(sheepId);
+                Sheep s = await _SheepRepository.GetById(sheepId);
 
-                if (_HistoricWeightRepository.Read().Where(x => x.SheepId == s.Id).Count() > 0)
+                if (_HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == s.Id).Count() > 0)
                 {
-                    s.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == s.Id).OrderByDescending(x => x.Id).First().NewWeight;
+                    s.Weight = _HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == s.Id).OrderByDescending(x => x.Id).First().NewWeight;
                 }
 
 
@@ -108,33 +105,33 @@ namespace Business.Implementations
                         }
                     );
             }
-            
-            _Repository.CreateRange(dataToInsert);
+
+            await _Repository.CreateRange(dataToInsert);
 
             for (int i = 0; i < dataToInsert.Count(); i++)
             {
-                if (_HistoricWeightRepository.Read().Where(x => x.SheepId == dataToInsert[i].SheepId).Count() > 0)
+                if (_HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == dataToInsert[i].SheepId).Count() > 0)
                 {
-                    dataToInsert[i].Sheep.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == dataToInsert[i].SheepId).OrderByDescending(x => x.Id).First().NewWeight;
+                    dataToInsert[i].Sheep.Weight = _HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == dataToInsert[i].SheepId).OrderByDescending(x => x.Id).First().NewWeight;
                 }
             }
 
-            response.Message = $"Se vendieron {dataToInsert.Count} carneros a ${SaleSheepRequest.KiloPrice} el kg, total kg = {sheepsToSale.Sum(x => x.Weight)}, total a cobrar = ${dataToInsert.Sum(x=>x.TotalCharged)}";
+            response.Message = $"Se vendieron {dataToInsert.Count} carneros a ${SaleSheepRequest.KiloPrice} el kg, total kg = {sheepsToSale.Sum(x => x.Weight)}, total a cobrar = ${dataToInsert.Sum(x => x.TotalCharged)}";
             response.Data = Mapper.Map<IEnumerable<SaleSheepResponse>>(dataToInsert);
             return response;
         }
 
-        public Response<IEnumerable<SaleSheepResponse>> Read()
+        public async Task<Response<IEnumerable<SaleSheepResponse>>> Read()
         {
             Response<IEnumerable<SaleSheepResponse>> response = new Response<IEnumerable<SaleSheepResponse>>();
 
-            var respuesta = _Repository.ReadIncludes().ToList();
+            var respuesta = _Repository.ReadIncludes().Result.ToList();
 
             for (int i = 0; i < respuesta.Count(); i++)
             {
-                if (_HistoricWeightRepository.Read().Where(x => x.SheepId == respuesta[i].SheepId).Count() > 0)
+                if (_HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == respuesta[i].SheepId).Count() > 0)
                 {
-                    respuesta[i].Sheep.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == respuesta[i].SheepId).OrderByDescending(x => x.Id).First().NewWeight;
+                    respuesta[i].Sheep.Weight = _HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == respuesta[i].SheepId).OrderByDescending(x => x.Id).First().NewWeight;
                 }
             }
 
@@ -143,30 +140,30 @@ namespace Business.Implementations
             response.Data = mapeo;
             return response;
         }
-        public Response<IEnumerable<SaleSheepResponse>> ReadWithFilters(FilterSaleSheepRequest request)
+        public async Task<Response<IEnumerable<SaleSheepResponse>>> ReadWithFilters(FilterSaleSheepRequest request)
         {
             Response<IEnumerable<SaleSheepResponse>> response = new Response<IEnumerable<SaleSheepResponse>>();
-            var dataFiltered = _Repository.ReadIncludes();
+            var dataFiltered = await _Repository.ReadIncludes();
             dataFiltered = dataFiltered.Where(vs => vs.SaleDate >= request.StartDate && vs.SaleDate <= request.FinishDate);
             var mapeo = Mapper.Map<IEnumerable<SaleSheepResponse>>(dataFiltered);
 
             response.Data = mapeo.ToList();
             return response;
         }
-        public Response<SaleSheepResponse> Update(int id, SaleSheepRequest request)
+        public async Task<Response<SaleSheepResponse>> Update(int id, SaleSheepRequest request)
         {
             Response<SaleSheepResponse> response = new Response<SaleSheepResponse>();
 
-            Entities.SaleSheep newSaleSheep = _Repository.GetById(id);
+            Entities.SaleSheep newSaleSheep = await _Repository.GetById(id);
 
-            Sheep s = _SheepRepository.GetById(newSaleSheep.SheepId);
+            Sheep s = await _SheepRepository.GetById(newSaleSheep.SheepId);
             s.Sold = false;
-            _SheepRepository.Update(s);
+            await _SheepRepository.Update(s);
             s = null;
 
-            s = _SheepRepository.GetById(request.SheepId);
+            s = await _SheepRepository.GetById(request.SheepId);
             s.Sold = true;
-            _SheepRepository.Update(s);
+            await _SheepRepository.Update(s);
 
             newSaleSheep.ModificationDate = DateTime.Now;
             newSaleSheep.SheepId = request.SheepId;
@@ -185,36 +182,36 @@ namespace Business.Implementations
                 newSaleSheep.SaleProfit = newSaleSheep.TotalCharged;
             }
 
-            _Repository.Update(newSaleSheep);
-            response.Message = Constants.UpdateSuccesMessage;
+            await _Repository.Update(newSaleSheep);
+            response.Message = MessageConstants.UpdateSuccesMessage;
             response.Data = Mapper.Map<SaleSheepResponse>(newSaleSheep);
 
             return response;
         }
-        public Response<bool> Delete(int id)
+        public async Task<Response<bool>> Delete(int id)
         {
             Response<bool> response = new Response<bool>();
             response.Data = true;
-            Entities.SaleSheep a = _Repository.GetById(id);
+            Entities.SaleSheep a = await _Repository.GetById(id);
 
-            Sheep s = _SheepRepository.GetById(a.SheepId);
+            Sheep s = await _SheepRepository.GetById(a.SheepId);
             s.Sold = false;
-            _SheepRepository.Update(s);
+            await _SheepRepository.Update(s);
 
-            _Repository.Delete(a);
-            response.Message = Constants.DeleteSuccesMessage;
+            await _Repository.Delete(a.Id);
+            response.Message = MessageConstants.DeleteSuccesMessage;
             return response;
         }
-        public Response<bool> ToggleActive(int id)
+        public async Task<Response<bool>> ToggleActive(int id)
         {
             Response<bool> response = new Response<bool>();
-            
-            var data = _Repository.GetById(id);
+
+            var data = await _Repository.GetById(id);
             data.Active = !data.Active;
-            _Repository.Update(data);
+            await _Repository.Update(data);
 
             response.Data = data.Active;
-            response.Message = data.Active ? Constants.ActiveSuccesMessage : Constants.InactiveSuccesMessage;
+            response.Message = data.Active ? MessageConstants.ActiveSuccesMessage : MessageConstants.InactiveSuccesMessage;
             return response;
         }
     }

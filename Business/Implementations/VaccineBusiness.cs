@@ -1,28 +1,26 @@
 ﻿using AutoMapper;
 using Business.Definitions;
-using Business.Utils;
 using DataAccess;
-using DataAccess.Implementations;
+using DataAccess.Repositories.Definitions;
 using Entities;
 using Entities.DTOs;
+using Shared;
 
 namespace Business.Implementations
 {
-    public class VaccineBusiness:IVaccineBusiness
+    public class VaccineBusiness : IVaccineBusiness
     {
-        VaccineRepository _Repository;
-        VaccineStockRepository _VaccineStockRepository;
+        IVaccineRepository _Repository;
+        IVaccineStockRepository _VaccineStockRepository;
         IFileManager _fileManager { get; set; }
-        string ResourcePath = string.Empty;
-        public VaccineBusiness(SheepControlDbContext context, IFileManager fileManager)
+        public VaccineBusiness(SheepControlDbContext context, IFileManager fileManager, IVaccineRepository vaccineRepository, IVaccineStockRepository vaccineStockRepository)
         {
-            _Repository = new VaccineRepository(context);
-            _VaccineStockRepository = new VaccineStockRepository(context);
+            _Repository = vaccineRepository;
+            _VaccineStockRepository = vaccineStockRepository;
             _fileManager = fileManager;
-            ResourcePath = Constants.VACCINEIMAGEPATH;
         }
 
-        public Response<VaccineResponse> Create(VaccineRequest request)
+        public async Task<Response<VaccineResponse>> Create(VaccineRequest request)
         {
             Response<VaccineResponse> response = new Response<VaccineResponse>();
 
@@ -34,17 +32,17 @@ namespace Business.Implementations
                 newData.ModificationDate = newData.CreationDate;
                 newData.Active = true;
 
-                newData.Photo = _fileManager.UploadImage(ResourcePath, request.ImageFile);
+                newData.Photo = _fileManager.UploadImage(PathConstants.VACCINEIMAGEPATH, request.ImageFile);
 
-                _Repository.Create(newData);
+                await _Repository.Add(newData);
 
                 VaccineStock newD = Mapper.Map<VaccineStock>(request.VaccineStock);
                 newD.VaccineId = newData.Id;
                 newD.CreationDate = newData.CreationDate;
                 newD.ModificationDate = newData.CreationDate;
                 newD.Active = true;
-                _VaccineStockRepository.Create(newD);
-                response.Message = Constants.CreateSuccesMessage;
+                await _VaccineStockRepository.Add(newD);
+                response.Message = MessageConstants.CreateSuccesMessage;
                 response.Data = Mapper.Map<VaccineResponse>(newData);
             }
             catch (Exception ex)
@@ -54,71 +52,71 @@ namespace Business.Implementations
                 response.StatusCode = (int)EnumStatusCode.InternalServer;
             }
 
-            return response; 
+            return response;
         }
 
-        public IEnumerable<VaccineResponse> Read()
+        public async Task<IEnumerable<VaccineResponse>> Read()
         {
-            var respuesta = _Repository.Read();
+            var respuesta = await _Repository.GetAll();
 
             var mapeo = Mapper.Map<IEnumerable<VaccineResponse>>(respuesta);
 
             return mapeo.ToList();
         }
-        public Response<VaccineResponse> Update(int id, VaccineUpdateRequest request)
+        public async Task<Response<VaccineResponse>> Update(int id, VaccineUpdateRequest request)
         {
             Response<VaccineResponse> response = new Response<VaccineResponse>();
 
-            Vaccine vaccine = _Repository.GetById(id);
+            Vaccine vaccine = await _Repository.GetById(id);
 
             if (request.ImageFile != null)
             {
-                _fileManager.DeleteFile(ResourcePath, request.Photo);
-                vaccine.Photo = _fileManager.UploadImage(ResourcePath, request.ImageFile); ;
+                _fileManager.DeleteFile(PathConstants.VACCINEIMAGEPATH, request.Photo);
+                vaccine.Photo = _fileManager.UploadImage(PathConstants.VACCINEIMAGEPATH, request.ImageFile); ;
             }
 
             vaccine.ModificationDate = DateTime.Now;
             vaccine.Observations = request.Observations;
             vaccine.Name = request.Name;
             vaccine.IndicatedDose = request.IndicatedDose;
-        
-            _Repository.Update(vaccine);
-            response.Message = Constants.UpdateSuccesMessage;
+
+            await _Repository.Update(vaccine);
+            response.Message = MessageConstants.UpdateSuccesMessage;
             response.Data = Mapper.Map<VaccineResponse>(vaccine);
 
             return response;
         }
-        public Response<bool> Delete(int id)
+        public async Task<Response<bool>> Delete(int id)
         {
             Response<bool> response = new Response<bool>();
             response.Data = true;
-            Vaccine sh = _Repository.GetById(id);
-            _fileManager.DeleteFile(ResourcePath, sh.Photo);
-            _Repository.Delete(sh);
-            response.Message = Constants.DeleteSuccesMessage;
+            Vaccine sh = await _Repository.GetById(id);
+            _fileManager.DeleteFile(PathConstants.VACCINEIMAGEPATH, sh.Photo);
+            await _Repository.Delete(sh.Id);
+            response.Message = MessageConstants.DeleteSuccesMessage;
             return response;
         }
-        public Response<VaccineResponse> GetById(int id)
+        public async Task<Response<VaccineResponse>> GetById(int id)
         {
             Response<VaccineResponse> response = new Response<VaccineResponse>();
-            Vaccine she = _Repository.GetById(id);
-            response.Data = Mapper.Map <VaccineResponse>(she);
+            Vaccine she = await _Repository.GetById(id);
+            response.Data = Mapper.Map<VaccineResponse>(she);
             return response;
         }
-        public Response<bool> ToggleActive(int id)
+        public async Task<Response<bool>> ToggleActive(int id)
         {
             Response<bool> response = new Response<bool>();
 
-            var data = _Repository.GetById(id);
+            var data = await _Repository.GetById(id);
             data.Active = !data.Active;
-            _Repository.Update(data);
+            await _Repository.Update(data);
             response.Data = data.Active;
-            response.Message = data.Active ? Constants.ActiveSuccesMessage : Constants.InactiveSuccesMessage;
+            response.Message = data.Active ? MessageConstants.ActiveSuccesMessage : MessageConstants.InactiveSuccesMessage;
             return response;
         }
         public FileStream GetImage(string imageName)
         {
-            return _fileManager.GetImage(ResourcePath, imageName);
+            return _fileManager.GetImage(PathConstants.VACCINEIMAGEPATH, imageName);
         }
     }
 }

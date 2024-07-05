@@ -1,11 +1,8 @@
 ﻿using Business.Definitions;
-using Business.Implementations;
-using Business.Utils;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using Shared;
 using System.Security.Claims;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SheepControlApi.Controllers
 {
@@ -22,17 +19,17 @@ namespace SheepControlApi.Controllers
         }
         // GET: api/<PermissionController>
         [HttpGet]
-        public  async Task<IActionResult> Get()
+        public async Task<IActionResult> Get()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSION, Constants.ACTION_READ);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_PERMISSION, DefaultInformationDbConstants.ACTION_READ);
 
             if (!response1.Success)
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            return Ok(_Business.Read());
+            return Ok(await _Business.Read());
         }
 
         // GET api/<PermissionController>/5
@@ -44,63 +41,63 @@ namespace SheepControlApi.Controllers
 
         // POST api/<PermissionController>
         [HttpPost]
-        public  async Task<IActionResult> Post(PermissionCreateRequest permissionRequest)
+        public async Task<IActionResult> Post(PermissionCreateRequest permissionRequest)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSION, Constants.ACTION_CREATE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_PERMISSION, DefaultInformationDbConstants.ACTION_CREATE);
 
             if (!response1.Success)
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            var response = _Business.Create(permissionRequest);
+            var response =await _Business.Create(permissionRequest);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
         // PUT api/<PermissionController>/5
         [HttpPut("{id}")]
-        public  async Task<IActionResult> Put(int id, PermissionRequest actionRequest)
+        public async Task<IActionResult> Put(int id, PermissionRequest actionRequest)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSION, Constants.ACTION_DELETE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_PERMISSION, DefaultInformationDbConstants.ACTION_DELETE);
 
             if (!response1.Success)
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            var response = _Business.Update(id, actionRequest);
+            var response =await _Business.Update(id, actionRequest);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
         // DELETE api/<PermissionController>/5
         [HttpDelete("{id}")]
-        public  async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSION, Constants.ACTION_DELETE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_PERMISSION, DefaultInformationDbConstants.ACTION_DELETE);
 
             if (!response1.Success)
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            var response = _Business.Delete(id);
+            var response =await _Business.Delete(id);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
         [HttpGet("ToggleActive/{id}")]
-        public  async Task<IActionResult> ToggleActive(int id)
+        public async Task<IActionResult> ToggleActive(int id)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_PERMISSION, Constants.ACTION_TOGGLEACTIVE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_PERMISSION, DefaultInformationDbConstants.ACTION_TOGGLEACTIVE);
 
             if (!response1.Success)
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            var response2 = _Business.ToggleActive(id);
+            var response2 =await _Business.ToggleActive(id);
             return response2.Success ? Ok(response2) : StatusCode(response2.StatusCode, response2);
         }
     }

@@ -1,28 +1,27 @@
 ﻿using AutoMapper;
 using Business.Definitions;
-using Business.Utils;
-using DataAccess;
-using DataAccess.Implementations;
+using DataAccess.Repositories.Definitions;
 using Entities;
 using Entities.DTOs;
 using OfficeOpenXml;
+using Shared;
 
 namespace Business.Implementations
 {
     public class VaccineSheepBusiness : IVaccineSheepBusiness
     {
-        VaccineSheepRepository _Repository;
-        SheepRepository _SheepRepository;
-        VaccineRepository _VaccineRepository;
-        SheepHistoricWeightRepository _HistoricWeightRepository;
-        public VaccineSheepBusiness(SheepControlDbContext context)
+        IVaccineSheepRepository _Repository;
+        ISheepRepository _SheepRepository;
+        IVaccineRepository _VaccineRepository;
+        ISheepHistoricWeightRepository _HistoricWeightRepository;
+        public VaccineSheepBusiness(IVaccineSheepRepository vaccineSheepRepository, ISheepRepository sheepRepository, ISheepHistoricWeightRepository sheepHistoricWeightRepository, IVaccineRepository vaccineRepository)
         {
-            _Repository = new VaccineSheepRepository(context);
-            _SheepRepository = new SheepRepository(context);
-            _VaccineRepository = new VaccineRepository(context);
-            _HistoricWeightRepository = new SheepHistoricWeightRepository(context);
+            _Repository = vaccineSheepRepository;
+            _SheepRepository = sheepRepository;
+            _VaccineRepository = vaccineRepository;
+            _HistoricWeightRepository = sheepHistoricWeightRepository;
         }
-        public Response<VaccineSheepResponse> Create(VaccineSheepRequest request)
+        public async Task<Response<VaccineSheepResponse>> Create(VaccineSheepRequest request)
         {
             Response<VaccineSheepResponse> response = new Response<VaccineSheepResponse>();
 
@@ -30,20 +29,20 @@ namespace Business.Implementations
             {
                 VaccineSheep newData = Mapper.Map<VaccineSheep>(request);
 
-                Vaccine v = _VaccineRepository.GetById(request.VaccineId);
-                Sheep s = _SheepRepository.GetById(request.SheepId);
+                Vaccine v = await _VaccineRepository.GetById(request.VaccineId);
+                Sheep s = await _SheepRepository.GetById(request.SheepId);
 
                 newData.CreationDate = DateTime.Now;
                 newData.ModificationDate = newData.CreationDate;
                 newData.Active = true;
-                newData.DoseApplied = Utils.Utils.CalculateDoseRecomended(v.IndicatedDose, s.Weight);
-                _Repository.Create(newData);
+                newData.DoseApplied = Utilities.CalculateDoseRecomended(v.IndicatedDose, s.Weight);
+                await _Repository.Add(newData);
 
-                if (_HistoricWeightRepository.Read().Where(x => x.SheepId == newData.SheepId).Count() > 0)
+                if (_HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == newData.SheepId).Count() > 0)
                 {
-                    newData.Sheep.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == newData.SheepId).OrderByDescending(x => x.Id).First().NewWeight;
+                    newData.Sheep.Weight = _HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == newData.SheepId).OrderByDescending(x => x.Id).First().NewWeight;
                 }
-                response.Message = Constants.CreateSuccesMessage;
+                response.Message = MessageConstants.CreateSuccesMessage;
                 response.Data = Mapper.Map<VaccineSheepResponse>(newData);
             }
             catch (Exception ex)
@@ -55,22 +54,22 @@ namespace Business.Implementations
 
             return response;
         }
-        public Response<IEnumerable<VaccineSheepResponse>> ApplyVaccineToAllSheeps(VaccineSheepVaccineToAllRequest request)
+        public async Task<Response<IEnumerable<VaccineSheepResponse>>> ApplyVaccineToAllSheeps(VaccineSheepVaccineToAllRequest request)
         {
             Response<IEnumerable<VaccineSheepResponse>> response = new Response<IEnumerable<VaccineSheepResponse>>();
 
-            Vaccine vaccineToApply = _VaccineRepository.GetById(request.VaccineId);
+            Vaccine vaccineToApply = await _VaccineRepository.GetById(request.VaccineId);
             List<VaccineSheep> dataToInsert = new List<VaccineSheep>();
 
             foreach (int sheepId in request.SheepIds)
             {
                 float WeighingDayWeight = 0;
-                Sheep sheep = _SheepRepository.GetById(sheepId);
+                Sheep sheep = await _SheepRepository.GetById(sheepId);
                 WeighingDayWeight = sheep.Weight;
-                if (_HistoricWeightRepository.Read().Where(x => x.SheepId == sheepId).Count() > 0)
+                if (_HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == sheepId).Count() > 0)
                 {
-                    sheep.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == sheep.Id).OrderByDescending(x => x.Id).First().NewWeight;
-                    WeighingDayWeight = _HistoricWeightRepository.Read().Where(x => x.SheepId == sheep.Id).OrderByDescending(x => x.Id).First().NewWeight;
+                    sheep.Weight = _HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == sheep.Id).OrderByDescending(x => x.Id).First().NewWeight;
+                    WeighingDayWeight = _HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == sheep.Id).OrderByDescending(x => x.Id).First().NewWeight;
                 }
                 VaccineSheep newData = new VaccineSheep
                 {
@@ -79,19 +78,19 @@ namespace Business.Implementations
                     ApplicationDate = request.ApplicationDate,
                     CreationDate = DateTime.Now,
                     ModificationDate = DateTime.Now,
-                    DoseApplied = Utils.Utils.CalculateDoseRecomended(vaccineToApply.IndicatedDose, sheep.Weight),
+                    DoseApplied = Utilities.CalculateDoseRecomended(vaccineToApply.IndicatedDose, sheep.Weight),
                     Active = true,
                     WeightVaccinationDay = WeighingDayWeight
                 };
                 dataToInsert.Add(newData);
             }
-            _Repository.CreateRange(dataToInsert);
+            await _Repository.CreateRange(dataToInsert);
 
             for (int i = 0; i < dataToInsert.Count(); i++)
             {
-                if (_HistoricWeightRepository.Read().Where(x => x.SheepId == dataToInsert[i].SheepId).Count() > 0)
+                if (_HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == dataToInsert[i].SheepId).Count() > 0)
                 {
-                    dataToInsert[i].Sheep.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == dataToInsert[i].SheepId).OrderByDescending(x => x.Id).First().NewWeight;
+                    dataToInsert[i].Sheep.Weight = _HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == dataToInsert[i].SheepId).OrderByDescending(x => x.Id).First().NewWeight;
                 }
             }
 
@@ -100,30 +99,28 @@ namespace Business.Implementations
             return response;
         }
 
-        public Response<VaccineSheepResponse> GetById(int id)
+        public async Task<Response<VaccineSheepResponse>> GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<VaccineSheepResponse> Read()
+        public async Task<IEnumerable<VaccineSheepResponse>> Read()
         {
-            var respuesta = _Repository.Read().ToList();
-
-
+            var respuesta = _Repository.GetAll().Result.ToList();
 
             var mapeo = Mapper.Map<IEnumerable<VaccineSheepResponse>>(respuesta);
 
             return mapeo.ToList();
         }
-        public IEnumerable<VaccineSheepResponse> ReadIncludes()
+        public async Task<IEnumerable<VaccineSheepResponse>> ReadIncludes()
         {
-            var respuesta = _Repository.ReadIncludes().ToList();
+            var respuesta = _Repository.ReadIncludes().Result.ToList();
 
             for (int i = 0; i < respuesta.Count(); i++)
             {
-                if (_HistoricWeightRepository.Read().Where(x => x.SheepId == respuesta[i].SheepId).Count() > 0)
+                if (_HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == respuesta[i].SheepId).Count() > 0)
                 {
-                    respuesta[i].Sheep.Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == respuesta[i].SheepId).OrderByDescending(x => x.Id).First().NewWeight;
+                    respuesta[i].Sheep.Weight = _HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == respuesta[i].SheepId).OrderByDescending(x => x.Id).First().NewWeight;
                 }
             }
 
@@ -131,9 +128,9 @@ namespace Business.Implementations
 
             return mapeo.ToList().OrderBy(x => x.Id).OrderBy(x => x.SheepId); ;
         }
-        public IEnumerable<VaccineSheepResponse> ReadIncludesWithFilters(FilterVaccineSheepRequest request)
+        public async Task<IEnumerable<VaccineSheepResponse>> ReadIncludesWithFilters(FilterVaccineSheepRequest request)
         {
-            var dataFiltered = _Repository.ReadIncludes();
+            var dataFiltered = await _Repository.ReadIncludes();
             dataFiltered = dataFiltered.Where(vs => vs.ApplicationDate >= request.StartDate && vs.ApplicationDate <= request.FinishDate);
             if (request.SheepId > 0)
             {
@@ -148,50 +145,50 @@ namespace Business.Implementations
 
             return mapeo.ToList();
         }
-        public Response<VaccineSheepResponse> Update(int id, VaccineSheepRequest request)
+        public async Task<Response<VaccineSheepResponse>> Update(int id, VaccineSheepRequest request)
         {
             Response<VaccineSheepResponse> response = new Response<VaccineSheepResponse>();
 
-            VaccineSheep vaccineSheep = _Repository.GetByIdIncludes(id);
+            VaccineSheep vaccineSheep = await _Repository.GetByIdIncludes(id);
 
             vaccineSheep.ModificationDate = DateTime.Now;
             vaccineSheep.ApplicationDate = request.ApplicationDate;
             vaccineSheep.DoseApplied = request.DoseApplied;
 
-            _Repository.Update(vaccineSheep);
-            response.Message = Constants.UpdateSuccesMessage;
+            await _Repository.Update(vaccineSheep);
+            response.Message = MessageConstants.UpdateSuccesMessage;
             response.Data = Mapper.Map<VaccineSheepResponse>(vaccineSheep);
 
             return response;
         }
-        public Response<bool> Delete(int id)
+        public async Task<Response<bool>> Delete(int id)
         {
             Response<bool> response = new Response<bool>();
-            VaccineSheep sh = _Repository.GetById(id);
-            _Repository.Delete(sh);
-            response.Message = Constants.DeleteSuccesMessage;
+            VaccineSheep sh = await _Repository.GetById(id);
+            await _Repository.Delete(sh.Id);
+            response.Message = MessageConstants.DeleteSuccesMessage;
             return response;
         }
-        public Response<bool> DeleteAll()
+        public async Task<Response<bool>> DeleteAll()
         {
             Response<bool> response = new Response<bool>();
-            response.Message = $"Se eliminaron {_Repository._dbSet.Count()} registros";
+            response.Message = $"Se eliminaron {_Repository.GetAll().Result.Count()} registros";
             response.Data = true;
             _Repository.DeleteAll();
             return response;
         }
-        public Response<bool> ToggleActive(int id)
+        public async Task<Response<bool>> ToggleActive(int id)
         {
             Response<bool> response = new Response<bool>();
 
-            var data = _Repository.GetById(id);
+            var data = await _Repository.GetById(id);
             data.Active = !data.Active;
-            _Repository.Update(data);
+            await _Repository.Update(data);
             response.Data = data.Active;
-            response.Message = data.Active ? Constants.ActiveSuccesMessage : Constants.InactiveSuccesMessage;
+            response.Message = data.Active ? MessageConstants.ActiveSuccesMessage : MessageConstants.InactiveSuccesMessage;
             return response;
         }
-        public Response<ReportResponse> GenerateReport()
+        public async Task<Response<ReportResponse>> GenerateReport()
         {
             Response<ReportResponse> response = new Response<ReportResponse>();
             var stream = new MemoryStream();

@@ -1,29 +1,26 @@
 ﻿using Business.Definitions;
-using DataAccess.Implementations;
 using DataAccess;
+using DataAccess.Repositories.Definitions;
+using DataAccess.Repositories.Implementations;
 using Entities.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Implementations
 {
     public class GraphicBusiness : IGraphicBusiness
     {
-        SaleSheepRepository _Repository;
-        public GraphicBusiness(SheepControlDbContext context)
+        ISaleSheepRepository _Repository;
+        ISheepRepository _SheepRepository;
+        public GraphicBusiness(ISaleSheepRepository saleSheepRepository, ISheepRepository sheepRepository)
         {
-
-            _Repository = new SaleSheepRepository(context);
+            _Repository = saleSheepRepository;
+            _SheepRepository = sheepRepository;
         }
-        public Response<DataGraphicSheepPurchaseExpenseProfitsResponse> GetDataGraphicSheepPurchaseExpenseProfits()
+        public async Task<Response<DataGraphicSheepPurchaseExpenseProfitsResponse>> GetDataGraphicSheepPurchaseExpenseProfits()
         {
             //obtener cuado gaste en las compras de careros
-            float totalGastoCompra = _Repository._context.Sheeps.Where(x => x.IsAcquisition).Sum(y => y.AcquisitionCost);
+            float totalGastoCompra = await _SheepRepository.GetGastoCompra();
             //obtener la suma de las ganancias
-            float profits = _Repository.ReadIncludes().Sum(x=>x.SaleProfit);
+            float profits = await _Repository.GetGanancias();
 
             Response<DataGraphicSheepPurchaseExpenseProfitsResponse> response = new Response<DataGraphicSheepPurchaseExpenseProfitsResponse>();
             response.Data = new DataGraphicSheepPurchaseExpenseProfitsResponse { PurchaseExpense = totalGastoCompra, Profits = profits };

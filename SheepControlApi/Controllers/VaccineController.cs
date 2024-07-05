@@ -2,6 +2,7 @@
 using Business.Utils;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using Shared;
 using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -15,13 +16,12 @@ namespace SheepControlApi.Controllers
         IVaccineBusiness _Business;
         IWebHostEnvironment _HostEnvironment;
         IAuthenticationBusiness _AuthenticationBusiness { get; set; }
-        string ResourcePath = string.Empty;
+ 
         IFileManager _fileManager { get; set; }
         public VaccineController(IVaccineBusiness VaccineBusiness, IWebHostEnvironment hostEnvironment, IAuthenticationBusiness authenticationBusiness, IFileManager fileManager)
         {
             _Business = VaccineBusiness;
             _HostEnvironment = hostEnvironment;
-            ResourcePath = Constants.VACCINEIMAGEPATH;
             _AuthenticationBusiness = authenticationBusiness;
             _fileManager = fileManager;
         }
@@ -31,13 +31,13 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_READ);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_VACCINE, DefaultInformationDbConstants.ACTION_READ);
 
             if (!response1.Success)
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            return Ok(_Business.Read());
+            return Ok(await _Business.Read());
         }
 
         [HttpGet("GetImage/{imageName}")]
@@ -60,13 +60,13 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_CREATE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_VACCINE, DefaultInformationDbConstants.ACTION_CREATE);
 
             if (!response1.Success)
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            var response = _Business.Create(vaccineRequest);
+            var response =await _Business.Create(vaccineRequest);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
@@ -76,13 +76,13 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_UPDATE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_VACCINE, DefaultInformationDbConstants.ACTION_UPDATE);
 
             if (!response1.Success)
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            var response = _Business.Update(id, request);
+            var response =await _Business.Update(id, request);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 
@@ -92,13 +92,13 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_DELETE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_VACCINE, DefaultInformationDbConstants.ACTION_DELETE);
 
             if (!response1.Success)
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            var response = _Business.Delete(id);
+            var response =await _Business.Delete(id);
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
         [HttpGet("ToggleActive/{id}")]
@@ -106,13 +106,13 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_VACCINE, Constants.ACTION_TOGGLEACTIVE);
+            var response1 = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_VACCINE, DefaultInformationDbConstants.ACTION_TOGGLEACTIVE);
 
             if (!response1.Success)
             {
                 return StatusCode(response1.StatusCode, response1);
             }
-            var response2 = _Business.ToggleActive(id);
+            var response2 =await _Business.ToggleActive(id);
             return response2.Success ? Ok(response2) : StatusCode(response2.StatusCode, response2);
         }
     }

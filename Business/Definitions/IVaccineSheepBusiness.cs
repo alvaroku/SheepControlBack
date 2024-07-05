@@ -4,16 +4,16 @@ namespace Business.Definitions
 {
     public interface IVaccineSheepBusiness
     {
-        public Response<VaccineSheepResponse> Create(VaccineSheepRequest request);
-        public IEnumerable<VaccineSheepResponse> Read();
-        public Response<IEnumerable<VaccineSheepResponse>> ApplyVaccineToAllSheeps(VaccineSheepVaccineToAllRequest request);
-        public IEnumerable<VaccineSheepResponse> ReadIncludes();
-        public IEnumerable<VaccineSheepResponse> ReadIncludesWithFilters(FilterVaccineSheepRequest request);
-        public Response<VaccineSheepResponse> Update(int id, VaccineSheepRequest request);
-        public Response<bool> Delete(int id);
-        public Response<bool> DeleteAll();
-        public Response<VaccineSheepResponse> GetById(int id);
-        public Response<ReportResponse> GenerateReport();
-        public Response<bool> ToggleActive(int id);
+         Task<Response<VaccineSheepResponse>> Create(VaccineSheepRequest request);
+         Task<IEnumerable<VaccineSheepResponse>> Read();
+        Task< Response<IEnumerable<VaccineSheepResponse>>> ApplyVaccineToAllSheeps(VaccineSheepVaccineToAllRequest request);
+         Task<IEnumerable<VaccineSheepResponse>> ReadIncludes();
+         Task<IEnumerable<VaccineSheepResponse>> ReadIncludesWithFilters(FilterVaccineSheepRequest request);
+        Task<Response<VaccineSheepResponse>> Update(int id, VaccineSheepRequest request);
+         Task<Response<bool>> Delete(int id);
+         Task<Response<bool>> DeleteAll();
+        Task< Response<VaccineSheepResponse>> GetById(int id);
+         Task<Response<ReportResponse>> GenerateReport();
+         Task<Response<bool>>ToggleActive(int id);
     }
 }

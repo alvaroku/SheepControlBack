@@ -1,4 +1,5 @@
 ﻿using DataAccess.Repositories.Definitions;
+using DataAccess.Repositories.Generic;
 using Entities;
 using Entities.DTOs;
 using Microsoft.EntityFrameworkCore;
@@ -9,9 +10,7 @@ namespace DataAccess.Repositories.Implementations
     {
         public UserRepository(SheepControlDbContext context) : base(context)
         {
-
         }
-
         public async Task<User> Login(LoginRequest loginRequest)
         {
             User result = await _dbSet.Where(x => x.Active && x.Email == loginRequest.Email && x.Password == loginRequest.Password).FirstOrDefaultAsync();

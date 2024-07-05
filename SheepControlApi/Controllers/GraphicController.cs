@@ -21,7 +21,7 @@ namespace SheepControlApi.Controllers
         [HttpGet("GetDataGraphicSheepPurchaseExpenseProfits")]
         public  async Task<IActionResult> Get()
         {
-            var response = _Business.GetDataGraphicSheepPurchaseExpenseProfits();
+            var response =await _Business.GetDataGraphicSheepPurchaseExpenseProfits();
             return response.Success ? Ok(response) : StatusCode(response.StatusCode, response);
         }
 

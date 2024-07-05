@@ -1,81 +1,77 @@
 ﻿using AutoMapper;
 using Business.Definitions;
-using Business.Utils;
 using DataAccess;
-using DataAccess.Implementations;
+using DataAccess.Repositories.Definitions;
 using Entities.DTOs;
-using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata;
-using static Microsoft.AspNetCore.Hosting.Internal.HostingApplication;
+using Shared;
 
 namespace Business.Implementations
 {
-   public class ActionBusiness:IActionBusiness
+    public class ActionBusiness : IActionBusiness
     {
-        ActionRepository _Repository;
-        public ActionBusiness(SheepControlDbContext context) {
-        
-            _Repository = new ActionRepository(context);
+        IActionRepository _Repository;
+        public ActionBusiness(SheepControlDbContext context, IActionRepository actionRepository)
+        {
+
+            _Repository = actionRepository;
         }
 
-        public Response<ActionResponse> Create(ActionRequest actionRequest)
+        public async Task<Response<ActionResponse>> Create(ActionRequest actionRequest)
         {
             Response<ActionResponse> response = new Response<ActionResponse>();
-
 
             Entities.Action newAction = Mapper.Map<Entities.Action>(actionRequest);
 
             newAction.CreationDate = DateTime.Now;
             newAction.ModificationDate = newAction.CreationDate;
 
-            _Repository.Create(newAction);
+            await _Repository.Add(newAction);
 
-            response.Message = Constants.CreateSuccesMessage;
+            response.Message = MessageConstants.CreateSuccesMessage;
             response.Data = Mapper.Map<ActionResponse>(newAction);
             return response;
         }
 
-        public IEnumerable<ActionResponse> Read()
+        public  async Task<IEnumerable<ActionResponse>> Read()
         {
-            var respuesta = _Repository.Read();
+            var respuesta = await _Repository.GetAll();
 
             var mapeo = Mapper.Map<IEnumerable<ActionResponse>>(respuesta);
 
             return mapeo.ToList();
         }
-        public Response<ActionResponse> Update(int id, ActionRequest request)
+        public async Task<Response<ActionResponse>> Update(int id, ActionRequest request)
         {
             Response<ActionResponse> response = new Response<ActionResponse>();
 
-            Entities.Action a = _Repository.GetById(id);
+            Entities.Action a = await _Repository.GetById(id);
 
             a.ModificationDate = DateTime.Now;
             a.Name = request.Name;
-            
-            _Repository.Update(a);
-            response.Message = Constants.UpdateSuccesMessage;
+
+            await _Repository.Update(a);
+            response.Message = MessageConstants.UpdateSuccesMessage;
             response.Data = Mapper.Map<ActionResponse>(a);
 
             return response;
         }
-        public Response<bool> Delete(int id)
+        public async Task<Response<bool>> Delete(int id)
         {
             Response<bool> response = new Response<bool>();
             response.Data = true;
-            Entities.Action a = _Repository.GetById(id);
-            _Repository.Delete(a);
-            response.Message = Constants.DeleteSuccesMessage;
+            await _Repository.Delete(id);
+            response.Message = MessageConstants.DeleteSuccesMessage;
             return response;
         }
-        public Response<bool> ToggleActive(int id)
+        public async Task<Response<bool>> ToggleActive(int id)
         {
             Response<bool> response = new Response<bool>();
-            
-            var data = _Repository.GetById(id);
-            data.Active = !data.Active;
-            _Repository.Update(data);
 
-            response.Message = data.Active? Constants.ActiveSuccesMessage:Constants.InactiveSuccesMessage;
+            var data =await _Repository.GetById(id);
+            data.Active = !data.Active;
+            await _Repository.Update(data);
+
+            response.Message = data.Active ? MessageConstants.ActiveSuccesMessage : MessageConstants.InactiveSuccesMessage;
             response.Data = data.Active;
 
             return response;

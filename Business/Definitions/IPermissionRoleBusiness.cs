@@ -4,10 +4,10 @@ namespace Business.Definitions
 {
     public interface IPermissionRoleBusiness
     {
-        public Response<IEnumerable<PermissionRoleResponse>> Create(PermissionRoleCreateRequest request);
-        public IEnumerable<PermissionRoleResponse> Read();
-        public Response<PermissionRoleResponse> Update(int id, PermissionRoleRequest request);
-        public Response<bool> Delete(int id);
-        public Response<bool> ToggleActive(int id);
+        Task<Response<IEnumerable<PermissionRoleResponse>>> Create(PermissionRoleCreateRequest request);
+        Task<IEnumerable<PermissionRoleResponse>> Read();
+        Task<Response<PermissionRoleResponse>> Update(int id, PermissionRoleRequest request);
+        Task<Response<bool>> Delete(int id);
+        Task<Response<bool>> ToggleActive(int id);
     }
 }

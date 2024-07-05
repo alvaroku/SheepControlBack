@@ -1,91 +1,93 @@
 ﻿using AutoMapper;
 using Business.Definitions;
-using Business.Utils;
 using DataAccess;
-using DataAccess.Implementations;
+using DataAccess.Repositories.Definitions;
+using DataAccess.Repositories.Implementations;
 using Entities;
 using Entities.DTOs;
+using Shared;
 
 namespace Business.Implementations
 {
     public class RoleUserBusiness : IRoleUserBusiness
     {
-        RoleUserRepository _Repository;
-        public RoleUserBusiness(SheepControlDbContext context) {
-            _Repository = new RoleUserRepository(context);
+        IRoleUserRepository _Repository;
+        public RoleUserBusiness(IRoleUserRepository roleUserRepository)
+        {
+            _Repository = roleUserRepository;
         }
 
-        public Response<IEnumerable<RoleUserResponse>> Create(RoleUserRequestCreateRequest permissionRequest)
+        public async Task<Response<IEnumerable<RoleUserResponse>>> Create(RoleUserRequestCreateRequest permissionRequest)
         {
 
             Response<IEnumerable<RoleUserResponse>> response = new Response<IEnumerable<RoleUserResponse>>();
 
             IEnumerable<RoleUser> userRoles = from idsPer in permissionRequest.RoleIds
-                                                         select new RoleUser
-                                                         {
-                                                             Active = true,
-                                                             CreationDate = DateTime.Now,
-                                                             ModificationDate = DateTime.Now,
-                                                             RoleId = idsPer,
-                                                             UserId = permissionRequest.UserId,
-                                                         };
+                                              select new RoleUser
+                                              {
+                                                  Active = true,
+                                                  CreationDate = DateTime.Now,
+                                                  ModificationDate = DateTime.Now,
+                                                  RoleId = idsPer,
+                                                  UserId = permissionRequest.UserId,
+                                              };
             //Borrar todos los Roles del usuario
 
-            _Repository.DeleteAllRolesByUserId(permissionRequest.UserId);
+           await _Repository.DeleteAllRolesByUserId(permissionRequest.UserId);
 
-            _Repository.CreateRange(userRoles);
+           await _Repository.CreateRange(userRoles);
 
-            var newP = _Repository.ReadIncludesByUserId(permissionRequest.UserId);
-            response.Message = Constants.CreateSuccesMessage;
+            var newP = await _Repository.ReadIncludesByUserId(permissionRequest.UserId);
+            response.Message = MessageConstants.CreateSuccesMessage;
             response.Data = Mapper.Map<IEnumerable<RoleUserResponse>>(newP);
             return response;
 
         }
 
-        public IEnumerable<RoleUserResponse> Read()
+        public async Task<IEnumerable<RoleUserResponse>> Read()
         {
-            var respuesta = _Repository.ReadIncludes();
+            var respuesta = await _Repository.ReadIncludes();
 
             var mapeo = Mapper.Map<IEnumerable<RoleUserResponse>>(respuesta);
 
             return mapeo.ToList();
         }
-        public Response<RoleUserResponse> Update(int id, RoleUserRequest request)
+        public async Task<Response<RoleUserResponse>> Update(int id, RoleUserRequest request)
         {
             Response<RoleUserResponse> response = new Response<RoleUserResponse>();
 
-            RoleUser vaccine = _Repository.GetById(id);
+            RoleUser vaccine = await _Repository.GetById(id);
 
             vaccine.ModificationDate = DateTime.Now;
             vaccine.RoleId = request.RoleId;
             vaccine.UserId = request.UserId;
 
-            _Repository.Update(vaccine);
+           await _Repository.Update(vaccine);
 
-            vaccine = _Repository.GetIncludesById(vaccine.Id);
+            vaccine =await _Repository.GetIncludesById(vaccine.Id);
             response.Data = Mapper.Map<RoleUserResponse>(vaccine);
-            response.Message = Constants.UpdateSuccesMessage;
+            response.Message = MessageConstants.UpdateSuccesMessage;
 
             return response;
         }
-        public Response<bool> Delete(int id)
+        public async Task<Response<bool>> Delete(int id)
         {
             Response<bool> response = new Response<bool>();
             response.Data = true;
-            RoleUser sh = _Repository.GetById(id);
-            _Repository.Delete(sh);
-            response.Message = Constants.DeleteSuccesMessage;
+            RoleUser sh =await _Repository.GetById(id);
+            await _Repository.Delete(id);
+            response.Message = MessageConstants.DeleteSuccesMessage;
             return response;
         }
-        public Response<bool> ToggleActive(int id)
+        public async Task<Response<bool>> ToggleActive(int id)
         {
             Response<bool> response = new Response<bool>();
 
-            var data = _Repository.GetById(id);
+            var data =await _Repository.GetById(id);
             data.Active = !data.Active;
-            _Repository.Update(data);
+           await _Repository.Update(data);
             response.Data = data.Active;
-            response.Message = data.Active ? Constants.ActiveSuccesMessage : Constants.InactiveSuccesMessage;
+            response.Message = data.Active ? MessageConstants.ActiveSuccesMessage : MessageConstants.InactiveSuccesMessage;
             return response;
         }
     }

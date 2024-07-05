@@ -4,10 +4,10 @@ namespace Business.Definitions
 {
     public interface IRoleBusiness
     {
-        public Response<RoleResponse> Create(RoleRequest request);
-        public IEnumerable<RoleResponse> Read();
-        public Response<RoleResponse> Update(int id, RoleRequest request);
-        public Response<bool> Delete(int id);
-        public Response<bool> ToggleActive(int id);
+        Task< Response<RoleResponse>> Create(RoleRequest request);
+        Task< IEnumerable<RoleResponse>> Read();
+        Task< Response<RoleResponse>> Update(int id, RoleRequest request);
+        Task< Response<bool>> Delete(int id);
+        Task< Response<bool>> ToggleActive(int id);
     }
 }

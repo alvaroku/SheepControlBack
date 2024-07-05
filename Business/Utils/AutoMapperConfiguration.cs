@@ -10,8 +10,6 @@ namespace Business.Utils
         {
             Mapper.Initialize(cfg =>
             {
-                //mappers principales
-
                 cfg.CreateMap<User, UserResponse>().ReverseMap();
                 cfg.CreateMap<UserRequest, User>().ReverseMap();
                 cfg.CreateMap<User, LoginResponse>().ReverseMap();

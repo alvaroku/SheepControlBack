@@ -11,11 +11,11 @@ namespace Business.Definitions
 {
     public interface IVaccineStockBusiness
     {
-        public Response<VaccineStockResponse> Create(VaccineStockRequest controllerRequest);
+        Task< Response<VaccineStockResponse>> Create(VaccineStockRequest controllerRequest);
 
-        public Response<IEnumerable<VaccineStockResponse>> Read();
-        public Response<VaccineStockResponse> Update(int id, VaccineStockRequest request);
-        public Response<bool> Delete(int id);
-        public Response<bool> ToggleActive(int id);
+        Task< Response<IEnumerable<VaccineStockResponse>>> Read();
+        Task< Response<VaccineStockResponse>> Update(int id, VaccineStockRequest request);
+        Task< Response<bool>> Delete(int id);
+        Task< Response<bool>> ToggleActive(int id);
     }
 }

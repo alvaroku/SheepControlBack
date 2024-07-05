@@ -4,10 +4,10 @@ namespace Business.Definitions
 {
     public interface IControllerBusiness
     {
-        public Response<ControllerResponse> Create(ControllerRequest controllerRequest);
-        public IEnumerable<ControllerResponse> Read();
-        public Response<ControllerResponse> Update(int id, ControllerRequest request);
-        public Response<bool> Delete(int id);
-        public Response<bool> ToggleActive(int id);
+        Task<Response<ControllerResponse>> Create(ControllerRequest controllerRequest);
+        Task<IEnumerable<ControllerResponse>> Read();
+        Task<Response<ControllerResponse>>  Update(int id, ControllerRequest request);
+        Task<Response<bool>> Delete(int id);
+        Task<Response<bool>> ToggleActive(int id);
     }
 }

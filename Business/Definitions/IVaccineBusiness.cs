@@ -4,12 +4,12 @@ namespace Business.Definitions
 {
     public interface IVaccineBusiness
     {
-        public Response<VaccineResponse> Create(VaccineRequest vaccineRequest);
-        public IEnumerable<VaccineResponse> Read();
-        public Response<VaccineResponse> Update(int id, VaccineUpdateRequest request);
-        public Response<bool> Delete(int id);
-        public Response<VaccineResponse> GetById(int id);
-        public Response<bool> ToggleActive(int id);
+        Task<Response<VaccineResponse>> Create(VaccineRequest vaccineRequest);
+        Task<IEnumerable<VaccineResponse>> Read();
+        Task<Response<VaccineResponse>> Update(int id, VaccineUpdateRequest request);
+        Task<Response<bool>> Delete(int id);
+        Task<Response<VaccineResponse>> GetById(int id);
+        Task<Response<bool>> ToggleActive(int id);
         FileStream GetImage(string imageName);
     }
 }

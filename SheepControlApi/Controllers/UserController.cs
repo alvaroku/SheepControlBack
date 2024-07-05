@@ -4,6 +4,7 @@ using System.Security.Claims;
 using Entities.DTOs;
 using Business.Utils;
 using Microsoft.Extensions.Hosting;
+using Shared;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,13 +18,11 @@ namespace SheepControlApi.Controllers
         IUserBusiness _Business { get; set; }
         IAuthenticationBusiness _AuthenticationBusiness { get; set; }
         IWebHostEnvironment _HostEnvironment;
-        string ResourcePath = string.Empty;
         public UserController(IFileManager fileManager,IUserBusiness userBusiness, IWebHostEnvironment hostEnvironment, IAuthenticationBusiness authenticationBusiness)
         {
             _Business = userBusiness;
             _AuthenticationBusiness = authenticationBusiness;
             _HostEnvironment = hostEnvironment;
-            ResourcePath =  Constants.USERIMAGEPATH;
             _fileManager = fileManager;
         }
         // GET: api/<UserController>
@@ -32,7 +31,7 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_READ);
+            var response = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_USER, DefaultInformationDbConstants.ACTION_READ);
 
             if (!response.Success)
             {
@@ -53,7 +52,7 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var responseAuth = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_CREATE);
+            var responseAuth = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_USER, DefaultInformationDbConstants.ACTION_CREATE);
 
             if (!responseAuth.Success)
             {
@@ -69,7 +68,7 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var responseAuth =await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_UPDATE);
+            var responseAuth =await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_USER, DefaultInformationDbConstants.ACTION_UPDATE);
 
             if (!responseAuth.Success)
             {
@@ -83,7 +82,7 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var responseAuth = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_UPDATEPROFILE);
+            var responseAuth = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_USER, DefaultInformationDbConstants.ACTION_UPDATEPROFILE);
 
             if (!responseAuth.Success)
             {
@@ -98,7 +97,7 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var responseAuth = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_UPDATEPROFILE);
+            var responseAuth = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_USER, DefaultInformationDbConstants.ACTION_UPDATEPROFILE);
 
             if (!responseAuth.Success)
             {
@@ -114,7 +113,7 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_DELETE);
+            var response = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_USER, DefaultInformationDbConstants.ACTION_DELETE);
 
             if (!response.Success) 
             {
@@ -149,7 +148,7 @@ namespace SheepControlApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var response = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, Constants.CONTROLLER_USER, Constants.ACTION_TOGGLEACTIVE);
+            var response = await _AuthenticationBusiness.CheckPermissionControllerActionForUser(identity, DefaultInformationDbConstants.CONTROLLER_USER, DefaultInformationDbConstants.ACTION_TOGGLEACTIVE);
 
             if (!response.Success)
             {

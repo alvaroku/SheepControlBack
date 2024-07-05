@@ -1,29 +1,27 @@
 ﻿using AutoMapper;
 using Business.Definitions;
 using DataAccess;
-using DataAccess.Implementations;
+using DataAccess.Repositories.Definitions;
+using DataAccess.Repositories.Implementations;
 using Entities;
 using Entities.DTOs;
-using Business.Utils;
-using Azure.Core;
+using Shared;
 
 namespace Business.Implementations
 {
-    public class SheepBusiness:ISheepBusiness
+    public class SheepBusiness : ISheepBusiness
     {
-        SheepRepository _Repository;
-        SheepHistoricWeightRepository _HistoricWeightRepository;
+        ISheepRepository _Repository;
+        ISheepHistoricWeightRepository _HistoricWeightRepository;
         IFileManager fileManager;
-        private string ResourcePath = string.Empty;
-        public SheepBusiness(SheepControlDbContext context,IFileManager _fileManager) 
-        { 
-            _Repository = new SheepRepository(context);
-            _HistoricWeightRepository = new SheepHistoricWeightRepository(context);
-            ResourcePath = Constants.SHEEPIMAGEPATH;
+        public SheepBusiness(SheepControlDbContext context, IFileManager _fileManager, ISheepRepository sheepRepository,ISheepHistoricWeightRepository sheepHistoricWeightRepository)
+        {
+            _Repository = sheepRepository;
+            _HistoricWeightRepository = sheepHistoricWeightRepository;
             fileManager = _fileManager;
         }
 
-        public Response<SheepResponse> Create(SheepRequest sheepRequest)
+        public async Task<Response<SheepResponse>> Create(SheepRequest sheepRequest)
         {
             Response<SheepResponse> response = new Response<SheepResponse>();
 
@@ -35,9 +33,9 @@ namespace Business.Implementations
                 newSheep.ModificationDate = newSheep.CreationDate;
                 newSheep.Active = true;
 
-                newSheep.Photo = fileManager.UploadImage(ResourcePath, sheepRequest.ImageFile);
+                newSheep.Photo = fileManager.UploadImage(PathConstants.SHEEPIMAGEPATH, sheepRequest.ImageFile);
 
-                _Repository.Create(newSheep);
+                await _Repository.Add(newSheep);
 
                 SheepHistoricWeight sheepHistoricWeight = new SheepHistoricWeight
                 {
@@ -49,10 +47,10 @@ namespace Business.Implementations
                     WeighingDate = newSheep.CreationDate,
                 };
 
-                _HistoricWeightRepository.Create(sheepHistoricWeight);
+                await _HistoricWeightRepository.Add(sheepHistoricWeight);
 
                 response.Data = Mapper.Map<SheepResponse>(newSheep);
-                response.Message = Constants.CreateSuccesMessage;
+                response.Message = MessageConstants.CreateSuccesMessage;
             }
             catch (Exception ex)
             {
@@ -64,23 +62,23 @@ namespace Business.Implementations
             return response;
         }
 
-        public IEnumerable<SheepResponse> Read()
+        public async Task<IEnumerable<SheepResponse>> Read()
         {
-            var respuesta = _Repository.Read();
+            var respuesta = await _Repository.GetAll();
 
             var mapeo = Mapper.Map<IEnumerable<SheepResponse>>(respuesta);
 
             return mapeo.ToList();
         }
-        public IEnumerable<SheepResponse> GetSheepsWithFinalWeight()
+        public async Task<IEnumerable<SheepResponse>>  GetSheepsWithFinalWeight()
         {
-            List<Sheep> respuesta = _Repository.Read().ToList();
+            List<Sheep> respuesta = _Repository.GetAll().Result.ToList();
 
-            for(int i=0;i<respuesta.Count();i++)
+            for (int i = 0; i < respuesta.Count(); i++)
             {
-                if(_HistoricWeightRepository.Read().Where(x => x.SheepId == respuesta[i].Id).Count() > 0)
+                if (_HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == respuesta[i].Id).Count() > 0)
                 {
-                     respuesta[i].Weight = _HistoricWeightRepository.Read().Where(x => x.SheepId == respuesta[i].Id).OrderByDescending(x => x.Id).First().NewWeight;
+                    respuesta[i].Weight = _HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == respuesta[i].Id).OrderByDescending(x => x.Id).First().NewWeight;
                 }
             }
 
@@ -88,73 +86,85 @@ namespace Business.Implementations
 
             return mapeo.ToList();
         }
-        public Response<SheepResponse> Update(int id,SheepRequest sheepRequest)
+        public async Task<Response<SheepResponse>> Update(int id, SheepRequest sheepRequest)
         {
             Response<SheepResponse> response = new Response<SheepResponse>();
 
-            Sheep sheep = _Repository.GetById(id);
-
-            if (sheepRequest.ImageFile != null)
+            try
             {
-                fileManager.DeleteFile(ResourcePath, sheepRequest.Photo);
-                sheep.Photo = fileManager.UploadImage(ResourcePath, sheepRequest.ImageFile); ;
+                Sheep sheep = await _Repository.GetById(id);
+
+                if (sheep.Sold)
+                {
+                    throw new Exception("No se puede modificar un ejemplar vendido.");
+                }
+
+                if (sheepRequest.ImageFile != null)
+                {
+                    fileManager.DeleteFile(PathConstants.SHEEPIMAGEPATH, sheepRequest.Photo);
+                    sheep.Photo = fileManager.UploadImage(PathConstants.SHEEPIMAGEPATH, sheepRequest.ImageFile); ;
+                }
+
+                sheep.ModificationDate = DateTime.Now;
+                sheep.BirthDate = sheepRequest.BirthDate;
+                sheep.Weight = sheepRequest.Weight;
+                sheep.Description = sheepRequest.Description;
+                sheep.Sex = sheepRequest.Sex;
+                sheep.AcquisitionCost = sheepRequest.AcquisitionCost;
+                sheep.KiloPrice = sheepRequest.KiloPrice;
+                sheep.IsAcquisition = sheepRequest.IsAcquisition;
+
+               await _Repository.Update(sheep);
+
+                SheepHistoricWeight sheepHistoricWeight = _HistoricWeightRepository.GetAll().Result.Where(x => x.SheepId == sheep.Id).First();
+
+                if (sheepHistoricWeight.NewWeight != sheep.Weight)
+                {
+                    sheepHistoricWeight.NewWeight = sheep.Weight;
+                    sheepHistoricWeight.ModificationDate = DateTime.Now;
+                    await _HistoricWeightRepository.Update(sheepHistoricWeight);
+                }
+                response.Data = Mapper.Map<SheepResponse>(sheep);
+                response.Message = MessageConstants.UpdateSuccesMessage;
             }
-
-            sheep.ModificationDate = DateTime.Now;
-            sheep.BirthDate = sheepRequest.BirthDate;
-            sheep.Weight = sheepRequest.Weight;
-            sheep.Description = sheepRequest.Description;
-            sheep.Sex = sheepRequest.Sex;
-            sheep.AcquisitionCost = sheepRequest.AcquisitionCost;
-            sheep.KiloPrice = sheepRequest.KiloPrice;
-            sheep.IsAcquisition= sheepRequest.IsAcquisition;
-
-            _Repository.Update(sheep);
-
-            SheepHistoricWeight sheepHistoricWeight = _HistoricWeightRepository._dbSet.Where(x => x.SheepId == sheep.Id).First();
-
-            if(sheepHistoricWeight.NewWeight != sheep.Weight)
+            catch (Exception ex)
             {
-                sheepHistoricWeight.NewWeight = sheep.Weight;
-                sheepHistoricWeight.ModificationDate = DateTime.Now;
-                _HistoricWeightRepository.Update(sheepHistoricWeight);
+                response.Message = ex.Message;
+                response.Success = false;
+                response.StatusCode = (int)EnumStatusCode.BadRequest;
             }
-
-           
-            response.Data = Mapper.Map<SheepResponse>(sheep);
-            response.Message = Constants.UpdateSuccesMessage;
             return response;
         }
-        public Response<bool> Delete(int id)
+        public async Task<Response<bool>> Delete(int id)
         {
             Response<bool> response = new Response<bool>();
-            Sheep sh = _Repository.GetById(id);
-            fileManager.DeleteFile(ResourcePath, sh.Photo);
-            _Repository.Delete(sh);
-            response.Message = Constants.DeleteSuccesMessage;
+            Sheep sh =await _Repository.GetById(id);
+            fileManager.DeleteFile(PathConstants.SHEEPIMAGEPATH, sh.Photo);
+            await _Repository.Delete(sh.Id);
+            response.Message = MessageConstants.DeleteSuccesMessage;
             return response;
         }
-        public Response<SheepResponse> GetById(int id)
+        public async Task<Response<SheepResponse>> GetById(int id)
         {
             Response<SheepResponse> response = new Response<SheepResponse>();
-            Sheep she = _Repository.GetById(id);
+            Sheep she = await _Repository.GetById(id);
             response.Data = Mapper.Map<SheepResponse>(she);
             return response;
         }
-        public Response<bool> ToggleActive(int id)
+        public async Task<Response<bool>> ToggleActive(int id)
         {
             Response<bool> response = new Response<bool>();
 
-            var data = _Repository.GetById(id);
+            var data = await _Repository.GetById(id);
             data.Active = !data.Active;
-            _Repository.Update(data);
+            await _Repository.Update(data);
             response.Data = data.Active;
-            response.Message = data.Active ? Constants.ActiveSuccesMessage : Constants.InactiveSuccesMessage;
+            response.Message = data.Active ? MessageConstants.ActiveSuccesMessage : MessageConstants.InactiveSuccesMessage;
             return response;
         }
         public FileStream GetImage(string imageName)
         {
-            return fileManager.GetImage(ResourcePath, imageName);
+            return fileManager.GetImage(PathConstants.SHEEPIMAGEPATH, imageName);
         }
     }
 }

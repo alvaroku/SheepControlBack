@@ -4,10 +4,10 @@ namespace Business.Definitions
 {
     public interface IActionBusiness
     {
-        public Response<ActionResponse> Create(ActionRequest actionRequest);
-        public IEnumerable<ActionResponse> Read();
-        public Response<ActionResponse> Update(int id, ActionRequest request);
-        public Response<bool> Delete(int id);
-        public Response<bool> ToggleActive(int id);
+        Task<Response<ActionResponse>> Create(ActionRequest actionRequest);
+        Task<IEnumerable<ActionResponse>> Read();
+        Task<Response<ActionResponse>> Update(int id, ActionRequest request);
+        Task<Response<bool>> Delete(int id);
+        Task<Response<bool>> ToggleActive(int id);
     }
 }

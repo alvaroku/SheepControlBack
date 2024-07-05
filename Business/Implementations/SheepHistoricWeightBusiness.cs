@@ -1,20 +1,20 @@
 ﻿using AutoMapper;
 using Business.Definitions;
-using Business.Utils;
-using DataAccess;
-using DataAccess.Implementations;
+using DataAccess.Repositories.Definitions;
 using Entities;
 using Entities.DTOs;
+using Shared;
 
 namespace Business.Implementations
 {
     public class SheepHistoricWeightBusiness : ISheepHistoricWeightBusiness
     {
-        SheepHistoricWeightRepository _Repository;
-        public SheepHistoricWeightBusiness(SheepControlDbContext context) {
-            _Repository = new SheepHistoricWeightRepository(context);
+        ISheepHistoricWeightRepository _Repository;
+        public SheepHistoricWeightBusiness(ISheepHistoricWeightRepository sheepHistoricWeightRepository)
+        {
+            _Repository = sheepHistoricWeightRepository;
         }
-        public Response<SheepHistoricWeightResponse> Create(SheepHistoricWeightRequest request)
+        public async Task<Response<SheepHistoricWeightResponse>> Create(SheepHistoricWeightRequest request)
         {
             Response<SheepHistoricWeightResponse> response = new Response<SheepHistoricWeightResponse>();
 
@@ -25,47 +25,47 @@ namespace Business.Implementations
             sheepHistoricWeight.Active = true;
             sheepHistoricWeight.ModificationDate = DateTime.Now;
 
-            _Repository.Create(sheepHistoricWeight);
-            response.Message = Constants.CreateSuccesMessage;
+            await _Repository.Add(sheepHistoricWeight);
+            response.Message = MessageConstants.CreateSuccesMessage;
             response.Data = Mapper.Map<SheepHistoricWeightResponse>(sheepHistoricWeight);
             return response;
         }
 
-        public Response<IEnumerable<SheepHistoricWeightResponse>> Read()
+        public async Task<Response<IEnumerable<SheepHistoricWeightResponse>>> Read()
         {
             Response<IEnumerable<SheepHistoricWeightResponse>> response = new Response<IEnumerable<SheepHistoricWeightResponse>>();
-            var respuesta = _Repository.ReadIncludes();
+            var respuesta =await _Repository.ReadIncludes();
 
             var mapeo = Mapper.Map<IEnumerable<SheepHistoricWeightResponse>>(respuesta);
 
-             response.Data = mapeo.ToList().OrderBy(x=>x.Id).OrderBy(x=>x.SheepId);
+            response.Data = mapeo.ToList().OrderBy(x => x.Id).OrderBy(x => x.SheepId);
             return response;
         }
-        public Response<SheepHistoricWeightResponse> Update(int id,SheepHistoricWeightRequest request)
+        public async Task<Response<SheepHistoricWeightResponse>> Update(int id, SheepHistoricWeightRequest request)
         {
             Response<SheepHistoricWeightResponse> response = new Response<SheepHistoricWeightResponse>();
 
 
-            SheepHistoricWeight sheepHistoricWeight = _Repository.GetById(id);
+            SheepHistoricWeight sheepHistoricWeight = await _Repository.GetById(id);
 
             sheepHistoricWeight.ModificationDate = DateTime.Now;
             sheepHistoricWeight.NewWeight = request.NewWeight;
             sheepHistoricWeight.WeighingDate = request.WeighingDate;
 
-            _Repository.Update(sheepHistoricWeight);
+           await _Repository.Update(sheepHistoricWeight);
 
             response.Data = Mapper.Map<SheepHistoricWeightResponse>(sheepHistoricWeight);
-            response.Message = Constants.UpdateSuccesMessage;
+            response.Message = MessageConstants.UpdateSuccesMessage;
             return response;
         }
-        public Response<bool> Delete(int id)
+        public async Task<Response<bool>> Delete(int id)
         {
             Response<bool> response = new Response<bool>();
             response.Data = true;
-            SheepHistoricWeight sh = _Repository.GetById(id);
+            SheepHistoricWeight sh =await _Repository.GetById(id);
 
-            SheepHistoricWeight sheepHistoricWeight = _Repository._dbSet.Where(x => x.SheepId == sh.SheepId).First();
-            if(sh.Id == sheepHistoricWeight.Id)
+            SheepHistoricWeight sheepHistoricWeight = _Repository.GetAll().Result.Where(x => x.SheepId == sh.SheepId).First();
+            if (sh.Id == sheepHistoricWeight.Id)
             {
                 response.Data = false;
                 response.Success = false;
@@ -74,19 +74,19 @@ namespace Business.Implementations
                 return response;
             }
 
-            _Repository.Delete(sh);
-            response.Message = Constants.DeleteSuccesMessage;
+            await _Repository.Delete(sh.Id);
+            response.Message = MessageConstants.DeleteSuccesMessage;
             return response;
         }
-        public Response<bool> ToggleActive(int id)
+        public async Task<Response<bool>> ToggleActive(int id)
         {
             Response<bool> response = new Response<bool>();
 
-            var data = _Repository.GetById(id);
+            var data = await _Repository.GetById(id);
             data.Active = !data.Active;
-            _Repository.Update(data);
+            await _Repository.Update(data);
             response.Data = data.Active;
-            response.Message = data.Active ? Constants.ActiveSuccesMessage : Constants.InactiveSuccesMessage;
+            response.Message = data.Active ? MessageConstants.ActiveSuccesMessage : MessageConstants.InactiveSuccesMessage;
             return response;
         }
     }

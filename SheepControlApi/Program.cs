@@ -3,6 +3,7 @@ using Business.Implementations;
 using Business.Utils;
 using DataAccess;
 using DataAccess.Repositories.Definitions;
+using DataAccess.Repositories.Generic;
 using DataAccess.Repositories.Implementations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +19,7 @@ namespace SheepControlApi
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
- 
+
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -80,22 +81,35 @@ namespace SheepControlApi
             builder.Services.AddScoped<ISheepBusiness, SheepBusiness>();
             builder.Services.AddScoped<IPermissionBusiness, PermissionBusiness>();
             builder.Services.AddScoped<IPermissionRoleBusiness, PermissionRoleBusiness>();
-            builder.Services.AddScoped<IRoleBusiness,RoleBusiness>();
+            builder.Services.AddScoped<IRoleBusiness, RoleBusiness>();
             builder.Services.AddScoped<IRoleUserBusiness, RoleUserBusiness>();
             builder.Services.AddScoped<IVaccineSheepBusiness, VaccineSheepBusiness>();
-            builder.Services.AddScoped<IAuthenticationBusiness,AuthenticationBusiness>();
+            builder.Services.AddScoped<IAuthenticationBusiness, AuthenticationBusiness>();
             builder.Services.AddScoped<ISaleSheepBusiness, SaleSheepBusiness>();
             builder.Services.AddScoped<ISheepHistoricWeightBusiness, SheepHistoricWeightBusiness>();
             builder.Services.AddScoped<IGraphicBusiness, GraphicBusiness>();
             builder.Services.AddScoped<IFileManager, LocalFileManager>();
+            builder.Services.AddScoped<IEmailSender, EmailSender>();
 
             // Repositories
-            builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IActionRepository, ActionRepository>();
+            builder.Services.AddScoped<IControllerRepository, ControllerRepository>();
+            builder.Services.AddScoped<IPermissionRepository, PermissionRepository>();
+            builder.Services.AddScoped<IPermissionRoleRepository, PermissionRoleRepository>();
+            builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+            builder.Services.AddScoped<IRoleUserRepository, RoleUserRepository>();
+            builder.Services.AddScoped<ISaleSheepRepository, SaleSheepRepository>();
+            builder.Services.AddScoped<ISheepHistoricWeightRepository, SheepHistoricWeightRepository>();
+            builder.Services.AddScoped<ISheepRepository, SheepRepository>();
+            builder.Services.AddScoped<IVaccineRepository, VaccineRepository>();
+            builder.Services.AddScoped<IVaccineSheepRepository, VaccineSheepRepository>();
+            builder.Services.AddScoped<IVaccineStockRepository, VaccineStockRepository>();
             AutoMapperConfiguration.Configure();
 
-            
+
             // Add Cors for api access
             builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
@@ -118,7 +132,7 @@ namespace SheepControlApi
             app.UseAuthentication();//bearer
 
             app.UseAuthorization();
-      
+
             // Enable Cors for api acces
             app.UseCors("MyPolicy");
 
