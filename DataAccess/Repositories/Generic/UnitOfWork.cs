@@ -9,9 +9,9 @@
             Context = context;
         }
 
-        public void Commit()
+        public async Task Commit()
         {
-            Context.SaveChanges();
+            await Context.SaveChangesAsync();
         }
 
         public void Dispose()

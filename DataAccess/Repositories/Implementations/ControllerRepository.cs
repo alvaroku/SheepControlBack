@@ -5,7 +5,7 @@ namespace DataAccess.Repositories.Implementations
 {
     public class ControllerRepository : GenericRepository<Controller>, IControllerRepository
     {
-        public ControllerRepository(SheepControlDbContext context) : base(context)
+        public ControllerRepository(IUnitOfWork context) : base(context)
         {
         }
     }

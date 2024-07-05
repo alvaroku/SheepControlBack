@@ -7,12 +7,12 @@ namespace DataAccess.Repositories.Implementations
 {
     public class SheepHistoricWeightRepository : GenericRepository<SheepHistoricWeight>, ISheepHistoricWeightRepository
     {
-        public SheepHistoricWeightRepository(SheepControlDbContext context) : base(context)
+        public SheepHistoricWeightRepository(IUnitOfWork context) : base(context)
         {
         }
         public async Task<IEnumerable<SheepHistoricWeight>> ReadIncludes()
         {
-            return await _dbSet.Include(p => p.Sheep).ToListAsync();
+            return await _unitOfWork.Context.SheepHistoricWeights.Include(p => p.Sheep).ToListAsync();
         }
     }
 }

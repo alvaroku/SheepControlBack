@@ -6,7 +6,7 @@ namespace DataAccess.Repositories.Implementations
 {
     public class VaccineRepository : GenericRepository<Vaccine>,IVaccineRepository
     {
-        public VaccineRepository(SheepControlDbContext context) : base(context)
+        public VaccineRepository(IUnitOfWork context) : base(context)
         {
         }
     }

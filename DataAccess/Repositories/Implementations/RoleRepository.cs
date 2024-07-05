@@ -6,7 +6,7 @@ namespace DataAccess.Repositories.Implementations
 {
     public class RoleRepository : GenericRepository<Role>,IRoleRepository
     {
-        public RoleRepository(SheepControlDbContext context) : base(context)
+        public RoleRepository(IUnitOfWork context) : base(context)
         {
         }
     }

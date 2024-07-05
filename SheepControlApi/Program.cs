@@ -72,6 +72,7 @@ namespace SheepControlApi
                 options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString"))
                 );//bd
 
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             // Services
             builder.Services.AddScoped<IUserBusiness, UserBusiness>();//business
             builder.Services.AddScoped<IVaccineBusiness, VaccineBusiness>();

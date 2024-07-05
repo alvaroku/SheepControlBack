@@ -7,18 +7,18 @@ namespace DataAccess.Repositories.Implementations
 {
     public class SaleSheepRepository : GenericRepository<SaleSheep>,ISaleSheepRepository
     {
-        public SaleSheepRepository(SheepControlDbContext context) : base(context)
+        public SaleSheepRepository(IUnitOfWork context) : base(context)
         {
         }
 
         public async Task<float> GetGanancias()
         {
-           return await _dbSet.SumAsync(x => x.SaleProfit);
+           return await _unitOfWork.Context.SaleSheeps.SumAsync(x => x.SaleProfit);
         }
 
         public async Task<IEnumerable<SaleSheep>> ReadIncludes()
         {
-            return await _dbSet.Include(x => x.Sheep).ToListAsync();
+            return await _unitOfWork.Context.SaleSheeps.Include(x => x.Sheep).ToListAsync();
         }
     }
 }
